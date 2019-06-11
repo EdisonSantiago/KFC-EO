@@ -1,0 +1,152 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2">
+  <sql-query name="GetMonthlyTicketDtoList">
+    <![CDATA[
+			SELECT 
+				Tickets.TicketId as Id, 
+				Tickets.Title, 
+				Tickets.Status as [Status], 
+				Tickets.Description as [Description], 
+				Tickets.UserPriority, 
+				Tickets.Priority as Priority, 
+				Tickets.CreatedOn, 
+				Tickets.ResolvedOn, 
+				Tickets.UpdatedOn, 
+				TicketTypes.Name as TicketTypeName, 
+				Resources.Name as ResourceName, 
+				Components.Name AS ComponentName, 
+				RequestTypes.Name AS RequestTypeName,
+				GeneratedById as UserGenerateId,
+				(SELECT DisplayName from Users where Users.UserId = Tickets.GeneratedById) as UserGenerateName,
+				AssignedToId as UserAssignedId,
+				(SELECT DisplayName from Users where Users.UserId = Tickets.AssignedToId) as UserAssignedName,
+				(SELECT TOP 1 [DateTime] from Actions where TicketId = Tickets.TicketId ORDER BY [DateTime] DESC) as LastUpdateDate
+
+			FROM 
+				Tickets INNER JOIN
+				TicketTypes ON Tickets.TicketTypeId = TicketTypes.TicketTypeId INNER JOIN
+				Resources ON Tickets.ResourceId = Resources.ResourceId INNER JOIN
+				Components ON Tickets.ComponentId = Components.ComponentId INNER JOIN
+				RequestTypes ON Tickets.RequestTypeId = RequestTypes.RequestTypeId 
+
+			WHERE 
+			Tickets.ProjectId = :projectId AND
+			(Tickets.CreatedOn >= :startDate AND Tickets.CreatedOn <= :endDate)
+			ORDER BY LastUpdateDate DESC
+
+		]]>
+  </sql-query>
+  <sql-query name="GetTicketTypeSummary">
+    <![CDATA[
+
+			declare @TicketTotalCount int
+			set @TicketTotalCount= (select COUNT(TicketId) from Tickets where Tickets.ProjectId = :projectId AND (CreatedOn >= DATEADD(DAY,-30,GETDATE()) AND CreatedOn <= GETDATE() ))
+
+
+			SELECT 
+				TicketTypeId as Id, 
+				Name,
+				(SELECT COUNT(TicketId) FROM TICKETS WHERE ProjectId = :projectId AND TicketTypeId = TicketTypes.TicketTypeId AND (CreatedOn >= DATEADD(DAY,-30,GETDATE()) AND CreatedOn <= GETDATE() ) AND Tickets.Status <> 99) as TicketCount,
+				@TicketTotalCount as TicketTotalCount
+			FROM     TicketTypes
+			WHERE ProjectId = :projectId
+
+	]]>
+  </sql-query>
+
+  <sql-query name="GetIndicatorsTicketsByTpe">
+    <![CDATA[
+			SELECT 
+				Tickets.TicketId as Id, 
+				Tickets.Title, 
+				Tickets.Status as [Status], 
+				Tickets.Description as [Description], 
+				Tickets.UserPriority, 
+				Tickets.Priority as Priority, 
+				Tickets.CreatedOn, 
+				Tickets.ResolvedOn, 
+				Tickets.UpdatedOn, 
+				TicketTypes.Name as TicketTypeName, 
+				Resources.Name as ResourceName, 
+				Components.Name AS ComponentName, 
+				RequestTypes.Name AS RequestTypeName,
+				GeneratedById as UserGenerateId,
+				(SELECT DisplayName from Users where Users.UserId = Tickets.GeneratedById) as UserGenerateName,
+				AssignedToId as UserAssignedId,
+				(SELECT DisplayName from Users where Users.UserId = Tickets.AssignedToId) as UserAssignedName,
+				(SELECT TOP 1 [DateTime] from Actions where TicketId = Tickets.TicketId ORDER BY [DateTime] DESC) as LastUpdateDate
+
+			FROM 
+				Tickets INNER JOIN
+				TicketTypes ON Tickets.TicketTypeId = TicketTypes.TicketTypeId INNER JOIN
+				Resources ON Tickets.ResourceId = Resources.ResourceId INNER JOIN
+				Components ON Tickets.ComponentId = Components.ComponentId INNER JOIN
+				RequestTypes ON Tickets.RequestTypeId = RequestTypes.RequestTypeId 
+
+			WHERE 
+			Tickets.ProjectId = :projectId AND
+			Tickets.TicketTypeId = :ticketTypeId AND 
+			(Tickets.CreatedOn >= DATEADD(DAY,-30,GETDATE()) AND Tickets.CreatedOn <= GETDATE() )
+			AND Tickets.Status <> 99
+			ORDER BY LastUpdateDate DESC
+
+		]]>
+  </sql-query>
+
+  <sql-query name="GetProcessSummary">
+    <![CDATA[
+
+			declare @TicketTotalCount int
+			set @TicketTotalCount= (select COUNT(TicketId) from Tickets where Tickets.ProjectId = :projectId AND (CreatedOn >= DATEADD(DAY,-30,GETDATE()) AND CreatedOn <= GETDATE() ))
+
+
+			SELECT 
+				ProcessId as Id, 
+				Name,
+				(SELECT COUNT(TicketId) FROM TICKETS WHERE ProjectId = :projectId AND ProcessId = Processes.ProcessId AND (CreatedOn >= DATEADD(DAY,-30,GETDATE()) AND CreatedOn <= GETDATE() ) AND Tickets.Status <> 99) as TicketCount,
+				@TicketTotalCount as TicketTotalCount
+			FROM     Processes
+			WHERE ProjectId = :projectId
+
+	]]>
+  </sql-query>
+
+  <sql-query name="GetIndicatorsTicketsByProcess">
+    <![CDATA[
+			SELECT 
+				Tickets.TicketId as Id, 
+				Tickets.Title, 
+				Tickets.Status as [Status], 
+				Tickets.Description as [Description], 
+				Tickets.UserPriority, 
+				Tickets.Priority as Priority, 
+				Tickets.CreatedOn, 
+				Tickets.ResolvedOn, 
+				Tickets.UpdatedOn, 
+				TicketTypes.Name as TicketTypeName, 
+				Resources.Name as ResourceName, 
+				Components.Name AS ComponentName, 
+				RequestTypes.Name AS RequestTypeName,
+				GeneratedById as UserGenerateId,
+				(SELECT DisplayName from Users where Users.UserId = Tickets.GeneratedById) as UserGenerateName,
+				AssignedToId as UserAssignedId,
+				(SELECT DisplayName from Users where Users.UserId = Tickets.AssignedToId) as UserAssignedName,
+				(SELECT TOP 1 [DateTime] from Actions where TicketId = Tickets.TicketId ORDER BY [DateTime] DESC) as LastUpdateDate
+
+			FROM 
+				Tickets INNER JOIN
+				TicketTypes ON Tickets.TicketTypeId = TicketTypes.TicketTypeId INNER JOIN
+				Resources ON Tickets.ResourceId = Resources.ResourceId INNER JOIN
+				Components ON Tickets.ComponentId = Components.ComponentId INNER JOIN
+				RequestTypes ON Tickets.RequestTypeId = RequestTypes.RequestTypeId 
+
+			WHERE 
+			Tickets.ProjectId = :projectId AND
+			Tickets.ProcessId = :processId AND 
+			(Tickets.CreatedOn >= DATEADD(DAY,-30,GETDATE()) AND Tickets.CreatedOn <= GETDATE() )
+			AND Tickets.Status <> 99
+			ORDER BY LastUpdateDate DESC
+
+		]]>
+  </sql-query>
+</hibernate-mapping>

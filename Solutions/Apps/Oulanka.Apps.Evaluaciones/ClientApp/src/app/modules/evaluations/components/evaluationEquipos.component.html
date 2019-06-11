@@ -1,0 +1,54 @@
+<div class="row">
+    <div class="col-md-6 col-lg-4">
+        <app-breadcrumb></app-breadcrumb>
+    </div>
+    <div class="col-md-6 col-lg-8">
+
+    </div>
+</div>
+
+<div class="note note-info" *ngIf="local !== undefined && evaluation !== undefined">
+    <h4>Perfil de Equipos #{{local.codigo}}</h4>
+    <div class="row">
+        <div class="col-md-4">
+            <strong>Nombre: </strong> {{local.nombre}}<br />
+
+        </div>
+        <div class="col-md-4">
+
+                <strong>Auditor: </strong> {{evaluation.creadoPor}}<br />
+        </div>
+        <div class="col-md-4">
+                <strong>Dirección: </strong> {{local.direccion}}
+        </div>
+    </div>
+</div>
+<div class="row" *ngIf="local !== undefined && evaluation !== undefined">
+    <div class="col-md-3">
+        <div class="portlet light bordered">
+            <div class="portlet-title">
+                <div class="caption"><h4>Equipos {{local.cadenaNombre}}</h4></div>
+            </div>
+            <div class="portlet-body">
+              <app-equipostree
+                [cadenaId]="evaluation.id"
+                *ngIf="evaluation !== undefined"
+                >
+
+              </app-equipostree>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-9">
+            <div class="portlet light bordered">
+                    <div class="portlet-title">
+                        <div class="caption"><h4>Equipos de {{local.nombre}}</h4></div>
+                    </div>
+                    <div class="portlet-body">
+                     <tabla [localId]="local.id">
+                  </tabla>
+
+                      </div>
+                </div>
+    </div>
+</div>

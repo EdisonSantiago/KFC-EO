@@ -1,0 +1,32 @@
+﻿@model dynamic
+
+<form class="navbar-form navbar-left">
+    <div class="input-group">
+        <input id="searchTerm" name="searchTerm" type="text" value="" placeholder="@Html.Resource("search_header_input_placeholder")" class="form-control" />
+        <span class="input-group-btn">
+            <button class="btn btn-default close-menu-toggle" type="button" id="btnSimpleSearch">
+                <span class="glyphicon glyphicon-search"></span>
+            </button>
+            <button id="advancedSearch" class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+                <span class="caret"></span>
+
+            </button>
+            <ul class="dropdown-menu close-menu-toggle customizable-menu">
+                <li>
+                    <a href="@Url.Action("advanced", "search")">
+                        <i class="fa fa-search-plus"></i>
+                        Búsqueda Avanzada
+                    </a>
+                </li>
+                <li>
+                    <a href="@Url.Action("views", "search")">
+
+                        <i class="fa fa-list"></i>
+                        Vistas
+                    </a>
+                </li>
+            </ul>
+        </span>
+    </div>
+
+</form>

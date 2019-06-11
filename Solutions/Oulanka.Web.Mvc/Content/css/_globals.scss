@@ -1,0 +1,87 @@
+﻿
+$fullHeight: 100%;
+$footerHeight: 60px;
+$footerHeight-indent: -60px;
+$footer-topmargin: 20px;
+
+$font-stack: 'Lato', sans-serif;
+$font-size: 13px;
+$font-size-big: 25px;
+$font-weight-thin: 100;
+$font-weight-light: 300;
+$font-weight-normal: 400;
+$font-weight-bold: 700;
+
+$font-color-default: #4c4c4c;
+$font-color-login: #fff;
+$font-color-footer: #999;
+$font-color-footer-titles: #fff;
+
+$defaultBodyBackgroundColor: #0B78B9;
+$headerBackgroundColor: #3E3E3E;
+
+$headerHeight:50px;
+$light-gray: #f0f0f0;
+
+$sidebarWidth:140px;
+$sidebarBackgroundColor:#0B78B9;
+
+@mixin default-font() {
+    font-family: $font-stack;
+    color: $font-color-default;
+    font-size: $font-size;
+    font-weight: 300;
+}
+
+@mixin text-shadow() {
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 1);
+}
+
+@mixin transition(){
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+
+.test-border {
+    border: 1px dotted red;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.align-center {
+    text-align: center;
+}
+
+.align-left {
+    text-align: left;
+}
+
+.align-right {
+    text-align: right;
+}
+
+.align-justify {
+    text-align: justify;
+}
+
+
+#footer {
+    color: $font-color-footer;
+
+    a {
+        color: $font-color-footer;
+    }
+
+    a:hover {
+        color: $font-color-login;
+    }
+}

@@ -1,0 +1,63 @@
+﻿@model EvaluacionViewModel
+
+@{
+    ViewBag.Title = "Detalle de Evaluacion";
+    ViewBag.PageTitle = "Detalle de Evaluacion";
+    ViewBag.PageDescription = "Detalle de Evaluaciona";
+    ViewBag.PageTitleIconCss = "fa fa-sitemap icon-large";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="row">
+    <div class="col-md-12">
+        <div class="nav-tabs-custom">
+            <ul class="nav nav-tabs">
+                <li class="active">
+                    <a href="#datos" data-toggle="tab" aria-expanded="true">Datos de Evaluación</a>
+                </li>
+                <li>
+                    <a href="#comentarios" data-toggle="tab" >Comentarios</a>
+                </li>
+                <li></li>
+            </ul>
+            <div class="tab-content">
+                <div id="datos" class="tab-pane active">
+                    <h3>Evaluación a: @Model.Evaluacion.NombreLocal</h3>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <ul class="list-group list-group-unbordered">
+                                <li class="list-group-item"><b>Cadena</b><a href="" class="pull-right">@Model.Evaluacion.Local.Cadena.Nombre</a></li>
+                                <li class="list-group-item"><b>Local</b><a href="" class="pull-right">@Model.Evaluacion.Local.Nombre</a></li>
+                                <li class="list-group-item"><b>Dirección</b><a href="" class="pull-right">@Model.Evaluacion.Local.Direccion</a></li>
+                                <li class="list-group-item"><b>Estado</b><a href="" class="pull-right">@Model.Evaluacion.NombreEstado</a></li>
+                            </ul>
+
+                        </div>
+                        <div class="col-md-6">
+                            <ul class="list-group list-group-unbordered">
+                                <li class="list-group-item"><b>Fecha Evaluación</b><a href="" class="pull-right">@Model.Evaluacion.FechaEvaluacion.ToString("dd/MM/yyyy")</a></li>
+                                <li class="list-group-item"><b>Hora de Evaluación</b><a href="" class="pull-right">@Model.Evaluacion.HoraEvaluacion.ToString("HH:mm")</a></li>
+                                <li class="list-group-item"><b>Tipo de Evaluación</b><a href="" class="pull-right">@Model.Evaluacion.NombreTipoEvaluacion</a></li>
+                                <li class="list-group-item"><b>Tipo de Visita</b><a href="" class="pull-right">@Model.Evaluacion.NombreTipoVisita</a></li>
+                            </ul>
+
+                        </div>
+                    </div>
+                </div>
+                <div id="comentarios" class="tab-pane">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section scripts
+{
+    <script type="text/javascript">
+        $(document).ready(function() {
+
+        });
+
+    </script>
+}

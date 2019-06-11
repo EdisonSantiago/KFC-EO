@@ -1,0 +1,33 @@
+﻿@model IList<SelectListItem>
+
+<div class="modal fade" id="assign_form" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">@Html.Resource("ticket_manual_assignment")</h4>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <input type="hidden" id="GroupId" value="0" />
+                    <div class="form-group">
+                        <label for="UserId">@Html.Resource("ticket_manual_assignment_user"):</label>
+                        @Html.DropDownList("UserId", Model, "Escoja un operador", new { @class = "form-control" })
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <button type="button" class="btn btn-default pull-right" data-dismiss="modal">
+                            <i class="fa fa-ban"></i>
+                            Cancelar
+                        </button>
+                        <button type="button" id="btnSave" class="btn btn-primary pull-right" style="margin-right: 5px;">Guardar</button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

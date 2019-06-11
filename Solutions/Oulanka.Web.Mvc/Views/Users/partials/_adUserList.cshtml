@@ -1,0 +1,27 @@
+﻿@model UsersViewModel
+
+
+<div class="btn-group">
+    <a href="javascript:importAdUsers();" class="btn btn-danger">
+        <i class="fa fa-download"></i>
+        @Html.Resource("users_import_selected")
+    </a>
+    <input type="hidden" id="loginsToAdd" value="" />
+</div>
+
+@Html.Grid(Model.AdUsers).Named("adusers_grid").Columns(columns =>
+    {
+
+        columns.Add().RenderValueAs(c =>
+        @<input class="checkbox table-select-checkbox adCheckBox" data-targetfield="formitems" type="checkbox" value="@c.LoginName" />
+            ).Sanitized(false).Encoded(false).SetWidth(30);
+
+        columns.Add(c => c.DisplayName).Titled(Html.Resource("head_displayname").ToString());
+        columns.Add(c => c.LoginName).Titled(Html.Resource("head_username").ToString());
+        columns.Add(c => c.Title).Titled(Html.Resource("head_title").ToString()).SetWidth(120);
+
+    }
+
+        ).WithPaging(50).SetLanguage("es").EmptyText(Html.Resource("empty_text").ToString())
+
+

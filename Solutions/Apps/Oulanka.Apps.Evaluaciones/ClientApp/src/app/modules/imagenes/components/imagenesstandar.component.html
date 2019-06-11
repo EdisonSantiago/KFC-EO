@@ -1,0 +1,19 @@
+<div class="note note-warning" *ngIf="!hasItems">
+    <h4>No existen Imágenes del Estandar!</h4>
+    <p>
+        Use el botón en la barra superior o el enlace abajo para subir una imagen.
+    </p>
+</div>
+
+<ul>
+    <li *ngFor="let item of items">{{item.id}}</li>
+</ul>
+<div class="row">
+    <div class="col-md-3 col-sm-6 col-xs-12" *ngFor="let item of items">
+        <div class="portlet light bordered project-portlet">
+            <div class="porlet-body">
+                <img src="{{item.imagenData}}" class="img-responsive" />
+            </div>
+        </div>
+    </div>
+</div>  

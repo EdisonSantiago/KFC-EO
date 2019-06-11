@@ -1,0 +1,98 @@
+{
+  "index": "/index.html",
+  "appData": {
+    "version": "0.1.4",
+    "changelog": "Se agrega mejor manejo de cacheo de recursos"
+  },
+  "assetGroups": [{
+    "name": "app",
+    "installMode": "prefetch",
+    "updateMode": "prefetch",
+    "resources": {
+      "files": [
+        "/favicon.ico",
+        "/index.html",
+        "/*.css",
+        "/vendor.*.js",
+        "/main.*.js",
+        "/polyfills.*.js",
+        "/runtime.*.js",
+        "/*.js"
+      ]
+    }
+  }, {
+    "name": "assets",
+    "installMode": "prefetech",
+    "updateMode": "prefetch",
+    "resources": {
+      "files": [
+        "/assets/**",
+        "/*.(eot|svg|cur|jpg|png|webp|gif|otf|ttf|woff|woff2|ani|js)"
+      ],
+      "urls": ["https://fonts.googleapis.com/**", "https://aazefop.blob.core.windows.net/**"]
+    }
+  }],
+  "dataGroups": [
+    {
+    "name": "shell-api",
+    "version": 1,
+    "urls": ["http://localhost:51759/api/catalogo/**","http://localhost:51759/api/cadenas/**" ],
+    "cacheConfig": {
+      "strategy": "freshness",
+      "maxSize": 3,
+      "maxAge": "7d"
+    }
+  },
+  {
+    "name": "evaluaciones-api",
+    "version": 1,
+    "urls": ["http://localhost:51759/api/evaluaciones/**"],
+    "cacheConfig": {
+      "strategy": "freshness",
+      "maxSize": 3,
+      "maxAge": "7d"
+    }
+  },
+  {
+    "name": "estandares-api",
+    "version": 1,
+    "urls": ["http://localhost:51759/api/estandares/**"],
+    "cacheConfig": {
+      "strategy": "freshness",
+      "maxSize": 3,
+      "maxAge": "7d"
+    }
+  },
+  {
+    "name": "locales-api",
+    "version": 1,
+    "urls": ["https://localhost:51759/api/locales/**"],
+    "cacheConfig": {
+      "strategy": "freshness",
+      "maxSize": 3,
+      "maxAge": "7d"
+    }
+  },
+  {
+    "name": "equipos-api",
+    "version": 1,
+    "urls": ["https://localhost:51759/api/equipos/**"],
+    "cacheConfig": {
+      "strategy": "freshness",
+      "maxSize": 3,
+      "maxAge": "7d"
+    }
+  },
+  {
+    "name": "equipos-api",
+    "version": 1,
+    "urls": ["https://localhost:51759/api/imagenes/**"],
+    "cacheConfig": {
+      "strategy": "freshness",
+      "maxSize": 3,
+      "maxAge": "7d"
+    }
+  }
+]
+
+}

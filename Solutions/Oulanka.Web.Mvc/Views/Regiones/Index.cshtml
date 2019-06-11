@@ -1,0 +1,55 @@
+﻿@model dynamic
+@{
+    ViewBag.Title = "Regiones";
+    ViewBag.PageTitle = "Regiones";
+    ViewBag.PageDescription = "Regiones del sistema";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="btn-group">
+    <a href="@Url.Action("new","regiones")" class="btn btn-default" id="btnAdd">
+        <i class="fa fa-plus"></i>
+        Nueva Región
+    </a>
+</div>
+<br /><br />
+<div class="box">
+
+    <div class="box-body">
+        <table id="items_grid"></table>
+    </div>
+</div>
+
+
+@section css
+{
+    <link href="~/vendors/gijgo-1.9.11/css/gijgo.min.css" rel="stylesheet" />
+}
+
+@section scripts
+{
+    <script src="~/vendors/gijgo-1.9.11/js/gijgo.min.js"></script>
+    <script type="text/javascript">
+        var grid;
+        $(document).ready(function() {
+            grid = $("#items_grid").grid({
+                dataKey: "Id",
+                uiLibrary: "bootstrap",
+                dataSource: '@Url.Action("getregiones","regiones")',
+                columns: [
+                    { field: "Id", width: 35, hidden:true },
+                    { field: "Nombre", title: "NOMBRE" },
+                    { field: "NombreEstado", title: "ESTADO", tmpl: '<span class="status status-{NombreEstado}">{NombreEstado}</span>', width: 120 },
+                    { title: "", field: "Edit", width: 35, type: "icon", icon: "glyphicon-pencil", tooltip: "editar valores", events: { "click": edit } },
+                ]
+            });
+
+        });
+
+        function edit(e) {
+            var url = '@Url.Action("edit","regiones")/' + e.data.record.Id;
+            window.location = url;
+        }
+
+    </script>
+}

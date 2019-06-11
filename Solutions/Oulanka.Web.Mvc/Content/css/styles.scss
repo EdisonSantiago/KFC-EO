@@ -1,0 +1,46 @@
+
+@import '_variables';
+@import '_mixins';
+
+
+
+// Global Styles
+
+body {
+    background-color: $blue-dashmon;
+    @include default-font();
+}
+
+@import '_shared';
+
+// Wrappers
+
+#wrapper {
+    width: 100%;
+}
+
+#page-wrapper {
+    padding: 0 15px;
+    min-height: 568px;
+    background-color: white;
+    @include pagewrapper-shadow();
+}
+
+@media(min-width:768px) {
+    #page-wrapper {
+        position: inherit;
+        margin: 0 0 0 $sidebar-width;
+        padding: 0 30px;
+        border-left: 1px solid darken($gray-lightest, 6.5%);
+    }
+}
+
+
+@import '_footer';
+@import '_headings';
+@import '_navigation';
+@import '_buttons';
+@import '_gradients';
+@import '_forms';
+@import '_validation';
+@import '_hacks';

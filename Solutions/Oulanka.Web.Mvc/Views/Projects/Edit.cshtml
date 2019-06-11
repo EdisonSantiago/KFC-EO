@@ -1,0 +1,56 @@
+﻿@model ProjectFormModel
+
+@{
+    ViewBag.PageTitle = "Editar Proyecto";
+    ViewBag.PageDescription = "Ubique los datos a modificar del proyecto";
+    ViewBag.Title = "Editar Proyecto";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m=>m.Id)
+    <div class="row">
+        <div class="col-md-8">
+            <div class="panel panel-default bg-gray-light">
+                <div class="panel-body">
+
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Name)
+                        @Html.TextBoxFor(m => m.Name, new {@class = "form-control", placeholder = "Nombre del proyecto"})
+                        @Html.ValidationMessageFor(m => m.Name)
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Identifier)
+                        @Html.TextBoxFor(m => m.Identifier, new {@class = "form-control", placeholder = "Identificador del proyecto, sin espacios"})
+                        @Html.ValidationMessageFor(m => m.Identifier)
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Description)
+                        @Html.TextAreaFor(m => m.Description, new { @class = "form-control", placeholder = "Describa datos generales del proyecto" })
+                        @Html.ValidationMessageFor(m => m.Description)
+                    </div>
+                </div>
+                <div class="panel-footer">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <a class="btn btn-default pull-right" href="@Url.Action("index", "projects")">
+                                <i class="fa fa-ban"></i>
+                                @Html.Resource("form_cancel")
+                            </a>
+                            <button type="submit" class="btn btn-primary pull-right" style="margin-right: 5px;">
+                                <i class="fa fa-save"></i>
+                                @Html.Resource("form_save_data")
+                            </button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div><div class="col-md-4"></div>
+    </div>
+}

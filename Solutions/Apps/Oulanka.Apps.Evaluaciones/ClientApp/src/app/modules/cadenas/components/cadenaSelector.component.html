@@ -1,0 +1,32 @@
+<div id="cadenaSelectorModal" class="modal show" role="dialog" aria-hidden="true" *ngIf="showSelector">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title"><i class="icon-gear"></i>
+          Seleccione Una Cadena
+        </h2>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+
+      </div>
+      <form [formGroup]="cadenaSelForm" class="form" (ngSubmit)="setCadena()">
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+              <div class="form-group">
+                <select name="cadena" id="cadena" formControlName="cadena" class="form-control">
+                  <option value="0">Seleccione una cadena</option>
+                  <option *ngFor="let item of items; let i = index" [value]="item.id">{{ item.nombre }}</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-primary blue-ebonyclay" [disabled]="loading">Configurar Cadena</button>
+          <a class="btn dark btn-outline" [routerLink]="['/home']" data-dismiss="modal" aria-hidden="true">Cancelar</a>
+        </div>
+      </form>
+    </div>
+  </div>
+
+</div>

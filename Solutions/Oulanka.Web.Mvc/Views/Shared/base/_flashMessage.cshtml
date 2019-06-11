@@ -1,0 +1,20 @@
+﻿@if (TempData["pageMessage"] != null && TempData["messageType"] != null)
+{
+    var isDimissableCssClass = "";
+
+    if (TempData["isDismissable"] != null)
+    {
+        var isDismissable = bool.Parse(TempData["isDismissable"].ToString());
+
+        if (isDismissable)
+        {
+            isDimissableCssClass = "dismissable";
+        }
+    }
+
+    <div class="alert alert-@TempData["messageType"] @isDimissableCssClass fade in">
+        <p>
+            @MvcHtmlString.Create(TempData["pageMessage"].ToString())
+        </p>
+    </div>
+}

@@ -1,0 +1,46 @@
+﻿@model RoleViewModel
+
+@{
+    ViewBag.PageTitle = Html.Resource("roles_main_title");
+    ViewBag.Title = Html.Resource("roles_main_title");
+    ViewBag.PageDescription = Html.Resource("roles_main_Description");
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="box">
+    <div class="box-body">
+        @Html.Grid(Model.Groups).Named("groups_grid").Columns(columns =>
+    {
+
+        columns.Add().RenderValueAs(c =>
+        @<input class="checkbox table-select-checkbox" data-targetfield="formitems" type="checkbox" value="c.Id" />
+            ).Sanitized(false).Encoded(false).SetWidth(30);
+
+    columns.Add(c => c.Descripcion).Titled(Html.Resource("head_name").ToString());
+    columns.Add(c => c.CreadoEn).Titled(Html.Resource("head_created").ToString());
+    columns.Add(c => c.Usuarios.Count).Titled(Html.Resource("head_users").ToString());
+    columns.Add().RenderValueAs(c =>
+    @<a href="@Url.Action("show","roles",new {id=c.Id})" class="btn btn-default btn-sm">@Html.Resource("see_details")</a>
+            ).Sanitized(false).Encoded(false).SetWidth(30);
+    }
+
+        ).WithPaging(20).SetLanguage("es").EmptyText(Html.Resource("empty_text").ToString())
+
+    </div>
+</div>
+
+
+
+
+@section css{
+
+    <link href="~/Content/Gridmvc.css" rel="stylesheet" />
+}
+
+@section scripts{
+    <script src="~/Scripts/gridmvc.min.js"></script>
+    <script src="~/Scripts/gridmvc.lang.es.js"></script>
+
+    <script src="~/Scripts/App/users.js"></script>
+
+}

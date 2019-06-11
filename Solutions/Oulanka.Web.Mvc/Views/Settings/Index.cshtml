@@ -1,0 +1,96 @@
+﻿@model dynamic
+
+@{
+    ViewBag.Title = "Configuración";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.PageTitle = "Configuración del sistema";
+    ViewBag.PageDescription = "Configuración de variables del sistema.";
+    ViewBag.PageTitleIconCss = "fa fa-gear icon-large";
+}
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        Configuración General
+        <div class="btn-group pull-right">
+            <a href="@Url.Action("eventlog","settings")"
+               class="btn btn-default btn-xs">
+                    @Html.Resource("eventlog_main_title")
+            </a>
+        </div>
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="list-group">
+
+                    <a href="@Url.Action("appsettings", "settings")"
+                       class="list-group-item">
+                        <h4 class="list-group-item-heading">
+                            @Html.Resource("appsettings_main_title")
+                        </h4>
+                        <p class="list-group-item-text">
+                            @Html.Resource("appsettings_main_description")
+                        </p>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="list-group">
+                    <a href="@Url.Action("index", "users")"
+                       class="list-group-item">
+                        <h4 class="list-group-item-heading">@Html.Resource("users_main_title")</h4>
+                        <p class="list-group-item-text">
+                            @Html.Resource("users_main_description")
+                        </p>
+                    </a>
+
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="list-group">
+                    <a href="@Url.Action("index", "roles")"
+                       class="list-group-item">
+                        <h4 class="list-group-item-heading">
+                            @Html.Resource("roles_main_title")
+                        </h4>
+                        <p class="list-group-item-text">
+                            @Html.Resource("roles_main_description")
+                        </p>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="list-group">
+
+                    <a href="@Url.Action("index","projects")"
+                       class="list-group-item">
+                        <h4 class="list-group-item-heading">
+                            Proyectos
+                        </h4>
+                        <p class="list-group-item-text">
+                            Administración de proyectos del sistema
+                        </p>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="list-group">
+                    <a href="@Url.Action("online", "users")"
+                       class="list-group-item">
+                        <h4 class="list-group-item-heading">
+                            Usuarios en Línea
+                        </h4>
+                        <p class="list-group-item-text">
+                            Reporte de usuarios en Línea y Acciones
+                        </p>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-4">
+                
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2">
+  <sql-query name="GetProjectListByUser">
+    <![CDATA[
+        SELECT
+        Projects.IdProject as Id,
+        Projects.Name,
+        Projects.Description,
+        Projects.Identifier,
+        Projects.IsPrivate,
+        Projects.CreatedOn,
+        Projects.CreatedBy,
+        Projects.UpdatedOn,
+        Projects.UpdateBy
+        FROM
+        Projects INNER JOIN
+        ProjectMembers ON Projects.IdProject = ProjectMembers.IdProject
+        WHERE
+        ProjectMembers.UserId = :userId
+        ORDER BY
+        Projects.Name ASC
+    ]]>
+  </sql-query>
+  <sql-query name="GetProjectList">
+    <![CDATA[
+        SELECT
+        Projects.IdProject as Id,
+        Projects.Name,
+        Projects.Description,
+        Projects.Identifier,
+        Projects.IsPrivate,
+        Projects.CreatedOn,
+        Projects.CreatedBy,
+        Projects.UpdatedOn,
+        Projects.UpdateBy
+        FROM
+        Projects 
+        ORDER BY
+        Projects.Name ASC
+    ]]>
+  </sql-query>
+</hibernate-mapping>

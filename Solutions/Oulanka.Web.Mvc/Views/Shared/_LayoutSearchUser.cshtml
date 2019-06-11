@@ -1,0 +1,79 @@
+﻿@{
+
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - @Html.ApplicationName()</title>
+    @Styles.Render("~/css")
+    @Styles.Render("~/css/jqueryui")
+    @Scripts.Render("~/bundles/modernizr")
+    <link rel="stylesheet" href="~/Content/oulanka/homeuser.css" type="text/css" />
+    @RenderSection("css", false)
+</head>
+<body class="skin-blue layout-boxed no-sidebar">
+    <div class="wrapper">
+        @{Html.RenderAction("userheader", "home");}
+
+        <div class="content-wrapper">
+            <section class="content-header">
+                <h1>
+                    @ViewBag.PageTitle
+                    @if (ViewBag.PageDescription != null)
+                    {
+                        <small>@ViewBag.PageDescription</small>
+                    }
+                </h1>
+                @Html.MvcSiteMap().SiteMapPath()
+
+            </section>
+            <hr />
+            <section class="content">
+
+                @Html.Partial("base/_flashMessage")
+
+                @if (IsSectionDefined("panelTools"))
+                {
+                    <div class="box-tools">
+                        <div class="btn-group">
+                            @RenderSection("panelTools")
+                        </div>
+                    </div>
+                }
+                <div class="row">
+
+                    <div class="col-md-3">
+                        <div class="box">
+                            <div class="box-body bg-gray-light">
+                                @Html.Partial("base/_sidebarUser")
+                            </div>
+                        </div>
+
+                        @if (IsSectionDefined("actionBar"))
+                        {
+                            RenderSection("actionbar", false);
+                        }
+                    </div>
+                    <div class="col-md-9">@RenderBody()</div>
+                    
+
+                </div>
+
+            </section>
+
+        </div>
+        <footer class="main-footer">
+            @Html.Partial("base/_footer")
+        </footer>
+
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/jqueryui")
+    @Scripts.Render("~/bundles/app")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

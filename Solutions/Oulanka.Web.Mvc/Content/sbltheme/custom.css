@@ -1,0 +1,5 @@
+﻿body.login .wrapper .brand h1 .logo-icon i[class*="fa-"] {
+    color: #1abc9c;
+    font-size: 140%;
+    margin-left: -5px;
+}

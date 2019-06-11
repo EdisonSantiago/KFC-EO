@@ -1,0 +1,67 @@
+<div id="localSelectorModal" class="modal" [ngClass]="{'show': showSelector, 'hide': !showSelector}" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-full">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3>Seleccione un Local</h3>
+      </div>
+      <div class="modal-body">
+        <div *ngIf="hasItems">
+          <div class="note note-info">
+            <p>Página {{page}} de {{pagesCount}}</p>
+          </div>
+          <div class="portlet light bordered ">
+            <div class="portlet-body">
+              <table class="table table-stripped table-hover table-advance">
+                <thead>
+                  <tr>
+                      <th class="min"></th>
+                    <th>Codigo</th>
+                    <th>Local</th>
+                    <th>Tipo</th>
+                    <th>Jefe Area</th>
+                    <th>Dirección</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let item of items">
+                      <td><a (click)="selectLocal(item.codigo)" title="Seleccionar Local">
+                          <i class="icon-plus"></i>
+                      </a></td>
+                    <td>{{item.codigo}}</td>
+                    <td>{{item.nombre}}</td>
+                    <td>{{item.tipoLocalDetalle}}</td>
+                    <td>{{item.jefeAreaNombre}}</td>
+                    <td>{{item.direccion}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="pager">
+            <div class="text-center">
+              <div ng-hide="(!pagesCount || pagesCount < 2)" style="display:inline">
+                <ul class="pagination pagination-sm">
+                  <li>
+                    <a *ngIf="page != 0" (click)="search(0)">
+                      <<</a> </li> <li>
+                        <a *ngIf="page != 0" (click)="search(page-1)">
+                          <</a> </li> <li *ngFor="let n of range()" [ngClass]="{active: n == page}">
+                            <a (click)="search(n)" *ngIf="n != _age">{{n+1}}</a>
+                            <span *ngIf="n == page">{{n+1}}</span>
+                  </li>
+                  <li><a *ngIf="page != (pagesCount - 1)" (click)="search(pagePlus(1))">></a></li>
+                  <li><a *ngIf="page != (pagesCount - 1)" (click)="search(pagesCount - 1)">>></a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <div class="modal-footer">
+      </div>
+    </div>
+  </div>
+</div>
+<app-local-dbinit [cadenaId]="cadenaId"></app-local-dbinit>

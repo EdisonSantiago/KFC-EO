@@ -1,0 +1,86 @@
+<div class="row">
+    <div class="col-md-6 col-lg-4">
+        <app-breadcrumb></app-breadcrumb>
+    </div>
+    <div class="col-md-6 col-lg-8">
+        <a [routerLink]="['/evaluaciones/new']" class="btn btn-default">
+            <i class="icon-plus"></i> Nueva Evaluacion
+        </a>
+    </div>
+</div>
+<div class="note note-info" *ngIf="isEmpty">
+    <h4>No existen Evaluaciones en el Sistema!</h4>
+    <p>
+        Use el botón en la barra superior o el enlace abajo para crear una nueva Evaluación.
+    </p>
+    <p>
+        <br />
+        <a [routerLink]="['/evaluaciones/new']" class="btn btn-default">
+            <i class="icon-plus"></i> Nueva Evaluación
+        </a>
+    </p>
+</div>
+
+<div *ngIf="!isEmpty">
+    <div class="note note-info">
+        <p>Página {{page}} de {{pagesCount}}</p>
+    </div>
+    <div class="portlet light bordered">
+        <div class="portlet-title">
+            <div class="caption">Evaluaciones Realizadas KFc</div>
+        </div>
+        <div class="portlet-body">
+            <table class="table table-stripped table-hover table-advance">
+                <thead>
+                    <tr>
+                        <th>Local</th>
+                        <th>Día</th>
+                        <th>Hora</th>
+                        <th>Estado</th>
+                        <th class="actions" >Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of items">
+                        <td>{{item.localNombre}}</td>
+                        <td>{{item.fechaEvaluacion |date:'dd/MM/yyyy'}}</td>
+                        <td>{{item.horaEvaluacion |date:'HH:mm'}}</td>
+                        <td>{{item.estado}}</td>
+                        <td>
+                            <a [routerLink]="[ '/evaluaciones', item.id, 'show' ]" title="ver detalles">
+                                <i class="icon-arrow-right"></i>
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+
+    <hr />
+    <div class="pager">
+        <div class="text-center">
+            <div ng-hide="(!pagesCount || pagesCount < 2)" style="display:inline">
+                <ul class="pagination pagination-sm">
+                    <li>
+                        <a *ngIf="page != 0" (click)="search(0)">
+                            <<</a>
+                    </li>
+                    <li>
+                        <a *ngIf="page != 0" (click)="search(page-1)">
+                            <</a>
+                    </li>
+                    <li *ngFor="let n of range()" [ngClass]="{active: n == page}">
+                        <a (click)="search(n)" *ngIf="n != _age">{{n+1}}</a>
+                        <span *ngIf="n == page">{{n+1}}</span>
+                    </li>
+                    <li><a *ngIf="page != (pagesCount - 1)" (click)="search(pagePlus(1))">></a></li>
+                    <li><a *ngIf="page != (pagesCount - 1)" (click)="search(pagesCount - 1)">>></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-evaluation-dbinit></app-evaluation-dbinit>

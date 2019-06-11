@@ -1,0 +1,165 @@
+﻿
+@import '_globals';
+@import '_variables';
+@import '_mixins';
+@import '_validation';
+
+$loginBodyBackgroundColor: #2680B7;
+
+
+@mixin login-default-font() {
+    font-family: $font-stack;
+    color: $font-color-login;
+    font-size: $font-size;
+    font-weight: 300;
+}
+
+/* gradients */
+@mixin login-body-gradient() {
+    background-color: #258ece;
+    /* IE9, iOS 3.2+ */
+    background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAxIDEiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjxsaW5lYXJHcmFkaWVudCBpZD0idnNnZyIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMCUiIHkyPSIxMDAlIj48c3RvcCBzdG9wLWNvbG9yPSIjMGE2ZGE5IiBzdG9wLW9wYWNpdHk9IjEiIG9mZnNldD0iMCIvPjxzdG9wIHN0b3AtY29sb3I9IiMzZmFmZjMiIHN0b3Atb3BhY2l0eT0iMSIgb2Zmc2V0PSIxIi8+PC9saW5lYXJHcmFkaWVudD48cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iMSIgaGVpZ2h0PSIxIiBmaWxsPSJ1cmwoI3ZzZ2cpIiAvPjwvc3ZnPg==);
+    background-image: -webkit-gradient(linear, 0% 0%, 0% 100%,color-stop(0, rgb(10, 109, 169)),color-stop(1, rgb(63, 175, 243)));
+    /* Android 2.3 */
+    background-image: -webkit-repeating-linear-gradient(top,rgb(10, 109, 169) 0%,rgb(63, 175, 243) 100%);
+    /* IE10+ */
+    background-image: repeating-linear-gradient(to bottom,rgb(10, 109, 169) 0%,rgb(63, 175, 243) 100%);
+    background-image: -ms-repeating-linear-gradient(top,rgb(10, 109, 169) 0%,rgb(63, 175, 243) 100%);
+}
+
+
+
+
+@mixin yellow-gradient() {
+    background-color: #ffb838;
+    /* IE9, iOS 3.2+ */
+    background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAxIDEiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjxsaW5lYXJHcmFkaWVudCBpZD0idnNnZyIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiIHgxPSIwJSIgeTE9IjEwMCUiIHgyPSIwJSIgeTI9IjAlIj48c3RvcCBzdG9wLWNvbG9yPSIjZmZkNDcwIiBzdG9wLW9wYWNpdHk9IjEiIG9mZnNldD0iMCIvPjxzdG9wIHN0b3AtY29sb3I9IiNmZjljMDAiIHN0b3Atb3BhY2l0eT0iMSIgb2Zmc2V0PSIxIi8+PC9saW5lYXJHcmFkaWVudD48cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iMSIgaGVpZ2h0PSIxIiBmaWxsPSJ1cmwoI3ZzZ2cpIiAvPjwvc3ZnPg==);
+    background-image: -webkit-gradient(linear, 0% 100%, 0% 0%,color-stop(0, rgb(255, 212, 112)),color-stop(1, rgb(255, 156, 0)));
+    /* Android 2.3 */
+    background-image: -webkit-repeating-linear-gradient(bottom,rgb(255, 212, 112) 0%,rgb(255, 156, 0) 100%);
+    /* IE10+ */
+    background-image: repeating-linear-gradient(to top,rgb(255, 212, 112) 0%,rgb(255, 156, 0) 100%);
+    background-image: -ms-repeating-linear-gradient(bottom,rgb(255, 212, 112) 0%,rgb(255, 156, 0) 100%);
+}
+
+html, body {
+    height: $fullHeight;
+    background: $loginBodyBackgroundColor;
+    @include login-default-font();
+    @include login-body-gradient();
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: $font-stack;
+    font-weight: $font-weight-normal;
+}
+
+a{ color:$font-color-login;
+
+}
+a:hover{
+    color:$font-color-login;
+    text-decoration:underline;
+}
+
+/*sticky footer*/
+#wrapper {
+    min-height: $fullHeight;
+    height: auto !important;
+    height: $fullHeight;
+    /*negative indent footer by it's height*/
+    margin: 0 auto $footerHeight-indent;
+}
+
+/* Set the fixed height of the footer here */
+#push,
+#footer {
+    height: $footerHeight;
+}
+
+#footer {
+    padding-top: $footer-topmargin;
+    background: #333;
+
+    a{
+        color: $font-color-login;
+       
+    }
+}
+
+.login {
+    #content {
+        padding-top: 95px;
+        padding-bottom: 20px;
+    }
+
+    h1 {
+        font-weight: $font-weight-light;
+        text-align: center;
+        font-size: 55px;
+        @include text-shadow();
+    }
+
+    h4 {
+        font-size: 18px;
+        font-weight: $font-weight-light;
+        color: $font-color-footer-titles;
+        @include text-shadow();
+
+        a {
+            color: $font-color-login;
+            text-decoration: underline;
+        }
+    }
+}
+
+
+#login-container {
+    width: 350px;
+    margin: auto;
+}
+
+#loginForm, #registerForm {
+    padding: 0 50px 0 50px;
+
+    input[type="text"],input[type="password"] {
+        height: 50px;
+        font-size: 25px;
+        color: $gray-light!important;
+        font-weight: $font-weight-light;
+    }
+}
+
+
+.button {
+    font-weight: $font-weight-normal;
+    color: $black;
+}
+
+.button.medium {
+    font-size: $button-medium-font-size;
+}
+
+.button.full {
+    font-size: $button-full-font-size;
+    width: 100%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.button.yellow-gradient {
+    color: $black;
+    border: none;
+    @include yellow-gradient();
+    @include white-text-shadow();
+}
+
+.yellow-gradient {
+    @include yellow-gradient();
+    color: $black;
+    @include white-text-shadow();
+}
+
+
+
+@import '_loginhacks';

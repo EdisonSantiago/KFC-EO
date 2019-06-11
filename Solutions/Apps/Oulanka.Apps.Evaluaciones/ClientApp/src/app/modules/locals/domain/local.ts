@@ -1,0 +1,30 @@
+export class Local {
+  id: string;
+  codigo: string;
+  nombre: string;
+  descripcion: string;
+  imagen: string;
+  direccion: string;
+  telefono: string;
+  email: string;
+  ruc: string;
+  logo: string;
+  opClave: string;
+  propietario: string;
+  aC: string;
+  concepto: number;
+  creadoPor: string;
+  actualizadoPor: string;
+  creadoEn: Date | string;
+  actualizadoEn: Date | string;
+  estadoNombre: string;
+  estadoId: string;
+  tipoLocalDetalle: string;
+  tipoLocalId: string;
+  cadenaNombre: string;
+  cadenaId: string;
+  ciudadNombre: string;
+  ciudadId: string;
+  jefeAreaNombre: string;
+  jefeAreaId: string;
+}

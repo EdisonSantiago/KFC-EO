@@ -1,0 +1,88 @@
+﻿@model UserAdminFormModel
+
+@{
+    ViewBag.PageTitle = Html.Resource("users_edit_title");
+    ViewBag.PageDescription = Html.Resource("users_edit_description");
+    ViewBag.Title = Html.Resource("users_edit_title");
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default bg-gray-light">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="panel-heading">
+                            @Html.Resource("users_auth_data")
+                        </div>
+                        <div class="panel-body">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.UserName, Html.Resource("users_form_username").ToString())
+                                @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", placeholder = Html.Resource("users_form_username") })
+                                @Html.ValidationMessageFor(m => m.UserName)
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Email, Html.Resource("users_form_email").ToString())
+                                @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = Html.Resource("users_form_email") })
+                                @Html.ValidationMessageFor(m => m.Email)
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.UserName, Html.Resource("users_form_passwword").ToString())
+                                @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = Html.Resource("users_form_passwword") })
+                                @Html.ValidationMessageFor(m => m.Password)
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.UserName, Html.Resource("users_form_passwword_confirm").ToString())
+                                @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control", placeholder = Html.Resource("users_form_passwword_confirm") })
+                                @Html.ValidationMessageFor(m => m.ConfirmPassword)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="panel-heading">
+                            @Html.Resource("users_profile_data")
+                        </div>
+                        <div class="panel-body">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.FirstName, Html.Resource("users_form_firstname").ToString())
+                                @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control", placeholder = Html.Resource("users_form_firstname") })
+                                @Html.ValidationMessageFor(m => m.FirstName)
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.LastName, Html.Resource("users_form_lastname").ToString())
+                                @Html.TextBoxFor(m => m.LastName, new { @class = "form-control", placeholder = Html.Resource("users_form_lastname") })
+                                @Html.ValidationMessageFor(m => m.LastName)
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Address, Html.Resource("users_form_address").ToString())
+                                @Html.TextAreaFor(m => m.Address, new { @class = "form-control", placeholder = Html.Resource("users_form_address") })
+                                @Html.ValidationMessageFor(m => m.Address)
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Phone, Html.Resource("users_form_phone").ToString())
+                                @Html.TextBoxFor(m => m.Phone, new { @class = "form-control", placeholder = Html.Resource("users_form_phone") })
+                                @Html.ValidationMessageFor(m => m.Phone)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-footer">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fa fa-save"></i>
+                        @Html.Resource("form_save_data")
+                    </button>
+                    <a class="btn btn-default btn-xs" href="@Url.Action("index", "users")">
+                        <i class="fa fa-ban"></i>
+                        @Html.Resource("form_cancel")
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+}
+

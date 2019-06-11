@@ -1,0 +1,162 @@
+﻿@model dynamic
+
+@{
+    ViewBag.Title = "Clasificaciones";
+    ViewBag.PageTitle = "Clasificaciones";
+    ViewBag.PageDescription = "Clasificaciones del Sistema";
+    ViewBag.PageTitleIconCss = "fa fa-sitemap icon-large";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="btn-group">
+
+    <a href="javascript:void(0);" class="btn btn-default" id="btnAdd">
+        <i class="fa fa-plus"></i>
+        Nueva Clasificación
+    </a>
+</div>
+<hr />
+<div class="box">
+
+    <div class="box-body">
+        <table id="items_grid"></table>
+    </div>
+</div>
+
+<div class="modal fade" id="tipo_form" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">@ViewBag.PageTitle</h4>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <input type="hidden" id="ClasificacionId" value="0" />
+                    <div class="form-group">
+                        <label for="Nombre">Nombre:</label>
+                        <input type="text" class="form-control" id="Nombre" placeholder="Nombre" />
+                    </div>
+                    <div class="form-group">
+                        <label for="Descripcion">Descripción:</label>
+                        <input type="text" class="form-control" id="Descripcion" placeholder="Descripción">
+                    </div>
+                    <div class="form-group">
+                        <label for="Estado">Estado:</label>
+                        <select name="Estado" id="Estado" class="form-control">
+                            <option value="">Seleccione uno:</option>
+                            @foreach (var estado in Model)
+                            {
+                                <option value="@estado.Id">@estado.Nombre</option>
+                            }
+                        </select>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <button type="button" class="btn btn-default  pull-right " data-dismiss="modal">Cancelar</button>
+                        <button type="button" id="btnSave" class="btn pull-right btn-primary" style="margin-right: 5px;">Guardar</button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section css
+{
+    <link href="~/vendors/gijgo-1.9.11/css/gijgo.min.css" rel="stylesheet" />
+}
+
+@section scripts
+{
+    <script src="~/vendors/gijgo-1.9.11/js/gijgo.min.js"></script>
+    <script type="text/javascript">
+        var grid;
+        $(document).ready(function() {
+            grid = $("#items_grid").grid({
+                dataKey: "Id",
+                uiLibrary: "bootstrap",
+                dataSource: '@Url.Action("GetClasificaciones")',
+                columns: [
+                    { field: "Id", width: 35, hidden:true },
+                    { field: "Nombre", title: "NOMBRE" },
+                    { field: "Descripcion", title: "DESCRIPCION" },
+                    { field: "NombreEstado", title: "ESTADO", tmpl: '<span class="status status-{NombreEstado}">{NombreEstado}</span>', width: 120 },
+                    { title: "", field: "Edit", width: 35, type: "icon", icon: "glyphicon-pencil", tooltip: "editar valores", events: { "click": edit } },
+                    { title: "", field: "Delete", width: 35, type: "icon", icon: "glyphicon-remove", tooltip: "eliminar", events: { "click": remove } }
+                ]
+            });
+
+            $("#btnSave").on("click", save);
+            $("#btnAdd").on("click", add);
+        });
+
+        function edit(e) {
+            $("#ClasificacionId").val(e.data.record.Id);
+            $("#Nombre").val(e.data.record.Nombre);
+            $("#Descripcion").val(e.data.record.Descripcion);
+            $("#Estado").val(e.data.record.Estado.Id);
+            $("#tipo_form").modal("show");
+        }
+
+        function add() {
+            $("#ClasificacionId").val(0);
+            $("#Nombre").val('');
+           $("#Descripcion").val('');
+           $("#Estado").val('');
+            $("#tipo_form").modal("show");
+        }
+
+        function save() {
+            var clasificacion = {
+                Id: $("#ClasificacionId").val(),
+                Nombre: $("#Nombre").val(),
+                Descripcion: $("#Descripcion").val(),
+                EstadoId: $("#Estado option:selected").val()
+            };
+
+            $.ajax({ url: '@Url.Action("save")', type: "POST", data: { clasificacion: clasificacion} })
+                .done(function () {
+                    grid.reload();
+                    $("#tipo_form").modal("hide");
+                })
+                .fail(function () {
+                    alert("Ocurrió un error al guardar.");
+                    // $("#setting_form").modal("hide");
+                });
+        }
+
+        function remove(e) {
+            bootbox.confirm("Esta seguro de eliminar este item?",
+                function(result) {
+                    if (result) {
+                        $.ajax({
+                                url: '@Url.Action("delete")',
+                                type: "POST",
+                                data: { id: e.data.record.Id }
+                            })
+                            .done(function(data) {
+                                if (!data.status) {
+                                    var exMessage = "Ocurrió una excepción al eliminar. Acaso el objeto tiene relaciones?<br /><br />";
+                                    exMessage += "<strong>EXCEPCION:</strong><br />" + data.message.substring(0, 150) + "...<br /><br />";
+                                    exMessage += "Revise el detalle en el log de eventos.";
+                                    bootbox.alert({ title:"No se puede eliminar!", message:exMessage });
+                                }
+                                grid.reload();
+                            })
+                            .fail(function() {
+                                alert("No se puede eliminar.");
+                            });
+                    }
+                });
+
+        }
+
+    </script>
+}

@@ -1,0 +1,18 @@
+﻿// FOOTER
+#footer {
+    font-family: Arial, sans-serif;
+    background: $gray;
+    height: $footer-height;
+    padding-top: $footer-padding-top;
+    color: $font-color-footer;
+
+    a{
+        color: $white;
+        text-decoration: none;
+    }
+
+    a:hover{
+        color: $white;
+        text-decoration:underline;
+    }
+}

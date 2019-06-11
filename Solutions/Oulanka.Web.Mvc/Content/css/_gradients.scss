@@ -1,0 +1,6 @@
+.yellow-gradient {
+    @include yellow-gradient();
+    color: $black;
+    @include white-text-shadow();
+}
+

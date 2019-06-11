@@ -1,0 +1,14 @@
+
+<div class="btn-group " role="group" *ngIf="respuesta !== undefined">
+  <a class="btn"  [ngClass]="{
+     'btn-warning':respuesta.valor==3}"
+     (click)="imagen()" >{{getStatus()}}
+    </a>
+  <a class="btn btn-default" *ngIf="isPositive==false">&nbsp;</a>
+</div>
+<app-imagen
+   *ngIf="showDetail"
+   [standardId]="standardId"
+   [standard]="standard"
+   [evaluationId]="evaluationId">
+</app-imagen>

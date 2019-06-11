@@ -1,0 +1,156 @@
+﻿@model EstandarViewModel
+
+@{
+    ViewBag.Title = "Estandares";
+    ViewBag.PageTitle = "Estandares";
+    ViewBag.PageDescription = "Estandares del Sistema";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="nav-tabs-custom">
+            <ul class="nav nav-tabs">
+                <li class="active">
+                    <a href="#datos" data-toggle="tab" aria-expanded="true">Datos de Estándar</a>
+                </li>
+                <li>
+                    <a href="#detail" data-toggle="tab">Sub-Estandares - Detalle</a>
+                </li>
+                <li></li>
+            </ul>
+            <div class="tab-content">
+                <div id="datos" class="tab-pane active">
+                    
+                    <div class="row">
+                        <div class="col-md-8">
+                            <h3>@Model.Dto.Nombre</h3>
+                        </div>
+                        <div class="col-md-4">
+                            <a href="/estandares/edit/@Model.Dto.Id" class="btn btn-default pull-right">
+                                <i class="glyphicon glyphicon-edit"></i>&nbsp;Editar
+                            </a>
+                            @if (Model.Dto.EstandarPadreId.HasValue)
+                            {
+                                <a href="/estandares/show/@Model.Dto.EstandarPadreId" class="btn btn-default pull-right">
+                                    <i class="glyphicon glyphicon-arrow-left"></i>&nbsp;
+                                    Volver a @Model.Dto.EstandarPadreNombre
+                                </a>
+                            }
+                        </div>
+                    </div>
+                    <div class="row">
+
+                        <div class="col-md-6">
+                            <ul class="list-group list-group-unbordered">
+                                <li class="list-group-item"><b>CODIGO:</b><a href="" class="pull-right">@Model.Dto.Codigo</a></li>
+                                <li class="list-group-item"><b>NOMBRE:</b><a href="" class="pull-right">@Model.Dto.Nombre</a></li>
+                                <li class="list-group-item"><b>CREADO EN:</b><a href="" class="pull-right">@Model.Dto.CreadoEn</a></li>
+                                <li class="list-group-item"><b>ACTUALIZADO EN:</b><a href="" class="pull-right">@Model.Dto.ActualizadoEn</a></li>
+                                <li class="list-group-item"><b>ESTADO:</b><a href="" class="pull-right">@Model.Dto.EstadoNombre</a></li>
+                            </ul>
+
+                        </div>
+                        <div class="col-md-6">
+                            <ul class="list-group list-group-unbordered">
+                                <li class="list-group-item"><b>GRUPO:</b><a href="" class="pull-right">@Model.Dto.GrupoEstandarNombre</a></li>
+                                <li class="list-group-item"><b>TIPO:</b><a href="" class="pull-right">@Model.Dto.TipoEstandar</a></li>
+                                <li class="list-group-item"><b>NIVEL:</b><a href="" class="pull-right">@Model.Dto.NivelNombre</a></li>
+                                <li class="list-group-item"><b>CATEGORIA:</b><a href="" class="pull-right">@Model.Dto.CategoriaNombre</a></li>
+                                <li class="list-group-item"><b>CLASIFICACION:</b><a href="" class="pull-right">@Model.Dto.ClasificacionNombre</a></li>
+                            </ul>
+
+                        </div>
+                    </div>
+                </div>
+                <div id="detail" class="tab-pane">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="box">
+                                <div class="box-header ">
+                                    <h3 class="box-title pull-left">Estándares</h3>
+                                    <ul class="pagination pagination-sm no-margin pull-right">
+                                        <li><a id="btnAddEstandar" href="@Url.Action("new","estandares",new {parentId = Model.Dto.Id})" class="btn btn-default"><i class="fa fa-plus"></i> Nuevo Estándar</a></li>
+                                    </ul>
+                                </div>
+                                <div class="box-body">
+                                    <table id="items_grid"></table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section css
+{
+    <link href="~/vendors/gijgo-1.9.11/css/gijgo.min.css" rel="stylesheet" />
+}
+
+@section scripts
+{
+    <script src="~/vendors/gijgo-1.9.11/js/gijgo.min.js"></script>
+    <script type="text/javascript">
+        var grid;
+        var tree;
+        $(document).ready(function() {
+            grid = $("#items_grid").grid({
+                dataKey: "Id",
+                primaryKey: "Id",
+                uiLibrary: "bootstrap",
+                dataSource: '@Url.Action("getsubestandares", "estandares", new{parentId = Model.Dto.Id})',
+                columns: [
+                    { field: "Id", width: 35, hidden: true },
+                    { field: "Codigo", width:100, title: "CODIGO" },
+                    { field: "Nombre", title: "NOMBRE" },
+                    { field: "Descripcion", title: "DESCRIPCION" },
+                    { field: "NombreEstado", title: "ESTADO", tmpl: '<span class="status status-{NombreEstado}">{NombreEstado}</span>', width: 120 },
+                    { title: "", field: "Show", width: 35, type: "icon", icon: "glyphicon-eye-open", tooltip: "Ver Detalles", events: { "click": show } },
+                    { title: "", field: "Edit", width: 35, type: "icon", icon: "glyphicon-pencil", tooltip: "Editar", events: { "click": edit } },
+                    { title: "", field: "Delete", width: 35, type: "icon", icon: "glyphicon-remove", tooltip: "Eliminar", events: { "click": remove } }
+                ]});
+
+        });
+
+        function show(e) {
+            var url = '/estandares/show/' + e.data.record.Id;
+            window.location = url;
+        }
+
+        function edit(e) {
+            var url = '@Url.Action("edit","estandares")/' + e.data.record.Id;
+            window.location = url;
+        }
+
+        function remove(e) {
+            bootbox.confirm("Esta seguro de eliminar este item?",
+                function(result) {
+                    if (result) {
+                        $.ajax({
+                                url: '@Url.Action("delete")',
+                                type: "POST",
+                                data: { id: e.data.record.Id }
+                            })
+                            .done(function(data) {
+                                if (!data.status) {
+                                    var exMessage = "Ocurrió una excepción al eliminar. Acaso el objeto tiene relaciones?<br /><br />";
+                                    exMessage += "<strong>EXCEPCION:</strong><br />" + data.message.substring(0, 150) + "...<br /><br />";
+                                    exMessage += "Revise el detalle en el log de eventos.";
+                                    bootbox.alert({ title:"No se puede eliminar!", message:exMessage });
+                                }
+                                grid.reload();
+                            })
+                            .fail(function() {
+                                alert("No se puede eliminar.");
+                            });
+                    }
+                });
+
+        }
+
+    </script>
+}

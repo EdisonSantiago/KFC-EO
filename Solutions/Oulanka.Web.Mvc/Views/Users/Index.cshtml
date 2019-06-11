@@ -1,0 +1,75 @@
+﻿@model UsersViewModel
+@{
+    ViewBag.PageTitle = Html.Resource("users_main_title");
+    ViewBag.PageDescription = Html.Resource("users_main_description");
+    ViewBag.Title = Html.Resource("users_main_title");
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="btn-group">
+    <a href="@Url.Action("new","users")" class="btn btn-default" id="btnAdd">
+        <i class="fa fa-plus"></i>
+        Nuevo Usuario
+    </a>
+</div>
+<hr />
+<div class="nav-tabs-custom">
+    <ul class="nav nav-tabs">
+        <li class="active">
+            <a data-toggle="tab" href="#system">
+                @Html.Resource("users_system_users")
+            </a>
+        </li>
+        @if (Model.IsLdapAuthEnabled)
+        {
+            <li class="">
+                <a data-toggle="tab" href="#ad">
+                    @Html.Resource("users_system_ad")
+                </a>
+            </li>
+        }
+    </ul>
+    <div class="tab-content">
+        <div class="tab-pane active" id="system">
+            <table id="items_grid"></table>
+        </div>
+        @if (Model.IsLdapAuthEnabled)
+        {
+            <div class="tab-pane" id="ad">
+                @Html.Partial("partials/_adUserList", Model)
+            </div>
+        }
+    </div>
+</div>
+@section css{
+    <link href="~/vendors/gijgo-1.9.11/css/gijgo.min.css" rel="stylesheet" />
+}
+@section scripts{
+    <script src="~/vendors/gijgo-1.9.11/js/gijgo.min.js"></script>
+    <script type="text/javascript">
+        var grid;
+        $(document).ready(function() {
+            grid = $("#items_grid").grid({
+                dataKey: "Id",
+                uiLibrary: "bootstrap",
+                dataSource: '@Url.Action("getusers","users")',
+                columns: [
+                    { field: "Id", width: 35 },
+                    { field: "NombreMostrar", title: '@Html.Resource("head_displayname").ToString()' },
+                    { field: "NombreUsuario", title: '@Html.Resource("head_username").ToString()' },
+                    { field: "UltimoLoginEn", title: "LOGIN", type: 'date' },
+                    { field: "EstaEnLineaLabel", title: "ESTÁ EN LÍNEA", align: 'center', tmpl:'<span class="status status-{EstaEnLinea}">{EstaEnLineaLabel}</span>', width: 120 },
+                    { title: "", field: "Edit", width: 35, type: "icon", icon: "glyphicon-pencil", tooltip: "editar valores", events: { "click": edit } }
+                ]
+            });
+
+        });
+
+        function edit(e) {
+            var url = '@Url.Action("edit","users")/' + e.data.record.NombreUsuario;
+            window.location = url;
+        }
+
+    </script>
+    <script src="~/Scripts/App/users.js"></script>
+}

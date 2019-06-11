@@ -1,0 +1,149 @@
+﻿@model dynamic
+
+@{
+    ViewBag.Title = "Estados (Status)";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.IsGrid = true;
+    ViewBag.PageTitle = "Estado de elementos del sistema";
+    ViewBag.PageTitleIconCss = "fa fa-cubes icon-large";
+
+}
+
+<div class="btn-group">
+    <a href="javascript:void(0);" class="btn btn-danger" id="btnAdd">
+        <i class="fa fa-plus"></i>
+        Agregar Estado
+    </a>
+</div>
+<hr />
+<div class="box">
+    <div class="box-body">
+        <table id="settings_grid"></table>
+    </div>
+</div>
+
+
+<div class="modal fade" id="setting_form" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Estado (Status)</h4>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <input type="hidden" id="StatusId" value="0" />
+                    <div class="form-group">
+                        <label for="Grupo">Grupo:</label>
+                        <input type="text" class="form-control" id="Grupo" placeholder="Grupo">
+                    </div>
+                    <div class="form-group">
+                        <label for="Nombre">Variable:</label>
+                        <input type="text" class="form-control" id="Nombre" placeholder="Nombre">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <button type="button" class="btn btn-default pull-right" data-dismiss="modal">Cancelar</button>
+                        <button type="button" id="btnSave" class="btn btn-primary pull-right" style="margin-right: 5px;">Guardar</button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section css
+{
+    <link href="~/vendors/gijgo-0.4.5/grid-0.4.5.min.css" rel="stylesheet" />
+}
+@section scripts
+{
+    <script src="~/vendors/gijgo-0.4.5/grid-0.4.5.min.js"></script>
+    <script type="text/javascript">
+    var grid;
+    $(document).ready(function () {
+        grid = $("#settings_grid").grid({
+            dataKey: "Id",
+            uiLibrary: "bootstrap",
+            dataSource: '@Url.Action("getstatuslist")',
+            columns: [
+                { field: "Id", width: 35, hidden:true },
+                { field: "Grupo", title: "Grupo" },
+                { field: "Nombre", title: "Nombre" },
+                { title: "", field: "Edit", width: 35, type: "icon", icon: "glyphicon-pencil", tooltip: "editar valores", events: { "click": edit } },
+                { title: "", field: "Delete", width: 35, type: "icon", icon: "glyphicon-remove", tooltip: "Eliminar", events: { "click": remove } }
+            ]
+        });
+
+        $("#btnSave").on("click", save);
+        $("#btnAdd").on("click", add);
+    });
+
+    function edit(e) {
+        $("#StatusId").val(e.data.record.Id);
+        console.log(e.data.record.Id);
+
+        $("#Grupo").val(e.data.record.Grupo);
+        $("#Nombre").val(e.data.record.Nombre);
+        $("#setting_form").modal("show");
+    }
+
+    function add(e) {
+        $("#StatusId").val('');
+        $("#Grupo").val('');
+        $("#Nombre").val('');
+        $("#setting_form").modal("show");
+    }
+
+
+    function save() {
+        var status = {
+            Id: $("#StatusId").val(),
+            Grupo: $("#Grupo").val(),
+            Nombre: $("#Nombre").val()
+        };
+
+        console.log(status);
+
+        $.ajax({ url: '@Url.Action("savestatus")', type: "POST", data: { status: status } })
+            .done(function () {
+                grid.reload();
+                $("#setting_form").modal("hide");
+            })
+            .fail(function () {
+                alert("Ocurrió un error al guardar.");
+               // $("#setting_form").modal("hide");
+            });
+    }
+
+    function remove(e) {
+        bootbox.confirm("Esta seguro de eliminar este item?",
+            function(result) {
+                if (result) {
+                    $.ajax({
+                            url: '@Url.Action("delete")',
+                            type: "POST",
+                            data: { id: e.data.record.Id }
+                        })
+                        .done(function(data) {
+                            if (!data.status) {
+                                var exMessage = "Ocurrió una excepción al eliminar. Acaso el objeto tiene relaciones?<br /><br />";
+                                exMessage += "<strong>EXCEPCION:</strong><br />" + data.message.substring(0, 150) + "...<br /><br />";
+                                exMessage += "Revise el detalle en el log de eventos.";
+                                bootbox.alert({ title:"No se puede eliminar!", message:exMessage });
+                            }
+                            grid.reload();
+                        })
+                        .fail(function() {
+                            alert("No se puede eliminar.");
+                        });
+                }
+            });
+
+    }
+
+    </script>
+}

@@ -1,0 +1,36 @@
+<div class="row">
+<div class="row">
+  <div class="col-md-6 col-lg-4">
+    <app-breadcrumb></app-breadcrumb>
+  </div>
+  <div class="col-md-6 col-lg-8">
+
+  </div>
+</div>
+
+<div class="note note-info" *ngIf="local !== undefined && evaluation !== undefined">
+  <h4>Imágenes #{{local.codigo}}</h4>
+  <div class="row">
+    <div class="col-md-4">
+      <strong>Nombre: </strong> {{local.nombre}}<br />
+
+    </div>
+    <div class="col-md-4">
+
+      <strong>Auditor: </strong> {{evaluation.creadoPor}}<br />
+    </div>
+    <div class="col-md-4">
+      <strong>Dirección: </strong> {{local.direccion}}
+    </div>
+  </div>
+</div>
+<app-image-local-upload
+  [localId]="evaluation.localId"
+  (uploaded)="onUpload($event)"
+  *ngIf="evaluation !== undefined && evaluation.localId !== undefined">
+</app-image-local-upload>
+<br />
+<app-localimages
+  [localId]="evaluation.localId"
+  *ngIf="evaluation !== undefined && evaluation.localId !== undefined">
+</app-localimages>

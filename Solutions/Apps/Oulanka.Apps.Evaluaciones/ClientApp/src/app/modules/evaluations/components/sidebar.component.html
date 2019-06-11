@@ -1,0 +1,45 @@
+<div *ngIf="hasEvaluation">
+    <div class="page-sidebar-wrapper">
+        <div class="page-sidebar navbar-collapse collapse">
+            <ul class="page-sidebar-menu page-header-fixed page-sidebar-menu-closed" style="padding-top:20px;">
+                <li class="nav-item" [routerLinkActive]="['active']">
+                    <a [routerLink]="['/evaluaciones',evaluation.id,'show']">
+                        <i class="icon-home"></i>
+                        <span class="title">Información del Local</span>
+                    </a>
+                </li>
+                <li class="nav-item" [routerLinkActive]="['active']">
+                    <a [routerLink]="['/evaluaciones',evaluation.id,'check']">
+                        <i class="icon-check"></i>
+                        <span class="title">Check de Cumplimiento</span>
+                    </a>
+                </li>
+                <li class="nav-item" [routerLinkActive]="['active']">
+                    <a [routerLink]="['/evaluaciones',evaluation.id,'equipos']">
+                        <i class="icon-screen-tablet"></i>
+                        <span class="title">Perfil de Equipos</span>
+                    </a>
+                </li>
+                <li class="nav-item" [routerLinkActive]="['active']">
+                    <a [routerLink]="['/evaluaciones',evaluation.id,'imagenes']">
+                        <i class="icon-frame"></i>
+                        <span class="title">Fotografías / Imágenes</span>
+                    </a>
+                </li>
+                <li class="nav-item" [routerLinkActive]="['active']">
+                    <a [routerLink]="['/evaluaciones',evaluation.id,'puntos']">
+                        <i class="icon-list"></i>
+                        <span class="title">Puntos clave de Acción</span>
+                    </a>
+                </li>
+      
+                <li class="nav-item" [routerLinkActive]="['active']">
+                    <a [routerLink]="['/evaluaciones',evaluation.id,'resumen']">
+                        <i class="icon-pie-chart"></i>
+                        <span class="title">Resumen</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

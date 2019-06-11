@@ -1,0 +1,25 @@
+﻿@{
+    ViewBag.Title = "Portal de Soporte";
+    Layout = "~/Views/Shared/_LayoutHome.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <h2>@Html.Resource("home_welcome_text") @Html.ApplicationName()</h2>
+        <p class="text-muted">@Html.Resource("home_intro_text")</p>
+
+        
+
+
+        @* LOGIN BUTTON ONLY IF IT IS LOGGED IN  *@
+        @if (!User.Identity.IsAuthenticated)
+        {
+            <p>
+                <a href="@Url.RouteUrl("login")" class="btn btn-flat btn-primary">
+                    @Html.Resource("login_intro")
+                </a>
+            </p>
+        }
+
+    </div>
+</div>

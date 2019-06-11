@@ -1,0 +1,192 @@
+<div class="row">
+  <div class="col-md-6 col-lg-4">
+    <app-breadcrumb></app-breadcrumb>
+  </div>
+  <div class="col-md-6 col-lg-8">
+
+  </div>
+</div>
+
+<div class="note note-info" *ngIf="local !== undefined && evaluation !== undefined">
+  <h4>Información de Local #{{local.codigo}}</h4>
+  <div class="row">
+    <div class="col-md-4">
+      <strong>Nombre: </strong> {{local.nombre}}<br />
+      <strong>Cadena: </strong> {{local.cadenaNombre}}
+      <img src="{{local.logo}}" width="70" />
+
+    </div>
+    <div class="col-md-4">
+      <strong>Tipo Evaluación: </strong> {{evaluation.tipoEvaluacionNombre}}<br />
+
+      <strong>Auditor: </strong> {{evaluation.creadoPor}}<br />
+      <strong>Fecha de Creación: </strong> {{evaluation.creadoEn}}
+    </div>
+    <div class="col-md-4">
+      <strong>Tipo de Visita: </strong> {{evaluation.tipoVisitaNombre}}<br />
+      <strong>Dirección: </strong> {{local.direccion}}
+    </div>
+  </div>
+</div>
+
+<div class="row" *ngIf="local !== undefined && evaluation !== undefined">
+  <div class="col-md-4">
+    <div class="portlet bordered light">
+      <div class="portlet-title">
+        <h4>1. Info de Local</h4>
+      </div>
+      <div class="portlet-body form ">
+        <div class="form-group">
+          <label for="codigolocal">COD. LOCAL</label><br />
+          <input type="text" class="form-control" [(ngModel)]="local.codigo" name="local.codigo" placeholder="Ubique el código de local" readonly="true">
+        </div>
+        <div class="form-group">
+          <label for="codigolocal">NOMBRE LOCAL</label><br />
+          <input type="text" class="form-control" [(ngModel)]="local.nombre" name="nombre" placeholder="Nombre" readonly="true">
+        </div>
+        <div class="form-group">
+          <label for="codigolocal">TIPO</label><br />
+          <input type="text" class="form-control" [(ngModel)]="local.tipoLocalDetalle" name="tipoLocalDetalle" placeholder="Nombre" readonly="true">
+        </div>
+        <div class="form-group">
+          <label for="codigolocal">CIUDAD</label><br />
+          <input type="text" class="form-control" [(ngModel)]="local.ciudadNombre" name="ciudadNombre" placeholder="Ciudad" readonly="true">
+        </div>
+        <div class="form-group">
+          <label for="codigolocal">DIRECCIÓN</label><br />
+          <input type="text" class="form-control" [(ngModel)]="local.direccion" name="direccion" placeholder="Direccion" readonly="true">
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="codigolocal">GG</label><br />
+              <input type="text" class="form-control" [(ngModel)]="local.concepto" name="concepto" placeholder="Concepto" readonly="true">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="codigolocal">GNO</label><br />
+              <input type="text" class="form-control" [(ngModel)]="local.opClave" name="opClave" placeholder="OP CLAVE" readonly="true">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="codigolocal">GD</label><br />
+              <input type="text" class="form-control" [(ngModel)]="local.ac" name="ac" placeholder="AC" readonly="true">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="codigolocal">JefeArea</label><br />
+              <input type="text" class="form-control" [(ngModel)]="local.jefeAreaNombre" name="jefeAreaNombre" placeholder="Jefe Area" readonly="true">
+            </div>
+          </div>
+        </div>
+
+
+
+
+      </div>
+    </div>
+  </div>
+  <div class="col-md-8">
+    <div class="row">
+      <div class="col-md-8">
+        <div class="portlet bordered light">
+          <div class="portlet-title">
+            <h4>2. Información del restaurante (requerido)</h4>
+          </div>
+          <div class="portlet-body form">
+            <div class="form-group">
+              <label>Nombre GR:</label>
+              <input type="text" class="form-control" [(ngModel)]="evaluation.nombreRGM" name="evaluation.NombreRGM" placeholder="Nombre RGM">
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Nombre del encargado del turno:</label>
+                  <input type="text" class="form-control" [(ngModel)]="evaluation.nombreMIC" name="evaluation.NombreMIC" placeholder="Nombre del MIC">
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Cargo:</label>
+                  <select [(ngModel)]="evaluation.posicionId" name="evaluation.posicionId" class="form-control">
+                    <option value="0">Seleccione una posición</option>
+                    <option *ngFor="let item of posiciones; let i = index" [value]="item.id">{{ item.nombre }}</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Tipo de Visita:</label>
+                  <select [(ngModel)]="evaluation.tipoVisita" name="evaluation.TipoVisita" class="form-control">
+                    <option value="0">Seleccione un tipo de visita</option>
+                    <option *ngFor="let item of tiposVisita; let i = index" [value]="item.id">{{ item.nombre }}</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Parte del día:</label>
+                  <select [(ngModel)]="evaluation.parteDelDia" name="evaluation.ParteDia" class="form-control">
+                    <option value="0">Seleccione una parte del día</option>
+                    <option *ngFor="let item of partesDia; let i = index" [value]="item.id">{{ item.nombre }}</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <input type="hidden" [(ngModel)]="evaluation.TipoEvaluacion" name="evaluation.TipoEvaluacion" />
+
+
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="portlet bordered light">
+          <div class="portlet-title">
+            <h4>Exterior centro</h4>
+          </div>
+          <div class="portlet-body form">
+            <img src="{{local.imagen}}" width="270" />
+            <app-equipo-dbinit>
+
+            </app-equipo-dbinit>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-8">
+        <div class="portlet bordered light">
+          <div class="portlet-title">
+            <h4>3. Equipos</h4>
+          </div>
+          <div class="portlet-body form">
+            <tabla [localId]="local.id">
+            </tabla>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-standard-dbinit [evaluationId]="evaluation.id"
+                     [tipoLocalId]="evaluation.tipoLocalId"
+                     *ngIf="evaluation !== undefined"></app-standard-dbinit>
+<app-respuesta-dbinit [evaluationId]="evaluation.id"
+                      *ngIf="evaluation !== undefined"></app-respuesta-dbinit>
+<app-imagen-dbinit [evaluationId]="evaluation.id"
+                   [localId]="evaluation.localId"
+                   *ngIf="evaluation !== undefined"></app-imagen-dbinit>
+<app-equipo-dbinit [evaluationId]="evaluation.id"
+                   [localId]="evaluation.localId"
+                   *ngIf="evaluation !== undefined"></app-equipo-dbinit>

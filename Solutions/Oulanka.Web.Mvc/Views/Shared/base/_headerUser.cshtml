@@ -1,0 +1,39 @@
+﻿@model UserHeaderViewModel
+
+<header class="main-header">
+    <a href="~/" class="logo">
+        <span class="logo-mini"><b>s</b>S</span>
+        <span class="logo-lg"><b>Servicios</b>SOPORTE</span>
+    </a>
+
+    <nav class="navbar navbar-static-top" role="navigation">
+
+        <div class="navbar-custom-menu">
+            @if (Model.Usuario.EsAdminUOperador())
+            {
+                <a href="@Url.Action("index", "dashboard")" class="backlink">
+                    <i class="fa fa-long-arrow-left "></i>
+                    Menú de Administración
+                </a>
+            }
+            <ul class="nav navbar-nav">
+                <li>
+                    <a href="#">
+                        <i class="fa fa-suitcase"></i>
+                        Proyecto: <strong>@Model.CurrentProject.Name</strong>
+                    </a>
+                </li>
+                <li class="">
+                    <a href="@Url.RouteUrl("user-new")">
+                        <i class="fa fa-plus"></i>
+                        @Html.Resource("ticket_newbutton_text")
+                    </a>
+                </li><li class="user user-menu">
+                    @{Html.RenderAction("userstatus", "account");}
+                </li>
+
+
+            </ul>
+        </div>
+    </nav>
+</header>

@@ -1,0 +1,20 @@
+
+<div class="btn-group btn-group-justified" role="group" *ngIf="respuesta !== undefined">
+  <a class="btn" [ngClass]="{
+      'btn-warning':respuesta.valor==0,
+     'btn-info':respuesta.valor==1,
+     'btn-success':respuesta.valor==2,
+     'btn-danger':respuesta.valor==3}"
+     (click)="changeStatus()" >{{getStatus()}}
+    </a>
+
+  <a class="btn btn-default" *ngIf="isPositive==false">&nbsp;</a>
+</div>
+
+<app-substandarddetail
+                       *ngIf="showDetail"
+                       [standardId]="standardId"
+                       [standard]="standard"
+                       [evaluationId]="evaluationId">
+
+</app-substandarddetail>

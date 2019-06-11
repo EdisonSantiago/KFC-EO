@@ -1,0 +1,306 @@
+﻿// Navigation
+
+// --Topbar
+
+.top-nav {
+    background: $gray;
+    border-bottom: 3px solid $top-bar-border;
+    height: 50px;
+}
+
+.navbar-brand {
+    width: $sidebar-width;
+}
+
+.navbar-top-links {
+    color: $white;
+
+    li {
+        display: inline-block;
+        margin-top: 0px;
+    }
+
+    li:last-child {
+        margin-right: 15px;
+    }
+
+    li a {
+        color: $white;
+    }
+
+    li a:hover {
+        background-color: $gray;
+    }
+
+    .navbar-btn {
+        margin-top: 8px;
+        margin-bottom: 0;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        padding-left: 25px;
+        padding-right: 25px;
+    }
+
+    .user-toggle {
+        background-image: url(/content/images/navhandler_sprite.png);
+        background-repeat: no-repeat;
+        width: 42px;
+    }
+
+    .user-toggle:focus {
+        background-position: 0 -42px;
+    }
+
+    .user-pic {
+        margin-top: 0px;
+    }
+
+    .username {
+        padding: 5px 0 0 5px;
+    }
+
+    .divider-vertical {
+        border-left: 1px solid $gray-light;
+        border-right: 1px solid $gray-light;
+    }
+
+
+
+    .dropdown-toggle {
+        background-color: $gray !important;
+    }
+
+    .dropdown-toggle:hover, .dropdown-toggle:focus {
+        background-color: $gray !important;
+        @include central-shadow;
+    }
+
+    .dropdown-menu {
+        background: $gray;
+        @include central-shadow();
+    }
+
+    .dropdown-menu li {
+        display: block;
+        border-bottom: 1px solid $gray-solight;
+    }
+
+    .dropdown-menu li:last-child {
+        margin-right: 0;
+        border-bottom: none;
+    }
+
+    .dropdown-menu li a {
+        padding: 15px 10px 15px 45px;
+        min-height: 0;
+        font-weight: $font-weight-light;
+    }
+
+    .dropdown-menu li a:hover {
+        background-color: $dark-blue;
+    }
+
+    .dropdown-menu li a div {
+        white-space: normal;
+    }
+
+    .dropdown-messages,
+    .dropdown-tasks,
+    .dropdown-alerts {
+        width: 310px;
+        min-width: 0;
+    }
+
+    .dropdown-messages {
+        margin-left: 5px;
+    }
+
+    .dropdown-tasks {
+        margin-left: -59px;
+    }
+
+    .dropdown-alerts {
+        margin-left: -123px;
+    }
+
+    .dropdown-user {
+        right: 0;
+        left: auto;
+    }
+}
+
+
+a.usericon {
+    background-image: url(/content/images/users_sprite.png);
+    background-repeat: no-repeat;
+    padding-left: 35px;
+}
+
+a.usericon.user {
+    background-position: 15px 17px;
+}
+
+a.usericon.sites {
+    background-position: 15px -32px;
+}
+
+a.usericon.alerts {
+    background-position: 15px -80px;
+}
+
+a.usericon.billing {
+    background-position: 15px -128px;
+}
+
+a.usericon.preferences {
+    background-position: 15px -175px;
+}
+
+a.usericon.logoff {
+    background-position: 15px -180px;
+}
+
+
+
+
+// --Sidebar
+
+.sidebar {
+   // border-bottom: 1px solid $sidebar-bordertop;
+
+
+    .sidebar-nav.navbar-collapse {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .sidebar-search {
+        padding: 15px;
+    }
+
+    ul li {
+        border-bottom: 1px solid $sidebar-borderbottom;
+        border-top: 1px solid $sidebar-bordertop;
+
+        a {
+            color: $white;
+            background: $sidebar-background-color;
+            @include sidebar-shadow();
+            padding: $sidebar-button-padding;
+
+            &.active {
+                background-color: $sidebar-button-on;
+            }
+
+            &:hover {
+                background-color: $sidebar-button-on;
+            }
+        }
+    }
+
+    ul li:first-child {
+        border-top: none;
+    }
+
+    ul li:last-child {
+        border-bottom: 1px solid $sidebar-bordertop;
+    }
+
+    ul li:last-child a {
+        border-bottom: 1px solid $sidebar-borderbottom;
+    }
+
+    .arrow {
+        float: right;
+    }
+
+    .fa.arrow:before {
+        content: "\f104";
+    }
+
+    .active > a > .fa.arrow:before {
+        content: "\f107";
+    }
+
+    .nav-second-level li,
+    .nav-third-level li {
+        border-bottom: none !important;
+    }
+
+    .nav-second-level li a {
+        padding-left: 37px;
+    }
+
+    .nav-third-level li a {
+        padding-left: 52px;
+    }
+
+    a.icon {
+        background-image: url(/content/images/sidebar_sprite.png);
+        background-repeat: no-repeat;
+        padding-left: 35px;
+    }
+
+    a.icon.dashboard {
+        background-position: 7px 15px;
+    }
+
+    a.icon.social {
+        background-position: 7px -39px;
+    }
+
+    a.icon.seo {
+        background-position: 9px -92px;
+    }
+
+    a.icon.usability {
+        background-position: 7px -143px;
+    }
+
+    a.icon.perfomance {
+        background-position: 7px -195px;
+    }
+
+    a.icon.stats {
+        background-position: 7px -252px;
+    }
+
+    a.icon.server {
+        background-position: 9px -305px;
+    }
+
+    a.icon.profile {
+        background-position: 9px -358px;
+    }
+    a.icon.sites {
+        background-position: 12px -407px;
+    }
+    a.icon.alerts {
+        background-position: 9px -462px;
+    }
+    a.icon.billing {
+        background-position: 9px -515px;
+    }
+    a.icon.preferences {
+        background-position: 9px -568px;
+    }
+}
+
+
+
+
+
+@media(min-width:768px) {
+    .sidebar {
+        z-index: 1;
+        position: absolute;
+        width: $sidebar-width;
+        margin-top: $sidebar-margin-top;
+    }
+
+    .navbar-top-links .dropdown-messages,
+    .navbar-top-links .dropdown-tasks,
+    .navbar-top-links .dropdown-alerts {
+        margin-left: auto;
+    }
+}

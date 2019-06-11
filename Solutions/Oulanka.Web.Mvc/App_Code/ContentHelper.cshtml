@@ -1,0 +1,9 @@
+﻿@using FluentNHibernate.Utils
+@using Oulanka.Domain.Enums
+@helper Flash(PageMessageType messageType, string messageText)
+{
+    <div class="alert alert-@messageType.ToLowerInvariantString() fade in">
+        <button class="close" data-dismiss="alert">x</button>
+        <text>@messageText</text>
+    </div> 
+}

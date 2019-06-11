@@ -1,0 +1,56 @@
+<div class="page-header navbar navbar-fixed-top">
+    <div class="page-header-inner">
+        <div class="page-logo">
+            <a [routerLink]="['/home']">
+                OUL
+            </a>
+            <div class="menu-toggler sidebar-toggler">
+                <span></span>
+            </div>
+        </div>
+        <a href="javascript:;" class="menu-toggler responsive-toggler" data-toggle="collapse" data-target=".navbar-collapse">
+            <span></span>
+        </a>
+        <div class="hor-menu hor-menu-light hidden-sm hidden-xs" *ngIf="isUserLoggedIn()">
+            <ul class="nav navbar-nav" >
+                <li class="classic-menu-dropdown" [routerLinkActive]="['active']">
+                    <a [routerLink]="['/dashboard']" class="dropdown-toggle">
+                        <i class="icon-home"></i> Inicio
+                    </a>
+                </li>
+                <li class="classic-menu-dropdown" [routerLinkActive]="['active']">
+                    <a [routerLink]="['/evaluaciones']" class="dropdown-toggle" >
+                        <i class="icon-grid"></i> Evaluaciones
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="top-menu">
+            <ul class="nav navbar-nav pull-right">
+                <li *ngIf="getCadena() !== undefined">
+                        <a href="javascript:;">{{getCadena()}} </a>
+                </li>
+                <li class="dropdown dropdown-user">
+                    <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+                        <i class="icon-user"></i>
+                        <span class="username username-hide-on-mobile">{{getUserName()}} </span>
+                        <i class="fa fa-angle-down"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-default">
+                        <li *ngIf="!isUserLoggedIn()">
+                            <a [routerLink]="['/account/login']"><i class="icon-login"></i>Ingreso</a>
+                        </li>
+                        <li *ngIf="isUserLoggedIn()">
+                            <a [routerLink]="['/home']" (click)="logout()"><i class="icon-key"></i>Salir</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="dropdown classic-menu-dropdown" *ngIf="isUserLoggedIn()" [routerLinkActive]="['active']">
+                    <a [routerLink]="['/settings']" class="dropdown-toggle" >
+                        <i class="icon-settings"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

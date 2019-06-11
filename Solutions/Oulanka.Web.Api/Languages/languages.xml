@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<root>
+<!-- 
+Specify enabled languages here
+-->
+	<language name="Espanol" key="es-EC" emailCharset="iso-8859-1" />
+
+
+
+</root>

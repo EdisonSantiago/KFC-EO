@@ -1,0 +1,78 @@
+﻿@model GrupoEstandarFormModel
+
+@{
+    ViewBag.PageTitle = "Nuevo Grupo Estándar";
+    ViewBag.PageDescription = "Ubique los datos del  Grupo Estándar";
+    ViewBag.Title = "Nuevo  Grupo Estándar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using (Html.BeginForm("new", "grupoestandar", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.ValidationSummary(true)
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.Id)
+    <div class="row">
+        <div class="col-md-8">
+            <div class="panel panel-default bg-gray-light">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-4 col-sm-4">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Codigo)
+                                @Html.TextBoxFor(m => m.Codigo, new { @class = "form-control", placeholder = "Código" })
+                                @Html.ValidationMessageFor(m => m.Codigo)
+                            </div>
+                        </div>
+                        <div class="col-md-8 col-sm-8">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Nombre)
+                                @Html.TextBoxFor(m => m.Nombre, new { @class = "form-control", placeholder = "Nombre" })
+                                @Html.ValidationMessageFor(m => m.Nombre)
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Descripcion)
+                        @Html.TextAreaFor(m => m.Descripcion, new { @class = "form-control", placeholder = "Descripción" })
+                        @Html.ValidationMessageFor(m => m.Descripcion)
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Imagen)
+                        <input type="file" name="Imagen" id="Imagen" class="form-control upload-file" />
+                        @Html.ValidationMessageFor(m => m.Imagen)
+                    </div>
+
+                    <div class="row">
+                       
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Estado)
+                                @Html.DropDownListFor(m => m.Estado, Model.Estados, "Seleccione Uno", new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.Estado)
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="panel-footer">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <a class="btn btn-default pull-right"
+                               href="@Url.Action("index", "grupoestandar")">
+                                <i class="fa fa-ban"></i>
+                                @Html.Resource("form_cancel")
+                            </a>
+                            <button type="submit" class="btn btn-primary pull-right" style="margin-right: 5px;">
+                                <i class="fa fa-save"></i>
+                                @Html.Resource("form_save_data")
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div><div class="col-md-4"></div>
+    </div>
+}

@@ -1,0 +1,91 @@
+﻿@model EquipoFormModel
+
+@{
+    ViewBag.PageTitle = "Nuevo Equipo";
+    ViewBag.PageDescription = "Ubique los datos del Equipo";
+    ViewBag.Title = "Nuevo Equipo";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+    @Html.AntiForgeryToken()
+    <div class="row">
+        <div class="col-md-8">
+            <div class="panel panel-default bg-gray-light">
+                <div class="panel-body">
+
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Modelo)
+                        @Html.TextBoxFor(m => m.Modelo, new { @class = "form-control", placeholder = "Modelo" })
+                        @Html.ValidationMessageFor(m => m.Modelo)
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Descripcion)
+                        @Html.TextAreaFor(m => m.Descripcion, new { @class = "form-control", placeholder = "Descripción" })
+                        @Html.ValidationMessageFor(m => m.Descripcion)
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 col-sm-4">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Utilidad)
+                                @Html.EditorFor(m => m.Utilidad, new { @class = "form-control ", placeholder = "Utilidad" })
+                                @Html.ValidationMessageFor(m => m.Utilidad)
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-4">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Control)
+                                @Html.EditorFor(m => m.Control, new { @class = "form-control ", placeholder = "Control" })
+                                @Html.ValidationMessageFor(m => m.Control)
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-4">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Cantidad)
+                                @Html.EditorFor(m => m.Cantidad, new { @class = "form-control ", placeholder = "Cantidad" })
+                                @Html.ValidationMessageFor(m => m.Cantidad)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 col-sm-6">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.TipoEquipo)
+                                @Html.DropDownListFor(m => m.TipoEquipo, Model.TiposEquipos, "Seleccione Uno", new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.TipoEquipo)
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-6">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Estado)
+                                @Html.DropDownListFor(m => m.Estado, Model.Estados, "Seleccione Uno", new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.Estado)
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="panel-footer">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <a class="btn btn-default pull-right"
+                               href="@Url.Action("index", "equipos")">
+                                <i class="fa fa-ban"></i>
+                                @Html.Resource("form_cancel")
+                            </a>
+                            <button type="submit" class="btn btn-primary pull-right" style="margin-right: 5px;">
+                                <i class="fa fa-save"></i>
+                                @Html.Resource("form_save_data")
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div><div class="col-md-4"></div>
+    </div>
+}

@@ -1,0 +1,19 @@
+<div class="panel-group" id="ac_{{groupId}}" >
+    <div class="panel panel-default" *ngFor="let item of items">
+        <div class="panel-heading">
+            <h4 class="panel-title">
+                <a data-toggle="collapse" [attr.data-parent]="'#ac_' + groupId" href="#c_{{item.id}}">
+                        <span class="glyphicon glyphicon-folder-close"></span>
+                        {{item.nombre}}
+                </a>
+            </h4>
+        </div>
+        <div id="c_{{item.id}}" class="panel-collapse collapse">
+          <app-substandards
+            [groupId]="groupId"
+            [parentId]="item.id"
+            [evaluationId]="evaluationId">
+          </app-substandards>
+        </div>
+    </div> 
+</div>

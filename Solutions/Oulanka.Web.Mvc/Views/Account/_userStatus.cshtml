@@ -1,0 +1,37 @@
+﻿@model UserStatusViewModel
+@if (Model.IsAuthenticated)
+{
+    var ticketsActions = Url.Action(Model.IsOperatorOrAdmin
+        ? "panelmy"
+        : "usermy", "tickets");
+
+    <li class="dropdown user">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            <i class="fa fa-user"> </i>
+            <strong>@Model.DisplayName</strong>
+        </a>
+        <ul class="dropdown-menu">
+            @if (Model.Usuario.EsAdmin)
+            {
+                <li>
+                    <a href="@Url.Action("index","settings")">
+                        <i class="fa fa-cog"></i>
+                        Configuración
+                    </a>
+                </li>
+                <li class="divider"></li>
+            }
+            <li>
+                <a href="@Url.Action("logoff", "account")">
+                    <i class="fa fa-sign-out"></i>
+                    @Html.Resource("logoff_button_text")
+                </a>
+            </li>
+        </ul>
+  </li>
+}
+else
+{
+
+    @*  <p>Ingrese una sessión!</p> *@
+}

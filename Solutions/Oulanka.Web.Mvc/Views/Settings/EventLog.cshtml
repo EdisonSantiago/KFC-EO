@@ -1,0 +1,66 @@
+﻿@model dynamic
+
+@{
+    ViewBag.Title = "Visor de Eventos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.IsGrid = true;
+    ViewBag.PageTitle = "Visor de Eventos del sistema";
+    ViewBag.PageTitleIconCss = "fa fa-hdd-o icon-large";
+    ViewBag.IsGrid = true;
+
+}
+
+<table id="events_grid"></table>
+
+
+
+@section css{
+    <link href="~/vendors/gijgo-0.4.5/grid-0.4.5.min.css" rel="stylesheet" />
+
+}
+
+@section scripts
+{
+    <script src="~/vendors/gijgo-0.4.5/grid-0.4.5.min.js"></script>
+    <script type="text/javascript">
+        var grid;
+        $(document).ready(function() {
+           $("#events_grid").grid({
+                dataKey: "Id",
+                uiLibrary: "bootstrap",
+                dataSource: '@Url.Action("geteventlog")',
+                columns: [
+                    { field: "Category", title: "Categoría" },
+                    { field: "EventTypeLabel", title: "Tipo" },
+                    { field: "Message", title: "Mensaje" },
+                    { field: "EventDate", title: "Fecha", type: 'date', format: 'dd/mm/yyyy HH:MM:ss' },
+                    { title: "", field: "Show", width: 30, type: "icon", icon: "glyphicon-chevron-right", tooltip: "Ver Detalles", events: { "click": show } },
+                ],
+                pager: { enable: true, limit: 10, sizes: [10, 15, 20] }
+            });
+
+        });
+
+        function show(e) {
+            $("#log_modal").modal('show');
+        }
+    </script>
+
+}
+
+<div class="modal fade" id="log_modal" tabindex="-1" role="dialog" aria-labelledby="modal-title" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Detalle de Evento</h4>
+            </div>
+            <div class="modal-body">
+                Detalle del log
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>

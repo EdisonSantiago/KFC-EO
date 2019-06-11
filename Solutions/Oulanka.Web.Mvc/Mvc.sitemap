@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<mvcSiteMap xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xmlns="http://mvcsitemap.codeplex.com/schemas/MvcSiteMap-File-4.0"
+            xsi:schemaLocation="http://mvcsitemap.codeplex.com/schemas/MvcSiteMap-File-4.0 MvcSiteMapSchema.xsd">
+
+  <mvcSiteMapNode title="Inicio" controller="Dashboard" action="Index">
+    <mvcSiteMapNode title="Jerarquías" clickable="false" icon="fa-code-fork">
+      <mvcSiteMapNode title="Gerencias y Jefaturas" controller="jerarquias" action="index">
+        <mvcSiteMapNode title="Nueva Gerencia"  action="new" isVisible="false"/>
+        <mvcSiteMapNode title="Editar Gerencia"  action="edit" preservedRouteParameters="id" isVisible="false"/>
+        <mvcSiteMapNode title="Detalle de Gerencia"  action="show" preservedRouteParameters="id" isVisible="false"/>
+      </mvcSiteMapNode>
+    </mvcSiteMapNode>
+    <mvcSiteMapNode title="Estructura de Operaciones" clickable="false" icon="fa-industry">
+      <mvcSiteMapNode title="Cadenas" controller="cadenas" action="index">
+        <mvcSiteMapNode title="Nueva Cadena"  action="new"  />
+        <mvcSiteMapNode title="Editar Cadena"  action="edit" preservedRouteParameters="id" isVisible="false"/>
+        <mvcSiteMapNode title="Detalle de Cadena"  action="show" preservedRouteParameters="id" isVisible="false"/>
+      </mvcSiteMapNode>
+      <mvcSiteMapNode title="Equipos" controller="equipos" action="index">
+        <mvcSiteMapNode title="Tipo de Equipos"  action="tipos"/>
+        <mvcSiteMapNode title="Nuevo Equipo"  action="new" isVisible="false"  />
+        <mvcSiteMapNode title="Editar Equipo"  action="edit" preservedRouteParameters="id" isVisible="false"/>
+        <mvcSiteMapNode title="Detalle de Equipo"  action="show" preservedRouteParameters="id" isVisible="false" />
+      </mvcSiteMapNode>
+      <mvcSiteMapNode title="Locales" controller="Locales" action="index">
+        <mvcSiteMapNode title="Administración de locales"  action="index"/>
+        <mvcSiteMapNode title="Tipo de Locales"  action="tipos"/>
+        <mvcSiteMapNode title="Nuevo Local"  action="new" isVisible="false" />
+        <mvcSiteMapNode title="Editar Local"  action="edit" preservedRouteParameters="id" isVisible="false"/>
+        <mvcSiteMapNode title="Detalle de Local"  action="show" preservedRouteParameters="id" isVisible="false"/>
+      </mvcSiteMapNode>
+    </mvcSiteMapNode>
+    <mvcSiteMapNode title="Estándares" clickable="false" icon="fa-tasks">
+      <mvcSiteMapNode title="Administración" controller="estandares" action="index">
+        <mvcSiteMapNode title="Nuevo Estandar"  action="new" isVisible="false" />
+        <mvcSiteMapNode title="Editar Estandar"  action="edit" preservedRouteParameters="id" isVisible="false"/>
+        <mvcSiteMapNode title="Detalle de Estandar"  action="show" preservedRouteParameters="id" isVisible="false"/>
+      </mvcSiteMapNode>
+      <mvcSiteMapNode title="Grupo de Estandares" controller="grupoestandar" action="index">
+        <mvcSiteMapNode title="Nuevo Grupo"  action="new" isVisible="false"/>
+        <mvcSiteMapNode title="Editar Grupo"  action="edit" preservedRouteParameters="id" isVisible="false"/>
+        <mvcSiteMapNode title="Detalle de Grupo"  action="show" preservedRouteParameters="id" isVisible="false"/>
+      </mvcSiteMapNode>
+      <mvcSiteMapNode title="Calificaciones" controller="calificaciones" action="index">
+        <mvcSiteMapNode title="Nueva Calificación"  action="new" isVisible="false"/>
+        <mvcSiteMapNode title="Editar Calificación"  action="edit" preservedRouteParameters="id" isVisible="false"/>
+        <mvcSiteMapNode title="Detalle de Calificación"  action="show" preservedRouteParameters="id" isVisible="false"/>
+      </mvcSiteMapNode>
+      <mvcSiteMapNode title="Clasificaciones" controller="clasificaciones" action="index">
+        <mvcSiteMapNode title="Nueva Clasificacion"  action="new" isVisible="false"/>
+        <mvcSiteMapNode title="Editar Clasificacion"  action="edit" preservedRouteParameters="id" isVisible="false"/>
+        <mvcSiteMapNode title="Detalle de Clasificacion"  action="show" preservedRouteParameters="id" isVisible="false"/>
+      </mvcSiteMapNode>
+      <mvcSiteMapNode title="Categorías" controller="categorias" action="index">
+        <mvcSiteMapNode title="Nueva Categoría"  action="new" isVisible="false"/>
+        <mvcSiteMapNode title="Editar Categoría"  action="edit" preservedRouteParameters="id" isVisible="false"/>
+        <mvcSiteMapNode title="Detalle de Categoría"  action="show" preservedRouteParameters="id" isVisible="false"/>
+      </mvcSiteMapNode>
+      <mvcSiteMapNode title="Niveles" controller="niveles" action="index">
+        <mvcSiteMapNode title="Nuevo Nivel"  action="new" isVisible="false"/>
+        <mvcSiteMapNode title="Editar Nivel"  action="edit" preservedRouteParameters="id" isVisible="false"/>
+        <mvcSiteMapNode title="Detalle de Nivel"  action="show" preservedRouteParameters="id" isVisible="false"/>
+      </mvcSiteMapNode>
+      <mvcSiteMapNode title="Opciones" controller="opciones" action="index">
+        <mvcSiteMapNode title="Nueva Opcion"  action="new" isVisible="false" />
+        <mvcSiteMapNode title="Editar Opcion"  action="edit" preservedRouteParameters="id" isVisible="false" />
+        <mvcSiteMapNode title="Detalle de Opcion"  action="show" preservedRouteParameters="id" isVisible="false" />
+      </mvcSiteMapNode>
+      <mvcSiteMapNode title="Sistemas" controller="sistemas" action="index">
+        <mvcSiteMapNode title="Nuevo Sistema"  action="new" isVisible="false" />
+        <mvcSiteMapNode title="Editar Sistema"  action="edit" preservedRouteParameters="id" isVisible="false" />
+        <mvcSiteMapNode title="Detalle de Sistema"  action="show" preservedRouteParameters="id" isVisible="false" />
+      </mvcSiteMapNode>
+    </mvcSiteMapNode>
+    <mvcSiteMapNode title="Evaluaciones" clickable="false" icon="fa-th-list">
+      <mvcSiteMapNode title="Historial de Evaluaciones" controller="evaluaciones" action="index" />
+      <mvcSiteMapNode title="Tipo de Evaluaciones" controller="evaluaciones" action="tipos" />
+      <mvcSiteMapNode title="Posiciones" controller="posiciones" action="index" />
+    </mvcSiteMapNode>
+    <mvcSiteMapNode title="Configuración" controller="settings" action="index" visibility="SiteMapPathHelper,!*" icon="fa-gear">
+      <mvcSiteMapNode title="Log de Eventos" controller="settings" action="eventlog"/>
+      <mvcSiteMapNode title="Variables" controller="settings" action="appsettings"/>
+      <mvcSiteMapNode title="Usuarios" controller="users" action="index" >
+        <mvcSiteMapNode title="Nuevo Usuario" action="new" isVisible="false" />
+        <mvcSiteMapNode title="Nuevo Usuario" action="show" preservedRouteParameters="id" isVisible="false" />
+      </mvcSiteMapNode>
+      <mvcSiteMapNode title="Roles" controller="roles" action="index">
+        <mvcSiteMapNode title="Detalle de Rol" action="show" preservedRouteParameters="id" isVisible="false" />
+      </mvcSiteMapNode>
+      <mvcSiteMapNode title="Usuarios En Línea" controller="users" action="online" />
+      <mvcSiteMapNode title="Proyectos" controller="projects" action="index" >
+        <mvcSiteMapNode title="Nuevo Proyecto"  action="new" isVisible="false" />
+        <mvcSiteMapNode title="Editar Proyecto"  action="edit" preservedRouteParameters="id" isVisible="false" />
+        <mvcSiteMapNode title="Miembros"  action="members" preservedRouteParameters="id" isVisible="false" />
+      </mvcSiteMapNode>
+      <mvcSiteMapNode title="Estatus" controller="status" action="index"/>
+      <mvcSiteMapNode title="Provincias" controller="provincias" action="index" >
+        <mvcSiteMapNode title="Nueva Provincia"  action="new" isVisible="false" />
+        <mvcSiteMapNode title="Editar Provincia"  action="edit" preservedRouteParameters="id" isVisible="false" />
+        <mvcSiteMapNode title="Detalle Provincia"  action="show" preservedRouteParameters="id" isVisible="false"  />
+      </mvcSiteMapNode>
+      <mvcSiteMapNode title="Ciudades" controller="ciudades" action="index" >
+        <mvcSiteMapNode title="Nueva Ciudad"  action="new" isVisible="false" />
+        <mvcSiteMapNode title="Editar Ciudad"  action="edit" preservedRouteParameters="id" isVisible="false" />
+        <mvcSiteMapNode title="Detalle Ciudad"  action="show" preservedRouteParameters="id" isVisible="false" />
+      </mvcSiteMapNode>
+      <mvcSiteMapNode title="Regiones" controller="regiones" action="index" >
+        <mvcSiteMapNode title="Nueva Región"  action="new" isVisible="false" />
+        <mvcSiteMapNode title="Editar Región"  action="edit" preservedRouteParameters="id" isVisible="false" />
+        <mvcSiteMapNode title="Detalle Región"  action="show" preservedRouteParameters="id" isVisible="false" />
+      </mvcSiteMapNode>
+    </mvcSiteMapNode>
+  </mvcSiteMapNode>
+</mvcSiteMap>

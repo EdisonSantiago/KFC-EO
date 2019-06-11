@@ -1,0 +1,178 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<root>
+  <message id="23">
+    <title>Usuario Creado. Verificación Pendiente!</title>
+    <body>Tu nueva cuenta ha sido creada y tus credenciales han sticketIdo configuradas. Necesitas activar tu registro!</body>
+  </message>
+  <message id="13">
+    <title>Perfil Actualizado!</title>
+    <body>Tus datos han sido modificados con éxito. Dentro de unos minutos recibirás una confirmación por Email.</body>
+  </message>
+  <message id="75">
+    <title>El Usuario no se Pudo Crear</title>
+    <body>Ha ocurrido un error al crear el usuario, un error ha sticketIdo despachado al administrador del sitio. Intenta otra vez.</body>
+  </message>
+  <message id="72">
+    <title>Petición de Cambio de contraseña enviada!</title>
+    <body>
+      Te enviado un correo. Cuando recibas el e-mail, haz
+      click en el link que viene escrito en el mensaje para cambiar tu contraseña;
+    </body>
+  </message>
+  <message id="14">
+    <title>El Usuario no Existe!</title>
+    <body>Los datos están incorrectos, no existe este usuario en el sistema.</body>
+  </message>
+  <message id="15">
+		<title>Usuario Actualizado</title>
+		<body>Tu clave ha sido cambiada con éxito.</body>
+	</message>
+	<message id="16">
+		<title>Usuario No Actualizado</title>
+		<body>Ocurrió un error al momento de actualizar el usuario.</body>
+	</message>
+  <message id="17">
+    <title>Credenciales No Válidas!</title>
+    <body>Las credenciales no son correctas, por favor intente otra vez.</body>
+  </message>
+  <message id="18">
+    <title>Datos de Validación No Consistentes!</title>
+    <body>Los datos de validación que ha ingresado no son los esperados, por favor vuelva a hacer clic en el  email de activación, o caso contrario comuníquese con el administrador del sitio.</body>
+  </message>
+  <message id="19">
+    <title>Tu cuenta ha sido activada y estás listo para Ingresar!</title>
+    <body>Los datos se han validado correctamente, tu cuenta ha sticketIdo activada.</body>
+  </message>
+  <message id="20">
+    <title>No se ha podido realizar la activación de la cuenta!</title>
+    <body>La cuenta no se ha podido activar, puede ser que algunos datos no sean los correctos. Por favor vuelva a hacer clic en el  email de activación, o caso contrario comuníquese con el administrador del sitio.</body>
+  </message>
+  <message id="21">
+    <title>Cuenta ya Activada!</title>
+    <body>Esta cuenta ya ha sido activada anteriormente, utiliza tus credenciales para ingresar.</body>
+  </message>
+  <message id="25">
+    <title>Cuenta con Activación Pendiente!</title>
+    <body>Necesitas activar tu cuenta en este sitio. Verifica tu buzón de Email por el mensaje enviado para activar tu cuenta.</body>
+  </message>
+  <message id="30">
+    <title>Usuario Deshabilitado!</title>
+    <body>La cuenta de usuario con la que desea ingresar está deshabilitada. Contáctese con el ADMINISTRADOR DEL SISTEMA para solucionar este inconveniente.</body>
+  </message>
+	<message id="28">
+		<title>No se pudo enviar el Email</title>
+		<body>Ha ocurrido un error al tratar de enviar este email, por favor vuelva a intentarlo, si el problema persiste comuníquese con el administrador del sitio.</body>
+	</message>
+	<message id="120">
+		<title>Producto Creado!</title>
+		<body>El Producto ha sido creado satisfactoriamente.</body>
+	</message>
+	<message id="121">
+		<title>Producto Actualizado!</title>
+		<body>Los Datos del producto han sido actualizados correctamente.</body>
+	</message>
+	<message id="122">
+		<title>Producto Eliminado!</title>
+		<body>El producto ha sido eliminado.</body>
+	</message>
+	<message id="123">
+		<title>El Producto no Existe!</title>
+		<body>El producto por el cual ha hecho la consulta no existe, intente creando uno nuevo!.</body>
+	</message>
+  <message id="124">
+    <title>Usuario Creado!</title>
+    <body>El Usuario ha sido creado satisfactoriamente.</body>
+  </message>
+  <message id="125">
+    <title>Usuario Actualizado!</title>
+    <body>Los Datos del usuario han sido actualizados correctamente.</body>
+  </message>
+  <message id="126">
+    <title>Usuario Eliminado!</title>
+    <body>El usuario ha sido eliminado.</body>
+  </message>
+  <message id="127">
+    <title>El Usuario no Existe!</title>
+    <body>El usuario por el cual ha hecho la consulta no existe, intente creando uno nuevo!.</body>
+  </message>
+  <message id="128">
+    <title>Rol Creado!</title>
+    <body>El Rol ha sido creado satisfactoriamente.</body>
+  </message>
+  <message id="129">
+    <title>Rol Actualizado!</title>
+    <body>Los Datos del rol han sido actualizados correctamente.</body>
+  </message>
+  <message id="130">
+    <title>Rol Eliminado!</title>
+    <body>El rol ha sido eliminado.</body>
+  </message>
+  <message id="131">
+    <title>El Rol no Existe!</title>
+    <body>El rol por el cual ha hecho la consulta no existe, intente creando uno nuevo!.</body>
+  </message>
+	<message id="135">
+		<title>Plantilla Creada!</title>
+		<body>La Plantilla ha sido creada satisfactoriamente.</body>
+	</message>
+	<message id="136">
+		<title>Plantilla Actualizada!</title>
+		<body>La Plantilla ha sido actualizada satisfactoriamente.</body>
+	</message>
+	<message id="137">
+		<title>Plantilla Eliminada!</title>
+		<body>La Plantilla ha sido eliminada satisfactoriamente.</body>
+	</message>
+	<message id="174">
+		<title>La página ha sido enviada a imprimir!</title>
+		<body>Revise su impresora y retire la(s) páginas impresas.</body>
+	</message>
+	<message id="175">
+		<title>No se ha podido imprimir la página!</title>
+		<body>Ha ocurrido un error al tratar de imprimir la página, contáctese con el administrador del sitio.</body>
+	</message>
+	<message id="700">
+		<title>Datos de Referencias Requeridos</title>
+		<body>Revise el formulario e ingrese las referencias que faltan. Al menos cada tipo de referencia debe tener un item agregado.</body>
+	</message>
+	<message id="701">
+		<title>Datos de Actividad y/o Ingresos RequerticketIdos</title>
+		<body>Revise el formulario e ingrese los datos de Actividad y/o Ingresos que faltan.</body>
+	</message>
+	<message id="702">
+		<title>Datos Personales Requeridos</title>
+		<body>Revise el formulario e ingrese los datos Personales que faltan.</body>
+	</message>
+	<message id="703">
+		<title>Datos de Otros Beneficiarios Requeridos</title>
+		<body>Revise el formulario e ingrese los datos de Otros Beneficiarios que faltan.</body>
+	</message>
+	<message id="704">
+		<title>Datos del formulario Requeridos</title>
+		<body>Revise el formulario e ingrese los datos que faltan.</body>
+	</message>
+	<message id="800">
+		<title>Datos del formulario Requeridos</title>
+		<body>Revise el formulario e ingrese los datos que faltan.</body>
+	</message>
+	<message id="801">
+		<title>Email de contacto Enviado</title>
+		<body>Gracias por enviar sus comentarios. Pronto le responderemos.</body>
+	</message>
+	<message id="999">
+		<title>Error al procesar su requerimiento</title>
+		<body>Ha ocurrido una excepción al procesar su requerimiento, vuelva a intentarlo.</body>
+	</message>
+  <message id="57">
+    <title>Recurso no encontrado</title>
+    <body>El item al que trata de acceder no ha sido encontrado, utilice la búsqueda o vea el mapa del sitio.</body>
+  </message>
+  <message id="74">
+    <title>Cuenta de usuario Inválida</title>
+    <body>Por favor utilice otro nombre de usuario o email para registrarse o ingresar.</body>
+  </message>
+  <message id="49">
+    <title>Tu comentario ha sido enviado!</title>
+    <body>Este formulario de contacto ha sido enviado correctamente, recibirás una respuesta automática del envío en breves minutos.</body>
+  </message>
+</root>

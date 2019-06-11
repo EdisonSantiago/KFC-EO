@@ -1,0 +1,58 @@
+﻿@model ProjectMemberViewModel
+
+@{
+    ViewBag.PageTitle = "Miembros";
+    ViewBag.PageDescription = "Miembros del Proyecto";
+    ViewBag.Title = "Miembros del Proyecto";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="box">
+    <div class="box-header with-border">
+        <h3 class="box-title">@Html.Resource("head_users")</h3>
+    </div>
+    <div class="box-body">
+        <div class="fc-button-group">
+            <a href="javascript:showAssignModal(@Model.Project.Id);" class="btn btn-default">
+                <i class="fa fa-plus"></i>
+                @Html.Resource("group_add_user")
+            </a>
+            <a href="javascript:removeUser();" class="btn btn-default">
+                <i class="fa fa-remove"></i>
+                @Html.Resource("group_remove_selected_user")
+            </a>
+        </div>
+        <hr/>
+        @Html.Grid(Model.Project.Members.OrderBy(x=>x.Usuario.NombreMostrar).ToList()).Named("members_grid").Columns(columns =>
+        {
+
+            columns.Add().RenderValueAs(c =>
+                @<input class="checkbox table-select-checkbox" data-targetfield="formitems" type="checkbox" value="c.Id"/>
+                ).Sanitized(false).Encoded(false).SetWidth(30);
+
+
+            columns.Add(c => c.Usuario.NombreUsuario).Titled(Html.Resource("head_username").ToString());
+            columns.Add(c => c.Usuario.NombreMostrar).Titled(Html.Resource("head_name").ToString());
+            columns.Add(c => c.Grupo.Descripcion).Titled("ROL");
+
+        }
+
+            ).WithPaging(15).SetLanguage("es").EmptyText(Html.Resource("empty_text").ToString())
+
+
+    </div>
+</div>
+
+@Html.Partial("partials/_assignMembersForm", Model)
+
+@section css{
+
+    <link href="~/Content/Gridmvc.css" rel="stylesheet" />
+}
+
+@section scripts
+{
+    
+<script src="~/Scripts/App/members.js"></script>
+}

@@ -1,0 +1,43 @@
+﻿@model UserViewModel
+
+@{
+    ViewBag.PageTitle = Html.Resource("user_main_title") + ": " + Model.Usuario.NombreMostrar;
+    ViewBag.PageDescription = Html.Resource("user_main_description");
+    ViewBag.Title = Html.Resource("user_main_title");
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="box box-primary">
+    <div class="box-header with-border">
+        <h3 class="box-header">@Html.Resource("properties")</h3>
+    </div>
+    <div class="box-body">
+        <p>
+            <strong>@Html.Resource("username"): </strong> @Model.Usuario.NombreUsuario
+        </p>
+    </div>
+</div>
+
+
+<div class="btn-group">
+    @if (!Model.Usuario.EsLdap)
+    {
+        <a href="javascript:ShowChangePwd(@Model.Usuario.Id)" class="btn btn-danger">
+            <i class="fa fa-key"></i>
+            @Html.Resource("change_pwd")
+        </a>
+
+    }
+</div>
+
+@Html.Partial("partials/_changePasswordForm")
+
+@section scripts
+{
+    <script type="text/javascript">
+        var assignmentUrl = '@Url.Action("ChangePassword",new {userId=Model.Usuario.Id})';
+    
+    </script>
+<script src="~/Scripts/App/user.js"></script>
+
+}

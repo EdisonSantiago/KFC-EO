@@ -1,0 +1,506 @@
+﻿@model JerarquiaViewModel
+
+@{
+    ViewBag.Title = "Jerarquías";
+    ViewBag.PageTitle = "Jerarquías";
+    ViewBag.PageDescription = "Jerarquías del Sistema";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="btn-group">
+    <a id="btnEditGeneral" class="btn btn-default"><i class="fa fa-edit"></i> Editar GerenteGeneral</a>
+    <a id="btnAddNacional" class="btn btn-default"><i class="fa fa-plus"></i> Nuevo Gerente Nacional</a>
+    <a id="btnAddRegional" class="btn btn-default"><i class="fa fa-plus"></i> Nuevo Gerente Regional</a>
+</div>
+<br /><br />
+<div class="row">
+    <div class="col-md-3">
+        <div class="box box-solid">
+            <div class="box-header with-border">
+                <h3 class="box-title pull-left">Gerencias</h3>
+                <ul class="pagination pagination-sm no-margin pull-right">
+                    <li><a id="btnEditTree" class="btn btn-default disabled"><i class="fa fa-edit"></i></a></li>
+                    <li><a id="btnDeleteTree" class="btn btn-default disabled"><i class="fa fa-trash"></i></a></li>
+                </ul>
+            </div>
+            <div class="box-body no-padding">
+
+                <div id="gerenciasTree"></div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-9">
+        <div class="box">
+            <div class="box-header">
+                <h3 class="box-title pull-left">Jefes de Área</h3>
+                <ul class="pagination pagination-sm no-margin pull-right">
+                    <li><a id="btnAddJefe" class="btn btn-default"><i class="fa fa-plus"></i> Nuevo Jefe de Area</a></li>
+                </ul>
+            </div>
+            <div class="box-body">
+                <table id="items_grid"></table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@Html.Partial("partials/_generalForm", Model)
+@Html.Partial("partials/_nacionalForm", Model)
+@Html.Partial("partials/_regionalForm", Model)
+@Html.Partial("partials/_jefeAreaForm", Model)
+
+
+@section css
+{
+    <link href="~/vendors/gijgo-1.9.11/css/gijgo.min.css" rel="stylesheet" />
+}
+
+@section scripts
+{
+    <script src="~/vendors/gijgo-1.9.11/js/gijgo.min.js"></script>
+    <script type="text/javascript">
+        var tree;
+        var grid;
+        var subGrid;
+        $(document).ready(function() {
+            tree = $("#gerenciasTree").tree({
+                uiLibrary: "bootstrap",
+                primaryKey: "Id",
+                dataKey: "Id",
+                textField: "Text",
+                childrenField: "Nodes",
+                dataSource: '@Url.Action("getgerenciastree")',
+                iconsLibrary: 'fontawesome',
+            });
+
+            grid = $("#items_grid").grid({
+                dataKey: "Id",
+                primaryKey: "Id",
+                uiLibrary: "bootstrap",
+                dataSource: '@Url.Action("GetJefesAreas", "jerarquias")',
+                columns: [
+                    { field: "Id", width: 35, hidden: true },
+                    { field: "Nombre", title: "NOMBRE" },
+                    { field: "Descripcion", title: "DESCRIPCION" },
+                    { field: "NumLocales", title: "LOCALES" },
+                    { field: "NombreEstado", title: "ESTADO", tmpl: '<span class="status status-{NombreEstado}">{NombreEstado}</span>', width: 120 },
+                    { title: "", field: "Edit", width: 35, type: "icon", icon: "glyphicon-pencil", tooltip: "editar valores", events: { "click": editJefe } },
+                    { title: "", field: "Delete", width: 35, type: "icon", icon: "glyphicon-remove", tooltip: "eliminar", events: { "click": removeJefe } },
+                ],
+            });
+
+
+            $("#btnEditGeneral").on("click", editGeneral);
+            $("#btnGenSave").on("click", genSave);
+            $("#btnAddNacional").on("click", addNac);
+            $("#btnNacSave").on("click", nacSave);
+            $("#btnAddRegional").on("click", addReg);
+            $("#btnRegSave").on("click", regSave);
+            $("#btnAddJefe").on("click", addJefe);
+            $("#btnJefeSave").on("click", jefeSave);
+
+            tree.on('select', function(e, node, id) {
+                grid.reload({ parentId: id });
+
+                $.ajax({
+                    url: '@Url.Action("getnodetype")/' + id,
+                    type: "POST"
+                }).done(function(response) {
+
+                    if (response.actions.includes("edit")) {
+                        $("#btnEditTree").removeClass("disabled");
+                        $("#btnEditTree").attr('data-id',response.nodeId);
+                        $("#btnEditTree").attr('data-nodeType',response.nodeType);
+                    }
+
+                    if (response.actions.includes("delete")) {
+                        $("#btnDeleteTree").removeClass("disabled");
+                        $("#btnDeleteTree").attr('data-id',response.nodeId);
+                        $("#btnDeleteTree").attr('data-nodeType',response.nodeType);
+
+                    }
+
+                    if (!response.actions.includes("edit")) {
+                        $("#btnEditTree").addClass("disabled");
+                    }
+
+                    if (!response.actions.includes("delete")) {
+                        $("#btnDeleteTree").addClass("disabled");
+                    }
+
+                });
+
+            });
+
+            $("#btnEditTree").on("click", editTree);
+            $("#btnDeleteTree").on("click", deleteTree);
+
+        });
+
+
+        function editTree() {
+            var id = $(this).attr("data-id");
+            var nodeType = $(this).attr("data-nodeType");
+
+            switch (nodeType) {
+            case "general":
+                editGeneral();
+                break;
+            case "nacional":
+                editNacional(id);
+                break;
+            case "regional":
+                editRegional(id);
+                break;
+            default:
+                    bootbox.alert({ message: 'El tipo de Nodo no se puede editar!' });
+                break;
+            }
+
+        }
+
+        function deleteTree() {
+            var id = $(this).attr("data-id");
+            var nodeType = $(this).attr("data-nodeType");
+
+            switch (nodeType) {
+            case "general":
+                bootbox.alert({ message: 'El tipo de Nodo no se puede eliminar!' });
+                break;
+            case "nacional":
+                deleteNacional(id);
+                break;
+            case "regional":
+                deleteRegional(id);
+                break;
+            default:
+                bootbox.alert({ message: 'El tipo de Nodo no se puede editar!' });
+                break;
+            }
+        }
+
+        function deleteNacional(id) {
+
+            bootbox.confirm("Esta seguro de eliminar este item? Al eliminarlo tambien desaparecerá su jerarquía e hijos.",
+                function(result) {
+                    if (result) {
+                        $.ajax({
+                                url: '@Url.Action("deletenacional")',
+                                type: "POST",
+                                data: { id:id }
+                            })
+                            .done(function(data) {
+                                if (!data.status) {
+                                    var exMessage = "Ocurrió una excepción al eliminar. Acaso el objeto tiene relaciones?<br /><br />";
+                                    exMessage += "<strong>EXCEPCION:</strong><br />" + data.message.substring(0, 150) + "...<br /><br />";
+                                    exMessage += "Revise el detalle en el log de eventos.";
+                                    bootbox.alert({ title:"No se puede eliminar!", message:exMessage });
+                                }
+                                tree.reload();
+                            })
+                            .fail(function() {
+                                alert("No se puede eliminar.");
+                            });
+                    }
+                });
+
+        }
+
+        function deleteRegional(id) {
+
+            bootbox.confirm("Esta seguro de eliminar este item? Al eliminarlo tambien desaparecerá su jerarquía e hijos.",
+                function(result) {
+                    if (result) {
+                        $.ajax({
+                                url: '@Url.Action("deleteregional")',
+                                type: "POST",
+                                data: { id:id }
+                            })
+                            .done(function(data) {
+                                if (!data.status) {
+                                    var exMessage = "Ocurrió una excepción al eliminar. Acaso el objeto tiene relaciones?<br /><br />";
+                                    exMessage += "<strong>EXCEPCION:</strong><br />" + data.message.substring(0, 150) + "...<br /><br />";
+                                    exMessage += "Revise el detalle en el log de eventos.";
+                                    bootbox.alert({ title:"No se puede eliminar!", message:exMessage });
+                                }
+                                tree.reload();
+                            })
+                            .fail(function() {
+                                alert("No se puede eliminar.");
+                            });
+                    }
+                });
+
+        }
+
+        function editGeneral() {
+
+            $("#GenId").val('@Model.GerenteGeneral.Id');
+            $("#GenNombre").val('@Model.GerenteGeneral.Nombre');
+            $("#GenDescripcion").val('@Model.GerenteGeneral.Descripcion');
+            $("#GenEstado").val('@Model.GerenteGeneral.Estado.Id');
+
+            $("#general_form").modal("show");
+        }
+
+        function editNacional(id) {
+            $.ajax({
+                url: '@Url.Action("GetNacional")/' + id,
+                type: "POST"
+            }).done(function(response) {
+                var nacional = response.nacional;
+
+                $("#NacId").val(nacional.Id);
+                $("#NacGeneralId").val(nacional.GerenteGeneral.Id);
+                $("#NacNombre").val(nacional.Nombre);
+                $("#NacDescripcion").val(nacional.Descripcion);
+                $("#NacCadena").val(nacional.Cadena.Id);
+                $("#NacEstado").val(nacional.Estado.Id);
+
+                $("#nacional_form").modal("show");
+            });
+        }
+
+        function editRegional(id) {
+            $.ajax({
+                url: '@Url.Action("GetRegional")/' + id,
+                type: "POST"
+            }).done(function(response) {
+                var regional = response.regional;
+
+                $("#RegId").val(regional.Id);
+                $("#RegNacionalId").val(regional.GerenteNacional.Id);
+                $("#RegNombre").val(regional.Nombre);
+                $("#RegNacional").val(regional.GerenteNacional.Nombre + ' (' + regional.GerenteNacional.Cadena.Nombre + ')' );
+                $("#RegDescripcion").val(regional.Descripcion);
+                $("#RegEstado").val(regional.Estado.Id);
+
+                $("#regional_form").modal("show");
+            });        }
+
+        function addReg() {
+
+            var selectedNodes = tree.getSelections();
+            if (selectedNodes.length > 0) {
+
+                var node = selectedNodes[0];
+                $.ajax({
+                    url: '@Url.Action("getnacionalesall")',
+                    type: "POST"
+                }).done(function(data) {
+                    var isNacional = false;
+                    var nacional;
+                    for (var i = 0; i < data.nacionales.length; i++) {
+                        if (data.nacionales[i].Id == node) {
+                            isNacional = true;
+                            nacional = data.nacionales[i];
+                        }
+                    }
+
+                    if (isNacional == true) {
+                        $("#RegId").val(0);
+                        $("#RegNacionalId").val(nacional.Id);
+                        $("#RegNombre").val('');
+                        $("#RegNacional").val(nacional.Nombre + ' (' + nacional.Cadena.Nombre + ')' );
+                        $("#RegDescripcion").val('');
+                        $("#RegEstado").val('');
+
+                        $("#regional_form").modal("show");
+                    } else {
+                        bootbox.alert({ message: 'Debe seleccionar un Gerente Nacional!' });
+                    }
+                });
+                    ;
+
+
+            } else {
+                bootbox.alert({ message: 'Debe seleccionar un Gerente Nacional!'});
+            }
+        }
+
+        function regSave() {
+            alert('save');
+            var regional = {
+                Id: $("#regId").val(),
+                NacionalId: $("#RegNacionalId").val(),
+                Nombre: $("#RegNombre").val(),
+                Descripcion: $("#RegDescripcion").val(),
+                EstadoId: $("#RegEstado option:selected").val()
+            };
+
+            $.ajax({ url: '@Url.Action("saveregional")', type: "POST", data: { regional: regional} })
+                .done(function (response) {
+                    tree.reload();
+                    var node = tree.getNodeById($("#RegNacionalId").val());
+                    tree.expand(node);
+
+                    $("#regional_form").modal("hide");
+                })
+                .fail(function () {
+                    alert("Ocurrió un error al guardar.");
+                    // $("#setting_form").modal("hide");
+                });
+        }
+
+        function addNac() {
+
+            $("#NacId").val(0);
+            $("#NacGeneralId").val('@Model.GerenteGeneral.Id');
+            $("#NacNombre").val('');
+            $("#NacDescripcion").val('');
+            $("#NacCadena").val('');
+            $("#NacEstado").val('');
+
+            $("#nacional_form").modal("show");
+        }
+
+
+        function nacSave() {
+            var nacional = {
+                Id: $("#NacId").val(),
+                GerenteGeneralId: $("#NacGeneralId").val(),
+                Nombre: $("#NacNombre").val(),
+                Descripcion: $("#NacDescripcion").val(),
+                CadenaId: $("#NacCadena option:selected").val(),
+                EstadoId: $("#NacEstado option:selected").val()
+            };
+
+            $.ajax({ url: '@Url.Action("savenacional")', type: "POST", data: { nacional: nacional} })
+                .done(function () {
+                    tree.reload();
+                    var node = tree.getNodeById($("#NacGeneralId").val());
+                    tree.expand(node);
+                    $("#nacional_form").modal("hide");
+                })
+                .fail(function () {
+                    alert("Ocurrió un error al guardar.");
+                    // $("#setting_form").modal("hide");
+                });
+        }
+
+
+
+        function genSave() {
+            var general = {
+                Id: $("#GenId").val(),
+                Nombre: $("#GenNombre").val(),
+                Descripcion: $("#GenDescripcion").val(),
+                EstadoId: $("#GenEstado option:selected").val()
+            };
+
+            $.ajax({ url: '@Url.Action("savegeneral")', type: "POST", data: { general: general} })
+                .done(function () {
+                    location.reload();
+                    $("#general_form").modal("hide");
+                })
+                .fail(function () {
+                    alert("Ocurrió un error al guardar.");
+                    // $("#setting_form").modal("hide");
+                });
+        }
+
+       function addJefe() {
+           var selectedNodes = tree.getSelections();
+           if (selectedNodes.length > 0) {
+
+               var node = selectedNodes[0];
+               $.ajax({
+                   url: '@Url.Action("getregionalesall")',
+                   type: "POST"
+               }).done(function(data) {
+                   var isRegional = false;
+                   var regional;
+                   for (var i = 0; i < data.regionales.length; i++) {
+                       if (data.regionales[i].Id == node) {
+                           isRegional = true;
+                           regional = data.regionales[i];
+                       }
+                   }
+
+                   if (isRegional == true) {
+                       $("#JefeId").val(0);
+                       $("#JefeRegionalId").val(regional.Id);
+                       $("#JefeNombre").val('');
+                       $("#JefeRegional").val(regional.Nombre + ' (' + regional.GerenteNacional.Cadena.Nombre + ')' );
+                       $("#JefeDescripcion").val('');
+                       $("#JefeEstado").val('');
+
+                       $("#jefe_form").modal("show");
+                   } else {
+                       bootbox.alert({ message: 'Debe seleccionar un Gerente Regional del Arbol!' });
+                   }
+               });
+               ;
+
+
+           } else {
+               bootbox.alert({ message: 'Debe seleccionar un Gerente Regional del Arbol!'});
+           }
+        }
+
+        function jefeSave()
+        {
+            var jefe = {
+                Id: $("#JefeId").val(),
+                RegionalId: $("#JefeRegionalId").val(),
+                Nombre: $("#JefeNombre").val(),
+                Descripcion: $("#JefeDescripcion").val(),
+                EstadoId: $("#JefeEstado option:selected").val()
+            };
+
+            $.ajax({ url: '@Url.Action("savejefearea")', type: "POST", data: { jefe: jefe} })
+                .done(function (response) {
+                    grid.reload();
+
+                    $("#jefe_form").modal("hide");
+                })
+                .fail(function () {
+                    alert("Ocurrió un error al guardar.");
+                });
+        }
+
+        function editJefe(e) {
+            console.log(e);
+            var jefeId = e.data.record.Id;
+
+            $("#JefeId").val(jefeId);
+            $("#JefeRegionalId").val(e.data.record.GerenteRegional.Id);
+            $("#JefeNombre").val(e.data.record.Nombre);
+            $("#JefeRegional").val(e.data.record.GerenteRegional.Nombre + ' (' + e.data.record.GerenteRegional.GerenteNacional.Cadena.Nombre + ')' );
+            $("#JefeDescripcion").val(e.data.record.Descripcion);
+            $("#JefeEstado").val(e.data.record.Estado.Id);
+
+
+
+            $("#jefe_form").modal('show');
+        }
+
+        function removeJefe(e) {
+            bootbox.confirm("Esta seguro de eliminar este item?",
+                function(result) {
+                    if (result) {
+                        $.ajax({
+                                url: '@Url.Action("DeleteJefeArea")',
+                                type: "POST",
+                                data: { id: e.data.record.Id }
+                            })
+                            .done(function(data) {
+                                if (!data.status) {
+                                    var exMessage = "Ocurrió una excepción al eliminar. Acaso el objeto tiene relaciones?<br /><br />";
+                                    exMessage += "<strong>EXCEPCION:</strong><br />" + data.message.substring(0, 150) + "...<br /><br />";
+                                    exMessage += "Revise el detalle en el log de eventos.";
+                                    bootbox.alert({ title:"No se puede eliminar!", message:exMessage });
+                                }
+                                grid.reload();
+                            })
+                            .fail(function() {
+                                alert("No se puede eliminar.");
+                            });
+                    }
+                });
+
+        }
+
+    </script>
+}

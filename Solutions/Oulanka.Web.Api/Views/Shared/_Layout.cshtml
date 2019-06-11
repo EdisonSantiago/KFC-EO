@@ -1,0 +1,45 @@
+﻿@{
+    var isGrid = false;
+    var panelCss = "";
+
+    if (ViewBag.IsGrid != null && ViewBag.IsGrid)
+    {
+        isGrid = true;
+        panelCss = "table-responsive no-padding";
+    }
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1,user-scalable=no">
+    <title>@ViewBag.Title - @Html.ApplicationName()</title>
+
+    @RenderSection("css", false)
+</head>
+<body class="hold-transition skin-black sidebar-mini">
+    <div class="wrapper">
+
+
+        <div class="content-wrapper">
+            <section class="content-header">
+                <h1>
+                    @ViewBag.PageTitle
+                    @if (ViewBag.PageDescription != null)
+                    {
+                        <small>@ViewBag.PageDescription</small>
+                    }
+                </h1>
+            </section>
+            <section class="content">
+
+                @RenderBody()
+            </section>
+        </div>
+        <footer class="main-footer">
+        </footer>
+
+    </div>
+
+</body>
+</html>

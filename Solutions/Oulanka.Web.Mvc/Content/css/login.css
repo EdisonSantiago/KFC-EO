@@ -1,0 +1,187 @@
+﻿.test-border {
+  border: 1px dotted red; }
+
+a {
+  text-decoration: none; }
+
+a:hover {
+  text-decoration: underline; }
+
+.align-center {
+  text-align: center; }
+
+.align-left {
+  text-align: left; }
+
+.align-right {
+  text-align: right; }
+
+.align-justify {
+  text-align: justify; }
+
+#footer {
+  color: #999; }
+  #footer a {
+    color: #999; }
+  #footer a:hover {
+    color: #fff; }
+
+.field-validation-error {
+  color: #CC0000;
+  font-size: 11px;
+  border: #FF8080;
+  background: #FFFFA6;
+  padding: 5px;
+  margin-top: 10px;
+  border-radius: 3px;
+  display: inline-block; }
+
+.field-validation-valid {
+  display: none; }
+
+input.input-validation-error {
+  border: 1px solid #b94a48; }
+
+input[type="checkbox"].input-validation-error {
+  border: 0 none; }
+
+.validation-summary-errors {
+  background: #FFFFA6;
+  color: #CC0000;
+  border: #FF8080;
+  border-radius: 3px;
+  padding: 5px 5px 5px 5px;
+  margin-bottom: 10px; }
+  .validation-summary-errors ul, .validation-summary-errors li {
+    list-style: none;
+    list-style-type: none;
+    margin: 0 0 0 0;
+    padding: 0 0 0 0; }
+
+.validation-summary-valid {
+  display: none; }
+
+/* gradients */
+html, body {
+  height: 100%;
+  background: #2680B7;
+  font-family: 'Lato', sans-serif;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 300;
+  background-color: #258ece;
+  /* IE9, iOS 3.2+ */
+  background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAxIDEiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjxsaW5lYXJHcmFkaWVudCBpZD0idnNnZyIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMCUiIHkyPSIxMDAlIj48c3RvcCBzdG9wLWNvbG9yPSIjMGE2ZGE5IiBzdG9wLW9wYWNpdHk9IjEiIG9mZnNldD0iMCIvPjxzdG9wIHN0b3AtY29sb3I9IiMzZmFmZjMiIHN0b3Atb3BhY2l0eT0iMSIgb2Zmc2V0PSIxIi8+PC9saW5lYXJHcmFkaWVudD48cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iMSIgaGVpZ2h0PSIxIiBmaWxsPSJ1cmwoI3ZzZ2cpIiAvPjwvc3ZnPg==);
+  background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, color-stop(0, #0a6da9), color-stop(1, #3faff3));
+  /* Android 2.3 */
+  background-image: -webkit-repeating-linear-gradient(top, #0a6da9 0%, #3faff3 100%);
+  /* IE10+ */
+  background-image: repeating-linear-gradient(to bottom, #0a6da9 0%, #3faff3 100%);
+  background-image: -ms-repeating-linear-gradient(top, #0a6da9 0%, #3faff3 100%); }
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Lato', sans-serif;
+  font-weight: 400; }
+
+a {
+  color: #fff; }
+
+a:hover {
+  color: #fff;
+  text-decoration: underline; }
+
+/*sticky footer*/
+#wrapper {
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  /*negative indent footer by it's height*/
+  margin: 0 auto -60px; }
+
+/* Set the fixed height of the footer here */
+#push, #footer {
+  height: 60px; }
+
+#footer {
+  padding-top: 20px;
+  background: #333; }
+  #footer a {
+    color: #fff; }
+
+.login #content {
+  padding-top: 95px;
+  padding-bottom: 20px; }
+.login h1 {
+  font-weight: 300;
+  text-align: center;
+  font-size: 55px;
+  text-shadow: 1px 1px 2px black; }
+.login h4 {
+  font-size: 18px;
+  font-weight: 300;
+  color: #fff;
+  text-shadow: 1px 1px 2px black; }
+  .login h4 a {
+    color: #fff;
+    text-decoration: underline; }
+
+#login-container {
+  width: 350px;
+  margin: auto; }
+
+#loginForm, #registerForm {
+  padding: 0 50px 0 50px; }
+  #loginForm input[type="text"], #loginForm input[type="password"], #registerForm input[type="text"], #registerForm input[type="password"] {
+    height: 50px;
+    font-size: 25px;
+    color: #999999 !important;
+    font-weight: 300; }
+
+.button {
+  font-weight: 400;
+  color: #000; }
+
+.button.medium {
+  font-size: 15px; }
+
+.button.full {
+  font-size: 18px;
+  width: 100%;
+  padding-top: 10px;
+  padding-bottom: 10px; }
+
+.button.yellow-gradient {
+  color: #000;
+  border: none;
+  background-color: #ffb838;
+  /* IE9, iOS 3.2+ */
+  background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAxIDEiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjxsaW5lYXJHcmFkaWVudCBpZD0idnNnZyIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiIHgxPSIwJSIgeTE9IjEwMCUiIHgyPSIwJSIgeTI9IjAlIj48c3RvcCBzdG9wLWNvbG9yPSIjZmZkNDcwIiBzdG9wLW9wYWNpdHk9IjEiIG9mZnNldD0iMCIvPjxzdG9wIHN0b3AtY29sb3I9IiNmZjljMDAiIHN0b3Atb3BhY2l0eT0iMSIgb2Zmc2V0PSIxIi8+PC9saW5lYXJHcmFkaWVudD48cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iMSIgaGVpZ2h0PSIxIiBmaWxsPSJ1cmwoI3ZzZ2cpIiAvPjwvc3ZnPg==);
+  background-image: -webkit-gradient(linear, 0% 100%, 0% 0%, color-stop(0, #ffd470), color-stop(1, #ff9c00));
+  /* Android 2.3 */
+  background-image: -webkit-repeating-linear-gradient(bottom, #ffd470 0%, #ff9c00 100%);
+  /* IE10+ */
+  background-image: repeating-linear-gradient(to top, #ffd470 0%, #ff9c00 100%);
+  background-image: -ms-repeating-linear-gradient(bottom, #ffd470 0%, #ff9c00 100%);
+  text-shadow: 1px 1px 1px white; }
+
+.yellow-gradient {
+  background-color: #ffb838;
+  /* IE9, iOS 3.2+ */
+  background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAxIDEiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjxsaW5lYXJHcmFkaWVudCBpZD0idnNnZyIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiIHgxPSIwJSIgeTE9IjEwMCUiIHgyPSIwJSIgeTI9IjAlIj48c3RvcCBzdG9wLWNvbG9yPSIjZmZkNDcwIiBzdG9wLW9wYWNpdHk9IjEiIG9mZnNldD0iMCIvPjxzdG9wIHN0b3AtY29sb3I9IiNmZjljMDAiIHN0b3Atb3BhY2l0eT0iMSIgb2Zmc2V0PSIxIi8+PC9saW5lYXJHcmFkaWVudD48cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iMSIgaGVpZ2h0PSIxIiBmaWxsPSJ1cmwoI3ZzZ2cpIiAvPjwvc3ZnPg==);
+  background-image: -webkit-gradient(linear, 0% 100%, 0% 0%, color-stop(0, #ffd470), color-stop(1, #ff9c00));
+  /* Android 2.3 */
+  background-image: -webkit-repeating-linear-gradient(bottom, #ffd470 0%, #ff9c00 100%);
+  /* IE10+ */
+  background-image: repeating-linear-gradient(to top, #ffd470 0%, #ff9c00 100%);
+  background-image: -ms-repeating-linear-gradient(bottom, #ffd470 0%, #ff9c00 100%);
+  color: #000;
+  text-shadow: 1px 1px 1px white; }
+
+/* HACKS */
+/* IE8- CSS hack */
+@media \0screen\,screen\9 {
+  html, body {
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#ff0a6da9",endColorstr="#ff3faff3",GradientType=0); }
+ }
+
+/*# sourceMappingURL=login.css.map */

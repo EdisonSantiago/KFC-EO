@@ -1,0 +1,31 @@
+/***
+Customized Bootstrap Alerts
+***/
+
+.alert {
+	border-width: 1px;
+
+	> p {
+		margin: 0;
+	}
+	
+	&.alert-borderless {
+		border: 0;
+	}
+}
+
+.form{
+	.alert{
+		padding: 2px 5px 2px 5px;
+		font-size: 11px;
+		margin-top: 4px;
+	}
+}
+
+@if $theme-type == "material-design" {  
+	.alert {
+		@include border-radius($general-border-radius);  
+		border-width: 0;  
+		@extend .md-shadow-z-1;               
+	}
+}

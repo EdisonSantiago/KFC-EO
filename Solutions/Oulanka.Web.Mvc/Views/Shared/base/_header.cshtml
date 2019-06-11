@@ -1,0 +1,43 @@
+﻿@model PanelHeaderViewModel
+@{
+    var homeUrl = "~/";
+    homeUrl =  Url.Action("index", "dashboard") ;
+}
+
+
+<header class="main-header">
+    <a href="@homeUrl" class="logo">
+        <span class="logo-mini"><b>Ou</b>ka</span>
+        <span class="logo-lg"><b>OUL</b>ANKA</span>
+    </a>
+
+    <nav class="navbar navbar-static-top" role="navigation">
+        <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+            <span class="sr-only">Toggle navigation</span>
+        </a>
+        <div class="navbar-custom-menu">
+            <ul class="nav navbar-nav">
+                <li>
+                    <a href="#">
+                        <i class="fa fa-suitcase"></i>
+                        Área: <strong>@Model.CurrentProject.Name</strong>
+                    </a>
+                </li>
+                @{Html.RenderAction("userstatus", "account");}
+            </ul>
+        </div>
+    </nav>
+
+</header>
+@*
+    <div class="navbar navbar-default" id="navbar">
+        <a class="navbar-brand" href="~/">
+            <i class="fa fa-gear"></i>
+            Proyecto Base
+        </a>
+        <ul class="nav navbar-nav pull-right">
+
+            @{Html.RenderAction("userstatus", "account");}
+        </ul>
+    </div>
+*@

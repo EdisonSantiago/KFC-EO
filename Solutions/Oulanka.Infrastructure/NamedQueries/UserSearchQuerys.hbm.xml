@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2">
+	<sql-query name="SearchSimpleUserTicketDtoList">
+		<![CDATA[
+      SELECT 
+        Tickets.TicketId as Id, 
+        Tickets.Title, 
+        Tickets.Status as [Status], 
+        Tickets.Description as [Description], 
+        Tickets.UserPriority, 
+        Tickets.Priority as Priority, 
+        Tickets.CreatedOn, 
+        Tickets.ResolvedOn, 
+        Tickets.UpdatedOn, 
+        TicketTypes.Name as TicketTypeName, 
+        Resources.Name as ResourceName, 
+        Components.Name AS ComponentName, 
+        RequestTypes.Name AS RequestTypeName,
+        GeneratedById as UserGenerateId,
+        (SELECT DisplayName from Users where Users.UserId = Tickets.GeneratedById) as UserGenerateName,
+        AssignedToId as UserAssignedId,
+        (SELECT DisplayName from Users where Users.UserId = Tickets.AssignedToId) as UserAssignedName,
+        (SELECT TOP 1 [DateTime] from Actions where TicketId = Tickets.TicketId ORDER BY [DateTime] DESC) as LastUpdateDate
+
+      FROM 
+        Tickets INNER JOIN
+        TicketTypes ON Tickets.TicketTypeId = TicketTypes.TicketTypeId INNER JOIN
+        Resources ON Tickets.ResourceId = Resources.ResourceId INNER JOIN
+        Components ON Tickets.ComponentId = Components.ComponentId INNER JOIN
+        RequestTypes ON Tickets.RequestTypeId = RequestTypes.RequestTypeId 
+
+      WHERE 
+        Tickets.ProjectId = :projectId AND
+        Tickets.GeneratedById = :userId AND
+        (
+        Tickets.TicketId = :ticketId OR
+        Tickets.Title LIKE :searchTerm OR 
+        Tickets.Description LIKE :searchTerm OR
+        Resources.Name LIKE :searchTerm OR
+        Components.Name LIKE :searchTerm
+        )
+      ORDER BY Tickets.UpdatedOn DESC
+
+		]]>
+	</sql-query>
+  <sql-query name="SearchAdvancedUserTicketDtoList">
+    <![CDATA[
+      SELECT 
+        Tickets.TicketId as Id, 
+        Tickets.Title, 
+        Tickets.Status as [Status], 
+        Tickets.Description as [Description], 
+        Tickets.UserPriority, 
+        Tickets.Priority as Priority, 
+        Tickets.CreatedOn, 
+        Tickets.ResolvedOn, 
+        Tickets.UpdatedOn, 
+        TicketTypes.Name as TicketTypeName, 
+        Resources.Name as ResourceName, 
+        Components.Name AS ComponentName, 
+        RequestTypes.Name AS RequestTypeName,
+        GeneratedById as UserGenerateId,
+        (SELECT DisplayName from Users where Users.UserId = Tickets.GeneratedById) as UserGenerateName,
+        AssignedToId as UserAssignedId,
+        (SELECT DisplayName from Users where Users.UserId = Tickets.AssignedToId) as UserAssignedName,
+        (SELECT TOP 1 [DateTime] from Actions where TicketId = Tickets.TicketId ORDER BY [DateTime] DESC) as LastUpdateDate
+
+      FROM 
+        Tickets INNER JOIN
+        TicketTypes ON Tickets.TicketTypeId = TicketTypes.TicketTypeId INNER JOIN
+        Resources ON Tickets.ResourceId = Resources.ResourceId INNER JOIN
+        Components ON Tickets.ComponentId = Components.ComponentId INNER JOIN
+        RequestTypes ON Tickets.RequestTypeId = RequestTypes.RequestTypeId 
+
+      :where
+
+		]]>
+  </sql-query>
+</hibernate-mapping>

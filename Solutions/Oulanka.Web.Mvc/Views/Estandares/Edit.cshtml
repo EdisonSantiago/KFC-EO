@@ -1,0 +1,175 @@
+﻿@model EstandarFormModel
+
+@{
+    ViewBag.PageTitle = "Editar Estándar";
+    ViewBag.PageDescription = "Ubique los datos del Estándar";
+    ViewBag.Title = "Editar Estándar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    @Html.HiddenFor(x => x.Id);
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default bg-gray-light">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-4 col-sm-4 col-xs-12">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Codigo)
+                                @Html.TextBoxFor(m => m.Codigo, new { @class = "form-control", placeholder = "Código" })
+                                @Html.ValidationMessageFor(m => m.Codigo)
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-4 col-xs-12">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.GrupoEstandar)
+                                @Html.DropDownListFor(m => m.GrupoEstandar, Model.GrupoEstandares, "Seleccione Uno", new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.GrupoEstandar)
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-4 col-xs-12">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.TipoEstandar)
+                                @Html.DropDownListFor(m => m.TipoEstandar, Model.TipoEstandares, "Seleccione Uno", new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.TipoEstandar)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Nombre)
+                                @Html.TextBoxFor(m => m.Nombre, new { @class = "form-control", placeholder = "Nombre" })
+                                @Html.ValidationMessageFor(m => m.Nombre)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Descripcion)
+                                @Html.TextAreaFor(m => m.Descripcion, new { @class = "form-control", placeholder = "Descripcion", rows = "5" })
+                                @Html.ValidationMessageFor(m => m.Descripcion)
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.NotasEspeciales)
+                                @Html.TextAreaFor(m => m.NotasEspeciales, new { @class = "form-control", placeholder = "Notas Especiales", rows = "5" })
+                                @Html.ValidationMessageFor(m => m.NotasEspeciales)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="row">
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.Categoria)
+                                        @Html.DropDownListFor(m => m.Categoria, Model.Categorias, "Seleccione Uno", new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(m => m.Categoria)
+
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.Nivel)
+                                        @Html.DropDownListFor(m => m.Nivel, Model.Niveles, "Seleccione Uno", new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(m => m.Nivel)
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.Clasificacion)
+                                        @Html.DropDownListFor(m => m.Clasificacion, Model.Clasificaciones, "Seleccione Uno", new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(m => m.Clasificacion)
+
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.Estado)
+                                        @Html.DropDownListFor(m => m.Estado, Model.Estados, "Seleccione Uno", new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(m => m.Estado)
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <div class="row">
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.Sistema)
+                                        @foreach (var item in Model.Sistemas.CheckBoxItems)
+                                        {
+                                            <div class="checkbox">
+                                                <label>
+                                                    <input id="chk_@(item.Value)" type="checkbox" value="@item.Value" checked="@item.IsChecked" name="Sistema" />
+                                                    @item.Text
+                                                </label>
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.TipoLocal)
+                                        @foreach (var item in Model.TipoLocales.CheckBoxItems)
+                                        {
+                                            <div class="checkbox">
+                                                <label>
+                                                    <input id="chk_@(item.Value)" type="checkbox" value="@item.Value" checked="@item.IsChecked" name="TipoLocal" />
+                                                    @item.Text
+                                                </label>
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+                <div class="panel-footer">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <a class="btn btn-default pull-right"
+                               href="@Url.Action("index", "estandares")">
+                                <i class="fa fa-ban"></i>
+                                @Html.Resource("form_cancel")
+                            </a>
+                            <button type="submit" class="btn btn-primary pull-right" style="margin-right: 5px;">
+                                <i class="fa fa-save"></i>
+                                @Html.Resource("form_save_data")
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+}
+@section scripts
+{
+    <script type="text/javascript">
+        ClassicEditor
+            .create(document.querySelector('#Descripcion'))
+            .catch(error => { console.error(error); });
+
+        ClassicEditor
+            .create(document.querySelector('#NotasEspeciales'))
+            .catch(error => { console.error(error); });
+    </script>
+}

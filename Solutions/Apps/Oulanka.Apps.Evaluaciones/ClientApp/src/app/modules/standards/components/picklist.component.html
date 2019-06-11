@@ -1,0 +1,36 @@
+<div class="row" *ngIf="hasItems && respuestas.length > 0">
+  <div class="col-md-8">
+    <div class="portlet bordered light">
+      <div class="portlet-title">
+        <h4>Lista de Seleccion</h4>
+      </div>
+      <div class="portlet-body">
+         
+        <div class="row">
+          <div class="col-md-6" *ngFor="let item of items">
+
+            <label class="checkbox-inline">
+
+              <input type="checkbox" value="{{item.id}}" [checked]="getRespuestaValue(item.id)" (change)="saveValue(item.id)">
+              {{item.nombre}}
+            </label>
+          </div>
+        </div>
+    
+      </div>
+    </div>
+
+  </div>
+  <div class="col-md-4">
+    <div class="portlet bordered light">
+      <div class="portlet-title">
+        <h4>Comentarios</h4>
+      </div>
+      <div class="portlet-body">
+        <textarea id="comentarios" class="form-control" rows="4">
+        </textarea>
+      </div>
+    </div>
+
+  </div>
+</div>

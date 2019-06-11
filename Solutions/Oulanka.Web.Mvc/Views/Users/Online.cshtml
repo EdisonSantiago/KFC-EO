@@ -1,0 +1,51 @@
+﻿@model OnlineUsersViewModel
+
+@{
+    ViewBag.PageTitle = "Usuarios en Línea";
+    ViewBag.PageDescription = "Lista de usuarios con sesión iniciada en el sistema";
+    ViewBag.Title = "Usuarios en Línea";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="box">
+    <div class="box-body">
+        @Html.Grid(Model.Users).Named("users_grid").Columns(columns =>
+        {
+
+
+            columns.Add(c => c.NombreMostrar).Titled("Usuario").Sortable(true);
+            columns.Add(c => c.UltimaActividadEn).RenderValueAs(c=>c.UltimaActividadEn.ToString("dd/mm/yyyy HH:MM")).Titled("Ultima Actividad").SetWidth(150).Sortable(true);
+            columns.Add(c => c.EstaEnLinea).RenderValueAs(c => Html.TrueOrFalse(c.EstaEnLinea)).Titled("En Línea").SetWidth(80).Sanitized(false).Encoded(false);
+            columns.Add().RenderValueAs(c => "<a href=\"javascript:setUserOffline("+c.Id+");\" class=\"btn btn-default btn-xs\">Poner Offline</a>").Titled("ACCION").Sanitized(false).Encoded(false).SetWidth(40);
+
+        }
+
+            ).WithPaging(15).SetLanguage("es").EmptyText(Html.Resource("empty_text").ToString()).WithMultipleFilters()
+
+    </div>
+</div>
+
+@section scripts{
+    <script type="text/javascript">
+
+        var setUserOffline = function(userId) {
+            var url= "@Url.Action("setuseroffline", "users")/"+userId;
+
+            $.ajax({
+                url: url,
+                type: "POST",
+                data: {
+                    userId: userId,
+                }
+            })
+           .done(function () {
+               location.reload();
+           })
+           .fail(function () {
+               alert("occurrió un error al guardar");
+           });
+
+        }
+
+    </script>
+}

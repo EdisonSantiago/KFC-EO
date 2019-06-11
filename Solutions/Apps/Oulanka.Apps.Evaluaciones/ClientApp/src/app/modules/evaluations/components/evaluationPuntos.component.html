@@ -1,0 +1,65 @@
+<div class="row">
+  <div class="col-md-6 col-lg-4">
+    <app-breadcrumb></app-breadcrumb>
+  </div>
+  <div class="col-md-6 col-lg-8">
+
+  </div>
+</div>
+
+<div class="note note-info" *ngIf="local !== undefined && evaluation !== undefined" >
+  <h4>Información de Local #{{local.codigo}}</h4>
+  <div class="row">
+    <div class="col-md-4">
+      <strong>Nombre: </strong> {{local.nombre}}<br />
+      <strong>Cadena: </strong> {{local.cadenaNombre}}
+    </div>
+    <div class="col-md-4">
+      <strong>Tipo Evaluación: </strong> {{evaluation.tipoEvaluacionNombre}}<br />
+      <strong>Auditor: </strong> {{evaluation.creadoPor}}<br />
+      <strong>Fecha de Creación: </strong> {{evaluation.creadoEn}}
+    </div>
+    <div class="col-md-4">
+      <strong>Tipo de Visita: </strong> {{evaluation.tipoVisitaNombre}}<br />
+      <strong>Dirección: </strong> {{local.direccion}}
+    </div>
+  </div>
+
+
+  <table mat-table [dataSource]="dataSource" class="table table-dark" *ngFor="let item2 of items2">
+    <ng-container matColumnDef="seccion">
+      <th mat-header-cell *matHeaderCellDef> Sección </th>
+      <td mat-cell *matCellDef="let element"> {{item2.categoriaNombre}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="estandar">
+      <th mat-header-cell *matHeaderCellDef> Estándar/Sub pregunta  </th>
+      <td mat-cell *matCellDef="let element"> {{item2.nombre}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="nivel">
+      <th mat-header-cell *matHeaderCellDef> Nivel </th>
+      <td mat-cell *matCellDef="let element"> {{element.nivel}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="sistema">
+      <th mat-header-cell *matHeaderCellDef> Sistema </th>
+      <td mat-cell *matCellDef="let element"> {{element.sistema}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="ocurrionuevo">
+      <th mat-header-cell *matHeaderCellDef> Fotografía </th>
+      <app-imagendetalle *matCellDef="let element"
+                         [standard]="item2"
+                         [standardId]="item2.id"
+                         [evaluationId]="evaluationId">
+      </app-imagendetalle>
+    </ng-container >
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+</div>
+
+
+

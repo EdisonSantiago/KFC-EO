@@ -1,0 +1,37 @@
+﻿@model UserStatusViewModel
+
+@if (Model.IsAuthenticated)
+{
+
+    var imgSrc = "~/content/images/user1.png";
+
+    if (Model.Thumbnail != null)
+    {
+        var base64 = Convert.ToBase64String(Model.Thumbnail);
+        imgSrc = string.Format("data:image/gif;base64,{0}", base64);
+    }
+
+    <li class="dropdown user">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            <i class="fa fa-user"> </i>
+            <strong>@Model.LoginName</strong>
+            <img class="img-rounded" src="@imgSrc"/>
+            <b class="caret"></b>
+        </a>
+        <ul class="dropdown-menu">
+            <li>
+                <a href="#">Editar Perfil</a>
+            </li>
+            <li class="divider"></li>
+            <li>
+                <a href="@Url.Action("logoff","account")">Salir</a>
+            </li>
+        </ul>
+    </li>
+}
+else
+{
+
+    <a href="@Url.RouteUrl("login")">Ingrese para ver sus tickets</a>
+    @*  <p>Ingrese una sessión!</p> *@
+}

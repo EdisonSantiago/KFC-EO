@@ -1,0 +1,115 @@
+﻿@model MenuHelperModel
+@using System.Web.Mvc.Html
+@using MvcSiteMapProvider.Web.Html.Models
+
+@helper SidebarMenu(List<SiteMapNodeModel> nodeList)
+{
+    <ul class="sidebar-menu" data-widget="tree">
+        <li class="header">MENU DE ADMINISTRACIÓN</li>
+        @foreach (SiteMapNodeModel node in nodeList)
+        {
+            var url = node.IsClickable ? node.Url : "#";
+            var css = "";
+
+            if (node.IsRootNode)
+            {
+                if (node.IsCurrentNode)
+                { css += " active "; }
+                <li class="@css">
+                    <a href="@url">
+                        <i class="fa fa-home"></i>
+                        <span>@node.Title</span>
+                    </a>
+                </li>
+            }
+            else
+            {
+                var isHeader = !node.IsClickable;
+                if (isHeader)
+                {
+                    css += " header";
+                }
+
+                if (!node.Children.Any())
+                {
+                    <li class="@css">
+                        <a href="@url">
+                            <i class="fa fa-link"></i>
+                            <span>@node.Title</span>
+                        </a>
+                    </li>
+                }
+                else
+                {
+                    css += " treeview ";
+                    if (css.Contains("header"))
+                    {
+                        css = css.Replace("header", "");
+                    }
+
+                    if (node.IsCurrentNode || node.IsInCurrentPath)
+                    {
+                        css += " menu-open active";
+                    }
+
+                    var iconClass = "";
+                    iconClass = node.Attributes.Any(x => x.Key == "icon")
+                        ? node.Attributes["icon"].ToString()
+                        : "fa-angle-double-right";
+
+                    <li class="@css">
+                        <a href="@url">
+                            <i class="fa @iconClass"></i>
+                            <span>@node.Title</span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
+                        @SidebarChildItem(node.Children)
+                    </li>
+                }
+            }
+
+        }
+
+
+    </ul>
+
+}
+
+@helper SidebarChildItem(SiteMapNodeModelList nodeList)
+{
+
+    <ul class="treeview-menu">
+        @foreach (SiteMapNodeModel node in nodeList)
+        {
+            var isVisible = true;
+
+            if (node.Attributes.ContainsKey("isVisible"))
+            {
+                isVisible = bool.Parse(node.Attributes["isVisible"].ToString());
+            }
+
+            if (isVisible)
+            {
+
+                var css = "";
+                var iconClass = "fa-angle-right";
+                if (node.IsCurrentNode || node.IsInCurrentPath)
+                {
+                    css += " active ";
+                    iconClass = "fa-angle-double-right";
+                }
+                <li class="@css">
+                    <a href="@node.Url">
+                        <i class="fa @iconClass"></i>
+                        @node.Title
+                    </a>
+                    @SidebarChildItem(node.Children)
+                </li>
+            }
+        }
+    </ul>
+}
+
+@SidebarMenu(Model.Nodes)

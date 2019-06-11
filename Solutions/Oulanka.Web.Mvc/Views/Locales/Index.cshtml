@@ -1,0 +1,85 @@
+﻿@model dynamic
+
+@{
+    ViewBag.Title = "Locales";
+    ViewBag.PageTitle = "Locales";
+    ViewBag.PageDescription = "Locales del Sistema";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="btn-group">
+    <a href="@Url.Action("new","locales")" class="btn btn-default" id="btnAdd">
+        <i class="fa fa-plus"></i>
+        Nuevo Local
+    </a>
+    <a href="@Url.Action("tipos","locales")" class="btn btn-default" id="btnEquipos">
+        <i class="fa fa-sitemap"></i>
+        Tipos de Locales
+    </a>
+</div>
+<hr />
+<div class="box">
+    <div class="box-body">
+        <table id="items_grid"></table>
+    </div>
+</div>
+
+@section css
+{
+    <link href="~/vendors/gijgo-1.9.11/css/gijgo.min.css" rel="stylesheet" />
+}
+
+@section scripts
+{
+    <script src="~/vendors/gijgo-1.9.11/js/gijgo.min.js"></script>
+    <script type="text/javascript">
+        var grid;
+        $(document).ready(function() {
+            grid = $("#items_grid").grid({
+                dataKey: "Id",
+                uiLibrary: "bootstrap",
+                dataSource: '@Url.Action("getlocales","locales")',
+                columns: [
+                    { field: "Id", width: 35, hidden:true },
+                    { field: "Nombre", title: "NOMBRE" },
+                    { field: "Descripcion", title: "DESCRIPCION" },
+                    { title: "", field: "Edit", width: 35, type: "icon", icon: "glyphicon-pencil", tooltip: "editar valores", events: { "click": edit } },
+                    { title: "", field: "Delete", width: 35, type: "icon", icon: "glyphicon-remove", tooltip: "eliminar", events: { "click": remove } },
+                ]
+            });
+
+        });
+
+        function edit(e) {
+            var url = '@Url.Action("edit")/' + e.data.record.Id;
+            window.location = url;
+        }
+
+        function remove(e) {
+            bootbox.confirm("Esta seguro de eliminar este item?",
+                function(result) {
+                    if (result) {
+                        $.ajax({
+                                url: '@Url.Action("delete")',
+                                type: "POST",
+                                data: { id: e.data.record.Id }
+                            })
+                            .done(function(data) {
+                                if (!data.status) {
+                                    var exMessage = "Ocurrió una excepción al eliminar. Acaso el objeto tiene relaciones?<br /><br />";
+                                    exMessage += "<strong>EXCEPCION:</strong><br />" + data.message.substring(0, 150) + "...<br /><br />";
+                                    exMessage += "Revise el detalle en el log de eventos.";
+                                    bootbox.alert({ title:"No se puede eliminar!", message:exMessage });
+                                }
+                                grid.reload();
+                            })
+                            .fail(function() {
+                                alert("No se puede eliminar.");
+                            });
+                    }
+                });
+
+        }       
+
+    </script>
+}

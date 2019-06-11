@@ -1,0 +1,194 @@
+<div class="row">
+  <div class="col-md-8">
+    <h2>Nueva Evaluación</h2>
+  </div>
+  <div class="col-md-4">
+    <app-breadcrumb></app-breadcrumb>
+  </div>
+</div>
+<app-localselector [cadenaId]="cadenaId" [showSelector]="showSelector"
+                   (selected)="onLocalSelected($event)"></app-localselector>
+<form action="" role="form" (ngSubmit)="createEvaluation()">
+  <input type="hidden" [(ngModel)]="selectedLocal.id" name="idlocal" readonly="true" />
+  <div class="row">
+    <div class="col-md-4">
+      <div class="portlet bordered light">
+        <div class="portlet-title">
+          <h4>1. Seleccione un local</h4>
+        </div>
+        <div class="portlet-body form ">
+          <div class="form-group form-inline">
+            <label for="codigolocal">COD. LOCAL</label><br />
+            <input type="text" class="form-control" (blur)="onCodigoLocalBlur()" [(ngModel)]="codigolocal" name="codigolocal" placeholder="Ubique el código de local">
+            <button type="button" class="btn btn-default" (click)="openSelector()"><i class="fa fa-search"></i></button>
+          </div>
+          <div class="form-group">
+            <label for="codigolocal">NOMBRE LOCAL</label><br />
+            <input type="text" class="form-control" [(ngModel)]="selectedLocal.nombre" name="nombre" placeholder="Nombre" readonly="true">
+          </div>
+          <div class="form-group">
+            <label for="codigolocal">TIPO</label><br />
+            <input type="text" class="form-control" [(ngModel)]="selectedLocal.tipoLocalDetalle" name="tipoLocalDetalle" placeholder="Nombre" readonly="true">
+          </div>
+          <div class="form-group">
+            <label for="codigolocal">CIUDAD</label><br />
+            <input type="text" class="form-control" [(ngModel)]="selectedLocal.ciudadNombre" name="ciudadNombre" placeholder="Ciudad" readonly="true">
+          </div>
+          <div class="form-group">
+            <label for="codigolocal">DIRECCIÓN</label><br />
+            <input type="text" class="form-control" [(ngModel)]="selectedLocal.direccion" name="direccion" placeholder="Direccion" readonly="true">
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="codigolocal">GG</label><br />
+                <input type="text" class="form-control" [(ngModel)]="selectedLocal.concepto" name="concepto" placeholder="Concepto" readonly="true">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="codigolocal">GNO</label><br />
+                <input type="text" class="form-control" [(ngModel)]="selectedLocal.opClave" name="opClave" placeholder="OP CLAVE" readonly="true">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="codigolocal">GD</label><br />
+                <input type="text" class="form-control" [(ngModel)]="selectedLocal.ac" name="ac" placeholder="AC" readonly="true">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="codigolocal">JefeArea</label><br />
+                <input type="text" class="form-control" [(ngModel)]="selectedLocal.jefeAreaNombre" name="jefeAreaNombre" placeholder="Jefe Area" readonly="true">
+              </div>
+            </div>
+          </div>
+
+
+
+
+        </div>
+      </div>
+    </div>
+    <div class="col-md-8">
+      <div class="row">
+        <div class="col-md-8">
+          <div class="portlet bordered light">
+            <div class="portlet-title">
+              <h4>2. Información del restaurante (requerido)</h4>
+            </div>
+            <div class="portlet-body form">
+              <div class="form-group">
+                <label>Nombre GR:</label>
+                <input type="text" class="form-control" [(ngModel)]="newEvaluation.NombreRGM" name="newEvaluation.NombreRGM" placeholder="Nombre RGM">
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label>Nombre del encargado del turno:</label>
+                    <input type="text" class="form-control" [(ngModel)]="newEvaluation.NombreMIC" name="newEvaluation.NombreMIC" placeholder="Nombre del MIC">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label>Cargo:</label>
+                    <select [(ngModel)]="newEvaluation.Posicion" name="newEvaluation.Posicion" class="form-control">
+                      <option value="0">Seleccione el cargo</option>
+                      <option *ngFor="let item of posiciones; let i = index" [value]="item.id">{{ item.nombre }}</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label>Tipo de Visita:</label>
+                    <select [(ngModel)]="newEvaluation.TipoVisita" name="newEvaluation.TipoVisita" class="form-control">
+                      <option value="0">Seleccione un tipo de visita</option>
+                      <option *ngFor="let item of tiposVisita; let i = index" [value]="item.id">{{ item.nombre }}</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label>Parte del día:</label>
+                    <select [(ngModel)]="newEvaluation.ParteDia" name="newEvaluation.ParteDia" class="form-control">
+                      <option value="0">Seleccione una parte del día</option>
+                      <option *ngFor="let item of partesDia; let i = index" [value]="item.id">{{ item.nombre }}</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <input type="hidden" [(ngModel)]="newEvaluation.TipoEvaluacion" name="newEvaluation.TipoEvaluacion" />
+
+
+            </div>
+          </div>
+          <div class="portlet bordered light">
+            <div class="portlet-title">
+              <h4>3. Seleccione tipo de Evaluacion</h4>
+            </div>
+            <div class="portlet-body form">
+              <div class="row">
+                <div class="col-md-4 col-sm-6 col-xs-12" *ngFor="let item of tiposEvaluacion">
+                  <div class="portlet light bordered project-portlet selectable" data-id="{{item.id}}" (click)="setTipoEvaluacion($event, item.id, item.nombre);">
+                    <div class="portlet-title project-title">
+                      <div class="caption project-caption">
+                        {{item.nombre}}
+                      </div>
+                    </div>
+                    <div class="portlet-body">
+                      <p class="project-description">
+                        <strong>{{item.descripcion}}</strong><br />
+                        {{item.observaciones}}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="portlet bordered light">
+            <div class="portlet-title">
+              <h4>Exterior centro</h4>
+            </div>
+            <div class="portlet-body">
+              <div>
+                <img src="{{selectedLocal.imagen}}" width="200" />
+              </div>
+            </div>
+          </div>
+          <div class="portlet bordered light">
+            <div class="portlet-title">
+              <h4>Crear Evaluación</h4>
+            </div>
+            <div class="loading" *ngIf="loading">
+              <img src="../../assets/img/fancybox_loading@2x.gif" />
+            </div>
+            <div class="portlet-body form">
+              <p class="">
+                Seleccione un local 1 y completar la Sección 2. Después de seleccionar el Tipo de Evaluación, selecciona Continuar,
+                el sistema descargará la información pertinente. Debe tener conectividad a Internet para su descarga.
+              </p>
+              <button class="btn btn-primary blue-ebonyclay" [disabled]="loading" *ngIf="showDetail">Continuar Evaluación</button>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-8">
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

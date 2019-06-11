@@ -1,0 +1,21 @@
+﻿@model UsersViewModel
+
+
+@Html.Grid(Model.Users).Named("adusers_grid").Columns(columns =>
+    {
+
+        columns.Add().RenderValueAs(c =>
+        @<input class="checkbox table-select-checkbox" data-targetfield="formitems" type="checkbox" value="c.Id" />
+            ).Sanitized(false).Encoded(false).SetWidth(30);
+
+        columns.Add(c => c.NombreMostrar).Titled(Html.Resource("head_displayname").ToString());
+        columns.Add(c => c.NombreUsuario).Titled(Html.Resource("head_username").ToString());
+        columns.Add(c => c.UltimoLoginEn).Titled("LOGIN");
+        columns.Add(c => c.EstaEnLinea).Titled("ESTA EN LINEA");
+        columns.Add(c => c.EsLdap).Titled(Html.Resource("head_isldap").ToString()).SetWidth(120);
+
+    }
+
+        ).WithPaging(20).SetLanguage("es").EmptyText(Html.Resource("empty_text").ToString())
+
+

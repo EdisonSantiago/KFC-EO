@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2">
+  <sql-query name="GetEvaluacionListByLocal">
+    <![CDATA[
+        SELECT        
+          Evaluacion.IdEvaluacion as Id, 
+          Evaluacion.FechaEvaluacion as FechaEvaluacion,
+          Evaluacion.HoraEvaluacion as HoraEvaluacion,
+          Evaluacion.IdLocal as LocalId, 
+          Local.Codigo as LocalCodigo, 
+          Local.Nombre as LocalNombre, 
+          Cadena.IdCadena as CadenaId, 
+          Cadena.Nombre AS CadenaNombre, 
+          Evaluacion.NombreRGM, 
+          Evaluacion.NombreMIC, 
+          Evaluacion.ParteDelDia, 
+          Evaluacion.TipoVisita, 
+          Evaluacion.CreadoPor, 
+          Evaluacion.ActualizadoPor, 
+          Evaluacion.CreadoEn, 
+          Evaluacion.ActualizadoEn, 
+          Evaluacion.IdEstado as EstadoId, 
+          Estado.Nombre as Estado,
+          Evaluacion.IdTipoEvaluacion as TipoEvaluacionId, 
+          TipoEvaluacion.Nombre AS TipoEvaluacionNombre, 
+          Evaluacion.IdPosicionMIC as PosicionId, 
+          Posicion.Nombre AS PosicionNombre
+          FROM            
+	          Evaluacion INNER JOIN
+              Local ON Evaluacion.IdLocal = Local.IdLocal INNER JOIN
+              Cadena ON Local.IdCadena = Cadena.IdCadena INNER JOIN
+              TipoEvaluacion ON Evaluacion.IdTipoEvaluacion = TipoEvaluacion.IdTipoEvaluacion INNER JOIN
+              Posicion ON Evaluacion.IdPosicionMIC = Posicion.IdPosicion AND Cadena.IdCadena = Posicion.IdCadena INNER JOIN
+	          Estado ON Evaluacion.IdEstado = Estado.IdEstado
+          WHERE
+	          Evaluacion.IdLocal = :localId
+          ORDER BY
+	          Evaluacion.CreadoEn DESC
+    ]]>
+  </sql-query>
+  <sql-query name="GetEvaluacionListByCadena">
+    <![CDATA[
+        SELECT        
+          Evaluacion.IdEvaluacion as Id, 
+          Evaluacion.FechaEvaluacion as FechaEvaluacion,
+          Evaluacion.HoraEvaluacion as HoraEvaluacion,
+          Evaluacion.IdLocal as LocalId, 
+          Local.Codigo as LocalCodigo, 
+          Local.Nombre as LocalNombre, 
+          Cadena.IdCadena as CadenaId, 
+          Cadena.Nombre AS CadenaNombre, 
+          Evaluacion.NombreRGM, 
+          Evaluacion.NombreMIC, 
+          Evaluacion.ParteDelDia, 
+          Evaluacion.TipoVisita, 
+          Evaluacion.CreadoPor, 
+          Evaluacion.ActualizadoPor, 
+          Evaluacion.CreadoEn, 
+          Evaluacion.ActualizadoEn, 
+          Evaluacion.IdEstado as EstadoId, 
+          Estado.Nombre as Estado, 
+          Evaluacion.IdTipoEvaluacion as TipoEvaluacionId, 
+          TipoEvaluacion.Nombre AS TipoEvaluacionNombre, 
+          Evaluacion.IdPosicionMIC as PosicionId, 
+          Posicion.Nombre AS PosicionNombre,
+          TipoLocal.IdTipoLocal as TipoLocalId,
+          TipoLocal.Detalle as TipoLocalNombre
+
+          FROM            
+	          Evaluacion INNER JOIN
+              Local ON Evaluacion.IdLocal = Local.IdLocal INNER JOIN
+              Cadena ON Local.IdCadena = Cadena.IdCadena INNER JOIN
+              TipoLocal ON Local.IdTipoLocal = TipoLocal.IdTipoLocal INNER JOIN
+              TipoEvaluacion ON Evaluacion.IdTipoEvaluacion = TipoEvaluacion.IdTipoEvaluacion INNER JOIN
+              Posicion ON Evaluacion.IdPosicionMIC = Posicion.IdPosicion AND Cadena.IdCadena = Posicion.IdCadena INNER JOIN
+	            Estado ON Evaluacion.IdEstado = Estado.IdEstado
+          WHERE
+	          Cadena.IdCadena = :cadenaId
+          ORDER BY
+	          Evaluacion.CreadoEn DESC
+    ]]>
+  </sql-query>
+</hibernate-mapping>

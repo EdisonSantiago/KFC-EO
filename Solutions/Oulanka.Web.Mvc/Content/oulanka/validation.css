@@ -1,0 +1,32 @@
+﻿.field-validation-error {
+  color: #dd4b39;
+  padding: 1px;
+  margin-top: 5px;
+  border-radius: 3px;
+  display: inline-block; }
+
+.field-validation-valid {
+  display: none; }
+
+input.input-validation-error {
+  border: 1px solid #dd4b39; }
+textarea.input-validation-error {
+  border: 1px solid #dd4b39;  
+}
+
+input[type="checkbox"].input-validation-error {
+  border: 0 none; }
+
+.validation-summary-errors {
+  color: #dd4b39;
+  border-radius: 3px;
+  padding: 5px 5px 5px 5px;
+  margin-bottom: 10px; }
+  .validation-summary-errors ul, .validation-summary-errors li {
+    list-style: none;
+    list-style-type: none;
+    margin: 0 0 0 0;
+    padding: 0 0 0 0; }
+
+.validation-summary-valid {
+  display: none; }

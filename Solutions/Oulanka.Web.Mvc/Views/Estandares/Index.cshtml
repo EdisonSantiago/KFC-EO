@@ -1,0 +1,120 @@
+﻿@model dynamic
+
+@{
+    ViewBag.Title = "Estandares";
+    ViewBag.PageTitle = "Estandares";
+    ViewBag.PageDescription = "Estandares del Sistema";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br /><br />
+<div class="row">
+    <div class="col-md-3">
+        <div class="box box-solid">
+            <div class="box-header with-border">
+                <h3 class="box-title">Grupos de Estandar</h3>
+            </div>
+            <div class="box-body no-padding">
+                <div id="tree"></div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-9">
+        <div class="box">
+            <div class="box-header with-border">
+                <h3 class="box-title pull-left">Estándares</h3>
+                <ul class="pagination pagination-sm no-margin pull-right">
+                    <li><a id="btnAddEstandar" href="@Url.Action("new","estandares")" class="btn btn-default"><i class="fa fa-plus"></i> Nuevo Estándar</a></li>
+                </ul>
+            </div>
+            <div class="box-body">
+                <table id="items_grid"></table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@section css
+{
+    <link href="~/vendors/gijgo-1.9.11/css/gijgo.min.css" rel="stylesheet" />
+}
+
+@section scripts
+{
+    <script src="~/vendors/gijgo-1.9.11/js/gijgo.min.js"></script>
+    <script type="text/javascript">
+        var grid;
+        var tree;
+        $(document).ready(function() {
+
+            tree = $("#tree").tree( {
+                uiLibrary: "bootstrap",
+                primaryKey: "Id",
+                dataKey: "Id",
+                textField: "Text",
+                childrenField: "Nodes",
+                dataSource: '@Url.Action("gettree","estandares")',
+                iconsLibrary: 'fontawesome',
+            });
+
+            grid = $("#items_grid").grid({
+                dataKey: "Id",
+                primaryKey: "Id",
+                uiLibrary: "bootstrap",
+                dataSource: '@Url.Action("getestandares", "estandares")',
+                columns: [
+                    { field: "Id", width: 35, hidden: true },
+                    { field: "Codigo", width:100, title: "CODIGO" },
+                    { field: "Nombre", title: "NOMBRE" },
+                    { field: "Descripcion", title: "DESCRIPCION" },
+                    { field: "NombreEstado", title: "ESTADO", tmpl: '<span class="status status-{NombreEstado}">{NombreEstado}</span>', width: 120 },
+                    { title: "", field: "Show", width: 35, type: "icon", icon: "glyphicon-eye-open", tooltip: "Ver Detalles", events: { "click": show } },
+                    { title: "", field: "Edit", width: 35, type: "icon", icon: "glyphicon-pencil", tooltip: "Editar", events: { "click": edit } },
+                    { title: "", field: "Delete", width: 35, type: "icon", icon: "glyphicon-remove", tooltip: "Eliminar", events: { "click": remove } }
+                ]});
+
+            tree.on('select', function(e, node, id) {
+                grid.reload({ grupoId: id });
+            });
+        });
+
+        function show(e) {
+            var url = '@Url.Action("show","estandares")/' + e.data.record.Id;
+            window.location = url;
+        }
+
+        function edit(e) {
+            var url = '@Url.Action("edit","estandares")/' + e.data.record.Id;
+            window.location = url;
+        }
+
+        function remove(e) {
+            bootbox.confirm("Esta seguro de eliminar este item?",
+                function(result) {
+                    if (result) {
+                        $.ajax({
+                                url: '@Url.Action("delete")',
+                                type: "POST",
+                                data: { id: e.data.record.Id }
+                            })
+                            .done(function(data) {
+                                if (!data.status) {
+                                    var exMessage = "Ocurrió una excepción al eliminar. Acaso el objeto tiene relaciones?<br /><br />";
+                                    exMessage += "<strong>EXCEPCION:</strong><br />" + data.message.substring(0, 150) + "...<br /><br />";
+                                    exMessage += "Revise el detalle en el log de eventos.";
+                                    bootbox.alert({ title:"No se puede eliminar!", message:exMessage });
+                                }
+                                grid.reload();
+                            })
+                            .fail(function() {
+                                alert("No se puede eliminar.");
+                            });
+                    }
+                });
+
+        }
+
+    </script>
+}

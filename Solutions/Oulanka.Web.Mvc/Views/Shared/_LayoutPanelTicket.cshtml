@@ -1,0 +1,87 @@
+﻿@{
+    var isGrid = false;
+    var panelCss = "";
+
+    if (ViewBag.IsGrid != null && ViewBag.IsGrid)
+    {
+        isGrid = true;
+        panelCss = "table-responsive no-padding";
+    }
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - @Html.ApplicationName()</title>
+    @Styles.Render("~/css")
+    @Styles.Render("~/css/jqueryui")
+    @Scripts.Render("~/bundles/modernizr")
+    <link rel="stylesheet" href="~/Content/oulanka/panel.css" />
+    @RenderSection("css", false)
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+    <div class="wrapper">
+       @{Html.RenderAction("panelheader", "home");}
+
+        @if (IsSectionDefined("backButton"))
+        {
+            <div class="back-top-wrapper">
+                @RenderSection("backButton", false)
+            </div>
+        }
+
+
+        <aside class="main-sidebar ticket-sidebar">
+            <section class="sidebar ticket-detail-sidebar" style="height: auto">
+                @RenderSection("ticketSidebar", true)
+            </section>
+        </aside>
+
+        <div class="content-wrapper ticket-wrapper">
+            <section class="content-header">
+                <h1>
+                    @ViewBag.PageTitle
+                    @if (ViewBag.PageDescription != null)
+                    {
+                        <small>@ViewBag.PageDescription</small>
+
+                    }
+
+
+                </h1>
+                @if (IsSectionDefined("headerTools"))
+                {
+                    <div class="content-tools">
+                        @RenderSection("headerTools")
+                    </div>
+                }
+
+            </section>
+            <section class="content">
+
+                @Html.Partial("base/_flashMessage")
+
+
+
+
+                @RenderBody()
+            </section>
+        </div>
+        <footer class="main-footer ticket-wrapper">
+            @Html.Partial("base/_footer")
+        </footer>
+
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/jqueryui")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jqueryajax")
+
+
+    @Scripts.Render("~/bundles/app")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

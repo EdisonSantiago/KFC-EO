@@ -1,0 +1,6 @@
+﻿/* IE8- CSS hack */
+@media \0screen\,screen\9 {
+    .yellow-gradient {
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#ffff9c00",endColorstr="#ffffd470",GradientType=0);
+    }
+}

@@ -1,0 +1,17 @@
+﻿@model UserAdminFormModel
+
+@{
+    ViewBag.PageTitle = "Nuevo Usuario";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+Crear usuario
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.EditorForModel()
+
+    <input type="submit" value="Guardar"/>
+
+}

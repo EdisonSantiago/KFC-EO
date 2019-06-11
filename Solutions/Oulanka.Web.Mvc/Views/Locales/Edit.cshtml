@@ -1,0 +1,209 @@
+﻿@model LocalFormModel
+
+@{
+    ViewBag.PageTitle = "Editar Local";
+    ViewBag.PageDescription = "Ubique los datos del Local";
+    ViewBag.Title = "Editar Local";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("edit", "locales", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    @Html.HiddenFor(x => x.Id)
+    <div class="row">
+        <div class="col-md-10">
+            <div class="panel panel-default bg-gray-light">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Codigo)
+                                @Html.TextBoxFor(m => m.Codigo, new { @class = "form-control", placeholder = "Código" })
+                                @Html.ValidationMessageFor(m => m.Codigo)
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Ruc)
+                                @Html.TextBoxFor(m => m.Ruc, new { @class = "form-control", placeholder = "R.U.C." })
+                                @Html.ValidationMessageFor(m => m.Ruc)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Nombre)
+                                @Html.TextBoxFor(m => m.Nombre, new { @class = "form-control", placeholder = "Nombre" })
+                                @Html.ValidationMessageFor(m => m.Nombre)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 col-sm-12">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Cadena)
+                                @Html.DropDownListFor(m => m.Cadena, Model.Cadenas, "Seleccione Uno", new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.Cadena)
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-12">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.TipoLocal)
+                                @Html.DropDownListFor(m => m.TipoLocal, Model.TiposLocales, "Seleccione Uno", new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.TipoLocal)
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-12">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Ciudad)
+                                @Html.DropDownListFor(m => m.Ciudad, Model.Ciudades, "Seleccione Uno", new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.Ciudad)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Direccion)
+                                @Html.TextBoxFor(m => m.Direccion, new { @class = "form-control", placeholder = "Direccion" })
+                                @Html.ValidationMessageFor(m => m.Direccion)
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-12">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Email)
+                                @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "Email" })
+                                @Html.ValidationMessageFor(m => m.Email)
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-12">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Telefono)
+                                @Html.TextBoxFor(m => m.Telefono, new { @class = "form-control", placeholder = "Teléfono" })
+                                @Html.ValidationMessageFor(m => m.Telefono)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Descripcion)
+                        @Html.TextAreaFor(m => m.Descripcion, new { @class = "form-control", placeholder = "Descripción" })
+                        @Html.ValidationMessageFor(m => m.Descripcion)
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 col-sm-12">
+                            <div class="row">
+                                <div class="col-md-8 col-sm-8">
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.Imagen)
+                                        <input type="file" name="Imagen" id="Imagen" class="form-control upload-file" />
+                                        @Html.ValidationMessageFor(m => m.Imagen)
+                                    </div>
+
+                                </div>
+                                <div class="col-md-4 col-sm-4">
+                                    @if (!string.IsNullOrEmpty(Model.ImagenUrl))
+                                    {
+                                        <img src="@Model.ImagenUrl" width="100" />
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <div class="row">
+                                <div class="col-md-8 col-sm-8">
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.Logo)
+                                        <input type="file" name="Logo" id="Logo" class="form-control upload-file" />
+                                        @Html.ValidationMessageFor(m => m.Logo)
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-sm-4">
+                                    @if (!string.IsNullOrEmpty(Model.LogoUrl))
+                                    {
+                                        <img src="@Model.LogoUrl" width="100" />
+                                    }
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 col-sm-4">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.OpClave)
+                                @Html.TextBoxFor(m => m.OpClave, new { @class = "form-control", placeholder = "OpClave" })
+                                @Html.ValidationMessageFor(m => m.OpClave)
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-4">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.AC)
+                                @Html.TextBoxFor(m => m.AC, new { @class = "form-control", placeholder = "AC" })
+                                @Html.ValidationMessageFor(m => m.AC)
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-4">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Concepto)
+                                @Html.TextBoxFor(m => m.Concepto, new { @class = "form-control", placeholder = "Concepto" })
+                                @Html.ValidationMessageFor(m => m.Concepto)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 col-sm-6">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.JefeArea)
+                                @Html.DropDownListFor(m => m.JefeArea, Model.JefesArea, "Seleccione Uno", new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.JefeArea)
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-6">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Estado)
+                                @Html.DropDownListFor(m => m.Estado, Model.Estados, "Seleccione Uno", new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.Estado)
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="panel-footer">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <a class="btn btn-default pull-right"
+                               href="@Url.Action("index", "locales")">
+                                <i class="fa fa-ban"></i>
+                                @Html.Resource("form_cancel")
+                            </a>
+                            <button type="submit" class="btn btn-primary pull-right" style="margin-right: 5px;">
+                                <i class="fa fa-save"></i>
+                                @Html.Resource("form_save_data")
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div><div class="col-md-4"></div>
+    </div>
+}
+
+@section scripts
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#Cadena").on("change", function () {
+                console.log($(this).val());
+                if ($(this).val() != "") {
+                    var url = "/locales/getjefesByCadena/" + $(this).val();
+                    console.log(url);
+                    populateDropDownList("#JefeArea", url);
+                }
+            });
+        });
+    </script>
+}

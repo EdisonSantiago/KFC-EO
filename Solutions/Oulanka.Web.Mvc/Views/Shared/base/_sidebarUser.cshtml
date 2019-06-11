@@ -1,0 +1,19 @@
+﻿@using HelpDesk.Web.Core.Helpers
+@using HelpDesk.Web.Core.Models
+
+
+
+
+@Html.TabbedMenu(
+        new List<MenuTab>
+        {
+            MenuTab.Create(Html.Resource("my_activity").ToString(),"useractivity","actions","fa fa-map"),
+            MenuTab.Create(Html.Resource("my_tickets").ToString(),"usermy","tickets","fa fa-list"),
+            MenuTab.Create(Html.Resource("my_closed").ToString(),"userclosed","tickets","fa fa-tasks"),
+            MenuTab.Create(Html.Resource("help_maintitle_text").ToString(),"index","help","fa fa-question-circle"),
+            MenuTab.Create(Html.Resource("search_title").ToString(),"my","search","fa fa-search")
+        }, "user-menu", "", true)
+
+
+
+

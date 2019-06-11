@@ -1,0 +1,46 @@
+﻿@model JerarquiaViewModel
+
+<!-- General -->
+<div class="modal fade" id="general_form" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Gerente General</h4>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <input type="hidden" id="GenId" value="0" />
+                    <div class="form-group">
+                        <label for="GenNombre">Nombre:</label>
+                        <input type="text" class="form-control" id="GenNombre" placeholder="Nombre" />
+                    </div>
+                    <div class="form-group">
+                        <label for="GenDescripcion">Descripción:</label>
+                        <input type="text" class="form-control" id="GenDescripcion" placeholder="Descripción">
+                    </div>
+                    <div class="form-group">
+                        <label for="GenEstado">Estado:</label>
+                        <select name="GenEstado" id="GenEstado" class="form-control">
+                            <option value="">Seleccione uno:</option>
+                            @foreach (var estado in Model.Estados)
+                            {
+                                <option value="@estado.Id">@estado.Nombre</option>
+                            }
+                        </select>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <button type="button" class="btn btn-default pull-right" data-dismiss="modal">Cancelar</button>
+                        <button type="button" id="btnGenSave" class="btn btn-primary pull-right" style="margin-right: 5px;">Guardar</button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,402 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<root>
+
+  <resource name="app_title">Oulanka API</resource>
+  <resource name="login_intro">Ingrese para iniciar una sesión</resource>
+  <resource name="login_button_text">Ingresar</resource>
+  <resource name="logoff_button_text">Salir</resource>
+
+  <resource name="generic_avatar_source">/content/images/generic_avatar.gif</resource>
+
+
+  <!--HOME -->
+  <resource name="home_welcome_text">Bienvenido al</resource>
+  <resource name="home_intro_text">
+    <![CDATA[
+    Ingrese sesion y utilice el API para funcionar.
+    ]]>
+  </resource>
+  <resource name="name">Nombre</resource>
+  <resource name="ticket">Incidente</resource>
+  <resource name="type">Tipo</resource>
+  <resource name="request">Requerimiento</resource>
+  <resource name="resource">Recurso</resource>
+  <resource name="process">Proceso</resource>
+  <resource name="status">Estado</resource>
+  <resource name="priority">Prioridad</resource>
+  <resource name="created_on">Creado en</resource>
+  <resource name="updated_on">Actualizado</resource>
+  <resource name="schedule_on">Fec. Prevista Sol.</resource>
+  <resource name="resolved_on">Fec. Resolución</resource>
+  <resource name="user_priority">Prioridad del Usuario</resource>
+  <resource name="choose_date">Escoja una Fecha</resource>
+  <resource name="username">Usuario</resource>
+  <resource name="component">Componente</resource>
+  <resource name="properties">Propiedades</resource>
+  <resource name="type">Tipo</resource>
+  <resource name="messages">Mensajes</resource>
+  <resource name="activity">Actividad</resource>
+  <resource name="notes">Notas</resource>
+  <resource name="details">detalles</resource>
+  <resource name="password">Contraseña</resource>
+  <resource name="change_pwd">Cambiar Contraseña</resource>
+  <resource name="attachment">Archivo Adjunto</resource>
+  <resource name="attachments">Archivos Adjuntos</resource>
+  <resource name="save_activity">Registrar Actividad</resource>
+  <resource name="send_message">Enviar Mensaje</resource>
+  <resource name="see_details">Ver detalle</resource>
+  <resource name="go_details">Ir a Detalles</resource>
+  <resource name="go_show">ver</resource>
+  <resource name="more_info">Más Información</resource>
+  <resource name="more_details">Más Detalles</resource>
+  <resource name="actions">Acciones</resource>
+  <resource name="delete_ticket">Eliminar Incidente</resource>
+  <resource name="close_ticket">Cerrar Incidente</resource>
+  <resource name="rate_ticket">Calificar Incidente</resource>
+  <resource name="rate_ticket_description">Califique la atención del incidente utilizando el formulario a continuación</resource>
+  <resource name="reopen_ticket">Abrir Incidente</resource>
+  <resource name="assign_ticket">Asignar Incidente</resource>
+  <resource name="reassign_ticket">Reasignar Incidente</resource>
+  <resource name="change_priority">Cambiar Prioridad</resource>
+  <resource name="assigned_agent">Operador</resource>
+  <resource name="updates">Actualizaciones</resource>
+  <resource name="id">ID</resource>
+  <resource name="head_id">ID</resource>
+  <resource name="head_name">NOMBRE</resource>
+  <resource name="head_description">DESCRIPCIÓN</resource>
+  <resource name="head_title">TITULO</resource>
+  <resource name="head_date">FECHA</resource>
+  <resource name="head_actions">ACCIONES</resource>
+  <resource name="head_ticket">INCIDENTE</resource>
+  <resource name="head_status">ESTADO</resource>
+  <resource name="head_priority">PRIORIDAD</resource>
+  <resource name="head_generator">CREADO POR</resource>
+  <resource name="head_type">TIPO</resource>
+  <resource name="head_created">CREADO</resource>
+  <resource name="head_updated">ACTUALIZADO</resource>
+  <resource name="head_displayname">NOMBRES</resource>
+  <resource name="head_username">USUARIO/LOGIN</resource>
+  <resource name="head_status">ESTADO</resource>
+  <resource name="head_resource">RECURSO</resource>
+  <resource name="head_component">COMPONENTE</resource>
+  <resource name="head_priority">PRIORIDAD</resource>
+  <resource name="head_users">USUARIOS</resource>
+  <resource name="head_isldap">ES DE ACT.DIR.</resource>
+  <resource name="empty_text">No existen items a mostrar</resource>
+  <resource name="no_user_assigned">Sin asignación</resource>
+  <resource name="are_you_shure_delete">Está seguro que desea eliminar este elemento?</resource>
+  
+  <!--FORMS -->
+  <resource name="form_save_data">Guardar Datos</resource>
+  <resource name="form_cancel">Cancelar</resource>
+
+  <!-- MENU -->
+  <resource name="my_activity">Actividad Reciente</resource>
+  <resource name="my_tickets">Mis Incidentes</resource>
+  <resource name="my_closed">Incidentes Cerrados</resource>
+  <resource name="panel_my">Mis Incidentes</resource>
+  <resource name="panel_activity">Actividad Reciente</resource>
+  <resource name="panel_my_assigned">Mis Incidentes Asignados</resource>
+  <resource name="panel_my_assigned_description">Lista de incidentes asignados a mí</resource>
+  <resource name="panel_open">Incidentes Abiertos</resource>
+  <resource name="panel_open_description">Lista de incidentes aun sin solución</resource>
+  <resource name="panel_pickup">Incidentes No Asignados</resource>
+  <resource name="dashboard">Panel de Control</resource>
+  <resource name="dashboard_description">Vista General de las actividades del sistema</resource>
+  <resource name="reports">Reportes</resource>
+  <resource name="reports_description">Generador y visor de reportes del sistema</resource>
+
+  <!--DASHBOARD-->
+  <resource name="dashboard_newtickets">Nuevos Incidentes</resource>
+  <resource name="dashboard_rating">SATISFACCION</resource>
+  <resource name="dashboard_resolve_rate">Tasa de Resolución</resource>
+  <resource name="dashboard_recurrent_rate">Recurrentes</resource>
+  <resource name="dashboard_scaled_rate">Escalados</resource>
+  <resource name="dashboard_new_tickets">Nuevos Incidentes</resource>
+  <resource name="dashboard_new_tickets_month">Nuevos Incidentes este mes</resource>
+
+  <!-- TICKETS -->
+  <resource name="ticket_all">Todos los Incidentes</resource>
+  <resource name="ticket_newbutton_text">Nuevo Incidente</resource>
+  <resource name="ticket_mytickets">Mis Incidentes</resource>
+  <resource name="ticket_mytickets_user">Mis Incidentes</resource>
+  <resource name="ticket_mytickets_user_description">Lista de incidentes generados por mí</resource>
+  <resource name="ticket_closed_user">Incidentes Cerrados</resource>
+  <resource name="ticket_closed_user_description">Lista de incidentes generados por mí que han sticketIdo cerrados</resource>
+
+  <resource name="ticket_form_fill_all_fields">Llene todos los datos requeridos.</resource>
+  <resource name="ticket_form_new_title">Nuevo Incidente</resource>
+  <resource name="ticket_form_new_description">Utilice el formulario para ingresar un nuevo incidente</resource>
+  <resource name="ticket_form_new_save_text">Crear nuevo Incidente</resource>
+
+  <resource name="ticket_manual_assignment">Asignación Manual de Incidentes</resource>
+  <resource name="ticket_manual_assignment_user">Operador a Asignar</resource>
+  <resource name="ticket_manual_assignment_comments">Comentarios</resource>
+  <resource name="ticket_manual_assignment_isvisible">Es Visible al usuario?</resource>
+
+  <resource name="tickets_assigned_tome">Incidentes Asignados a mi</resource>
+  <resource name="ticket_close">Cerrar Incidente</resource>
+  <resource name="ticket_changedate">Cambiar Fechas</resource>
+  <resource name="ticket_change_priority">Cambiar Prioridad</resource>
+  <resource name="ticket_change_status">Cambiar Estado</resource>
+  <resource name="close_ticket_is_resolved">El Incidente está resuelto?</resource>
+  <!--USERS-->
+  <resource name="user_edit_profile_text">Editar Perfil</resource>
+
+  <!-- HELP -->
+  <resource name="help_maintitle_text">Base de conocimientos</resource>
+  <resource name="help_maintitle_description">Artículos y contenido de ayuda comunes al sistema</resource>
+  <resource name="help_component_article_list_text">Lista de artículos por Componente </resource>
+  <resource name="help_component_intro_list_text">Artículos relacionados a</resource>
+
+  <!--ARTICLES-->
+  <resource name="articles_main_title">Artículos</resource>
+  <resource name="articles_main_description">Contenido de la Base de Conocimientos</resource>
+  <resource name="article_newbutton_text">Nuevo Artículo</resource>
+  <resource name="article_published_on">Publicado en:</resource>
+  <resource name="article_other_articles">Otros artículos en: </resource>
+
+  <!--PRIORITIES-->
+  <resource name="ticketpriority_none">NINGUNA</resource>
+  <resource name="ticketpriority_low">BAJA</resource>
+  <resource name="ticketpriority_medium">MEDIA</resource>
+  <resource name="ticketpriority_high">ALTA</resource>
+  <resource name="ticketpriority_critic">CRITICA</resource>
+
+  <!--NOTE TYPES-->
+  <resource name="notetype_note">Nota Privada</resource>
+  <resource name="notetype_diagnostic">Diagnóstico</resource>
+  <resource name="notetype_solution">Solución</resource>
+
+
+  <!--STATUS-->
+  <resource name="ticketstatus_new">Nuevo</resource>
+  <resource name="ticketstatus_assigned">Asignado</resource>
+  <resource name="ticketstatus_attendedanddiagnose">Atendido y Diagnóstico</resource>
+  <resource name="ticketstatus_attended">Atendido</resource>
+  <resource name="ticketstatus_assignedtootheroperator">Asignado a Operador</resource>
+  <resource name="ticketstatus_scallingtootheroperator">Escalado a Operador</resource>
+  <resource name="ticketstatus_commentfromuser">Comentario de Usuario</resource>
+  <resource name="ticketstatus_commenttouser">Comentario para Usuario</resource>
+  <resource name="ticketstatus_solved">Solucionado</resource>
+  <resource name="ticketstatus_closedfromoperator">Cerrado Operador</resource>
+  <resource name="ticketstatus_closedfromuser">Cerrado Usuario</resource>
+  <resource name="ticketstatus_closed">Cerrado</resource>
+
+
+  <!--SORT-->
+  <resource name="sortby_createdon">Fecha de Creación</resource>
+  <resource name="sortby_updatedon">Fecha de Actualización</resource>
+  <resource name="sortby_resolvedon">Fecha de Resolución</resource>
+  <resource name="sortby_closedon">Fecha de Cierre</resource>
+  <resource name="sortby_createdby">Generado Por</resource>
+  <resource name="sortby_assignedto">Operador Asignado</resource>
+  <resource name="sortby_status">Estado</resource>
+  <resource name="sortby_priority">Prioridad</resource>
+  <resource name="sortby_userpriority">Prioridad del Usuario</resource>
+  <resource name="sortby_tickettype">Tipo de Incidente</resource>
+  <resource name="sortby_requesttype">Tipo de Atención</resource>
+  <resource name="sortby_resource">Recurso</resource>
+  <resource name="sortby_component">Componente</resource>
+
+  <!--SORT DIRECTION-->
+  <resource name="sortdirection_asc">Ascendente</resource>
+  <resource name="sortdirection_desc">Descendente</resource>
+
+  <!-- EVENTLOG -->
+  <resource name="eventlog_main_title">Log de Eventos</resource>
+  <resource name="eventlog_main_description">Log de Eventos</resource>
+
+  <!--ÃPPSETTINGS-->
+  <resource name="appsettings_main_title">Variables del Sistema</resource>
+  <resource name="appsettings_main_description">Variables y configuración de la aplicación</resource>
+
+  <!-- USERS & ROLES -->
+  <resource name="user_main_title">Usuario: </resource>
+  <resource name="users_main_title">Usuarios</resource>
+  <resource name="users_new_title">Nuevo Usuario</resource>
+  <resource name="users_edit_title">Editar Usuario</resource>
+  <resource name="user_main_description">Datos del Usuario</resource>
+  <resource name="users_main_description">Usuarios del sistema</resource>
+  <resource name="users_new_description">Crear un nuevo usuario del sistema</resource>
+  <resource name="users_edit_description">Cambie los datos del Usuario</resource>
+  <resource name="users_system_users">SISTEMA</resource>
+  <resource name="users_system_ad">ACTIVE DIRECTORY</resource>
+  <resource name="users_import_selected">Importar Seleccionados</resource>
+  <resource name="users_auth_data">Datos de Autenticación</resource>
+  <resource name="users_profile_data">Datos de Perfil</resource>
+  <resource name="users_form_username">Nombre de usuario (nick)</resource>
+  <resource name="users_form_email">Correo Electrónico</resource>
+  <resource name="users_form_passwword">Contraseña</resource>
+  <resource name="users_form_passwword_confirm">Confirmar Contraseña</resource>
+  <resource name="users_form_firstname">Nombres</resource>
+  <resource name="users_form_lastname">Apellidos</resource>
+  <resource name="users_form_address">Dirección</resource>
+  <resource name="users_form_phone">Teléfono</resource>
+  <resource name="users_messages_create_ok">Usuario creado con éxito</resource>
+  <resource name="users_messages_username_exists">Ya existe un usuario con ese Nombre de Usuario</resource>
+  <resource name="users_messages_useremail_exists">Ya existe un usuario con ese Email</resource>
+
+
+  <resource name="roles_main_title">Roles</resource>
+  <resource name="roles_main_description">Roles y Permisos</resource>
+  <resource name="group_add_user">Añadir Usuario</resource>
+  <resource name="group_remove_selected_user">Remover Usuarios Seleccionados</resource>
+
+  <!-- USERS & ROLES -->
+  <resource name="rules_main_title">Reglas de Asignación</resource>
+  <resource name="rules_main_description">Matriz de asignación automática</resource>
+  <resource name="roles_role_detail">Detalle de Rol: </resource>
+  <resource name="roles_role_detail_description">Datos y usuarios del Rol</resource>
+
+  <resource name="resources_main_title">Recursos</resource>
+  <resource name="resources_main_description">Recursos</resource>
+  <resource name="components_main_title">Componentes</resource>
+  <resource name="components_main_description">Componentes</resource>
+  <resource name="processes_main_title">Procesos</resource>
+  <resource name="processes_main_description">Procesos a los que se puede relacionar un incidente</resource>
+
+  <!-- SEARCH -->
+  <resource name="search_filters">Filtros</resource>
+  <resource name="search_results_title">Resultados de Búsqueda</resource>
+  <resource name="search_results_description">Incidentes que coincticketIden con los parámetros de búsqueda</resource>
+  <resource name="search_views_title">Vistas de Búsqueda</resource>
+  <resource name="search_views_description">Analice las listas creadas</resource>
+  <resource name="search_view_title">Vista de Búsqueda</resource>
+  <resource name="search_editview_title">Edición de Búsqueda</resource>
+  <resource name="search_editview_description">Utilice el formulario para modificar la búsqueda</resource>
+  <resource name="search_view_description">Parámetros guardados de busqueda para acceso rápido</resource>
+  <resource name="search_saveasview">Guardar como VISTA</resource>
+  <resource name="search_doSearch">Ejecutar Búsqueda</resource>
+  <resource name="search_title">Búsqueda</resource>
+  <resource name="search_description">Búsqueda de Incidentes</resource>
+  <resource name="search_advanced_title">Búsqueda Avanzada</resource>
+  <resource name="search_advanced_description">Utilice los filtros para realizar una búsqueda avanzada</resource>
+  <resource name="search_advanced_intro">Al realizar una búsqueda avanzada </resource>
+  <resource name="search_more_options">más opciones</resource>
+  <resource name="search_header_input_placeholder">ID o palabra clave</resource>
+  <resource name="search_createdby">Generado por</resource>
+  <resource name="search_assignedto">Asignado a</resource>
+  <resource name="search_ticketcontains">Incidente contiene (TICKET IDs)</resource>
+  <resource name="search_titlecontains">Título contiene</resource>
+  <resource name="search_descriptioncontains">Descripción contiene</resource>
+  <resource name="search_status">Estado es</resource>
+  <resource name="search_process">Proceso es</resource>
+  <resource name="search_priority">Prioridad es</resource>
+  <resource name="search_userpriority">Prioridad del Usuario es</resource>
+  <resource name="search_ticketType">Tipo de Incidente</resource>
+  <resource name="search_requestType">Tipo de Atención</resource>
+  <resource name="search_resource">Recurso</resource>
+  <resource name="search_component">Componente</resource>
+  <resource name="search_created">Fecha de Creación</resource>
+  <resource name="search_updated">Fecha de Actualización</resource>
+  <resource name="search_solved">Fecha de Resolución</resource>
+  <resource name="search_closed">Fecha de Cierre</resource>
+  <resource name="search_scheduled">Fecha Programada de Solución</resource>
+  <resource name="search_start">desde</resource>
+  <resource name="search_end">hasta</resource>
+  <resource name="search_rating">Calificación</resource>
+  <resource name="search_sortby">Ordenar por</resource>
+
+
+  <!-- ACTIONS FORMAT-->
+  <resource name="action_newticket_title">
+    <![CDATA[
+   <a href="#">[user]</a> ha reportado un nuevo incidente]]>
+  </resource>
+  <resource name="action_newticket_description">
+    <![CDATA[
+      <strong>[ticketTitle]</strong>
+      Tipo: [type], Req: [request], Recurso [resource], Componente [component]
+    ]]>
+  </resource>
+  <resource name="action_newpost_title">
+    <![CDATA[
+    <a href="#">[user]</a> ha comentado en el incidente <a href="[ticketUrl]">[ticketId]</a>]]>
+  </resource>
+  <resource name="action_newpost_description">[user] comentó:</resource>
+  <resource name="action_assignment_title">
+    <![CDATA[
+    <a href="#">[user]</a> ha sido asignado al incidente <a href="[ticketUrl]">[ticketId]</a>]]>
+  </resource>
+  <resource name="action_assignment_description">
+  </resource>
+  <resource name="action_changepriority_title">
+    <![CDATA[
+    <a href="#">[user]</a> ha cambiado la prioridad a [priority] al incidente <a href="[ticketUrl]">[ticketId]</a>]]>
+  </resource>
+  <resource name="action_changepriority_description">
+  </resource>
+  <resource name="action_resolveticket_title">
+    <![CDATA[
+    <a href="#">[user]</a> ha marcado como SOLUCIONADO el incidente <a href="[ticketUrl]">[ticketId]</a>]]>
+  </resource>
+  <resource name="action_resolveticket_description">
+  </resource>
+  <resource name="action_closebyoperator_title">
+    <![CDATA[
+    <a href="#">[user]</a> ha marcado como CERRADO POR OPERADOR el incidente <a href="[ticketUrl]">[ticketId]</a>]]>
+  </resource>
+  <resource name="action_closebyoperator_description">
+    <![CDATA[
+    Comentario de Cierre:
+    [actionDescription]
+    ]]>
+  </resource>
+  <resource name="action_closebyuser_title">
+    <![CDATA[
+    <a href="#">[user]</a> ha marcado como CERRADO POR USUARIO el incidente <a href="[ticketUrl]">[ticketId]</a>]]>
+  </resource>
+  <resource name="action_closebyuser_description">
+    <![CDATA[
+    Comentario de Cierre:
+    [actionDescription]
+    ]]>
+  </resource>
+  <resource name="action_close_title">
+    <![CDATA[
+   El <a href="#">SISTEMA</a> ha CERRADO el incidente <a href="[ticketUrl]">[ticketId]</a>]]>
+  </resource>
+  <resource name="action_close_description">
+    <![CDATA[
+    Comentario de Cierre:
+    [actionDescription]
+    ]]>
+  </resource>
+  <resource name="action_changestatus_title">
+    <![CDATA[
+    <a href="#">[user]</a> ha cambiado el estado a [status] del incidente <a href="[ticketUrl]">[ticketId]</a>]]>
+  </resource>
+  <resource name="action_changestatus_description">
+  </resource>
+  <resource name="action_diagnostic_title">
+    <![CDATA[
+    <a href="#">[user]</a> ha creado una NOTA como DIAGNOSTICO del incidente <a href="[ticketUrl]">[ticketId]</a>]]>
+  </resource>
+  <resource name="action_diagnostic_description">
+  </resource>
+  <resource name="action_solution_title">
+    <![CDATA[
+    <a href="#">[user]</a> ha creado una NOTA como SOLUCION del incidente <a href="[ticketUrl]">[ticketId]</a>]]>
+  </resource>
+  <resource name="action_solution_description">
+  </resource>
+  <resource name="action_note_title">
+    <![CDATA[
+    <a href="#">[user]</a> ha creado una NOTA como PRIVADA del incidente <a href="[ticketUrl]">[ticketId]</a>]]>
+  </resource>
+  <resource name="action_note_description">
+  </resource>
+  <resource name="action_firstattention_title">
+    <![CDATA[
+    <a href="#">[user]</a> ha atendido el incidente <a href="[ticketUrl]">[ticketId]</a>]]>
+  </resource>
+  <resource name="action_firstattention_description">
+  </resource>
+<resource name="action_sendcopyto_title">
+    <![CDATA[
+    <a href="#">[user]</a> ha enviado copia del mensaje <a href="[ticketUrl]">[ticketId]</a>]]>
+  </resource>
+  <resource name="action_sendcopyto_description">
+  </resource>
+</root>

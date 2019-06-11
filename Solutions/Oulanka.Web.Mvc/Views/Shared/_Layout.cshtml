@@ -1,0 +1,90 @@
+﻿@{
+    var isGrid = false;
+    var panelCss = "";
+
+    if (ViewBag.IsGrid != null && ViewBag.IsGrid)
+    {
+        isGrid = true;
+        panelCss = "table-responsive no-padding";
+    }
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1,user-scalable=no">
+    <title>@ViewBag.Title - @Html.ApplicationName()</title>
+    @Styles.Render("~/css")
+    @Styles.Render("~/css/jqueryui")
+    @Scripts.Render("~/bundles/modernizr")
+    <link rel="stylesheet" href="~/Content/oulanka/panel.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+
+    @RenderSection("css", false)
+</head>
+<body class="hold-transition skin-black sidebar-mini">
+    <div class="wrapper">
+        @{Html.RenderAction("panelheader", "home");}
+        @{ Html.RenderAction("sidebar", "home"); }
+
+
+        @if (IsSectionDefined("toolbar"))
+        {
+            <section id="tools">
+                <div id="toolbar">
+                    <div class="btn-group">
+                        @RenderSection("toolbar")
+                    </div>
+
+                </div>
+            </section>}
+
+
+        <div class="content-wrapper">
+            <section class="content-header">
+                <h1>
+                    @ViewBag.PageTitle
+                    @if (ViewBag.PageDescription != null)
+                    {
+                        <small>@ViewBag.PageDescription</small>
+                    }
+                </h1>
+                @Html.MvcSiteMap().SiteMapPath()
+            </section>
+            <section class="content">
+                @Html.Partial("base/_flashMessage")
+
+                @if (IsSectionDefined("panelTools"))
+                {
+                    <div class="box-tools">
+                        <div class="btn-group">
+                            @RenderSection("panelTools")
+                        </div>
+                    </div>
+                }
+                @RenderBody()
+            </section>
+        </div>
+        <footer class="main-footer">
+            @Html.Partial("base/_footer")
+        </footer>
+
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/jqueryui")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jqueryajax")
+
+    @{
+        Html.RenderAction("getglobalscriptvars", "utils");
+    }
+    ;
+    @Scripts.Render("~/bundles/app")
+    <script type="text/javascript" src="~/vendors/ckeditor5/ckeditor.js"></script>
+    @RenderSection("scripts", required: false)
+
+
+</body>
+</html>

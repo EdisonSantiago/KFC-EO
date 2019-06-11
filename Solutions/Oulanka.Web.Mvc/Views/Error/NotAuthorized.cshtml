@@ -1,0 +1,30 @@
+﻿@{
+    ViewBag.Title = "Portal de Soporte";
+    ViewBag.PageTitle = "Usuario No Autorizado";
+    ViewBag.PageDescription = "No tiene permisos para este recurso";
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+}
+
+<div class="alert alert-danger">
+    <h4>
+        <i class="icon fa fa-ban"></i>
+        Usuario no Autorizado!
+    </h4>
+    No tiene permisos para acceder a este recurso de la aplicación.<br/>
+    Comuníquese con el administrador del sistema para tener los accesos adecuados
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="form-group">
+            <a href="@Url.Action("usermy", "tickets")" class="btn btn-default">
+                <i class="fa fa-long-arrow-left">Ir al Portal de Soporte</i>
+            </a>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <a href="@Url.Action("panelmy", "tickets")" class="btn btn-default">
+            <i class="fa fa-long-arrow-left">Ir al Panel de Control</i>
+        </a>
+    </div>
+</div>

@@ -1,0 +1,22 @@
+﻿@model dynamic
+
+@if (Model.TotalPages > 1)
+{
+    <div class="dataTables_paginate paging_simple_numbers">
+        <ul class="pagination">
+           @for (int i = 0; i < @Model.TotalPages; i++)
+           {
+               var currentPage = i + 1;
+               var activeClass = "";
+               if (i == Model.PageIndex) { activeClass = "active";}
+
+               <li class="paginate_button  @activeClass">
+                   <a href="" class="">@currentPage</a>
+               </li>
+           } 
+        </ul>
+    </div>
+}
+
+
+

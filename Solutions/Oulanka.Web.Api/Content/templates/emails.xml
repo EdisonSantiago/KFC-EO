@@ -1,0 +1,158 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<emails>
+  <!-- Generic Email -->
+  <email emailType="GenericEmail" priority="Normal">
+    <subject>[subject]</subject>
+    <from>[admin_email_from]</from>
+    <body>[body]</body>
+  </email>
+
+  <!-- ACTION TYPES FOR TICKETS -->
+  <email emailType="Action" priority="Normal">
+    <subject>[subject]</subject>
+    <from>[email_from]</from>
+    <body>[body]</body>
+  </email>
+  <email emailType="PanelAction" priority="Normal">
+    <subject>[subject]</subject>
+    <from>[email_from]</from>
+    <body>[body]</body>
+  </email>
+
+  <email emailType="Action_Assignment" priority="Normal">
+    <subject>Servicios y Soporte: Incidente ([ticket_id]) asignado a Operador [operator_name]</subject>
+    <from>[email_from]</from>
+    <body>
+      <![CDATA[
+      SERVICIOS Y SOPORTE 
+
+      El incidente <strong>([ticket_id]):</strong> <strong>[ticket_title]</strong>
+      ha sido asignado al Operador [operator_name].
+      
+      Revise los detalles del incidente haciendo clic <a href="[server][ticket_url]">aquí</a>: 
+      <a href="[server][ticket_url]">[server][ticket_url]</a>
+      ]]>
+    </body>
+  </email>
+
+  <email emailType="Action_UpdateTicket" priority="Normal">
+    <subject>Servicios y Soporte: Incidente ([ticket_id]) ha sido actualizado por Operador [operator_name]</subject>
+    <from>[email_from]</from>
+    <body>
+      <![CDATA[
+      SERVICIOS Y SOPORTE 
+
+      El incidente <strong>([ticket_id]):</strong> <strong>[ticket_title]</strong>
+      ha sido actualizado por el Operador [operator_name].
+      
+      Revise los detalles del incidente haciendo clic <a href="[server][ticket_url]">aquí</a>: 
+      <a href="[server][ticket_url]">[server][ticket_url]</a>
+      ]]>
+    </body>
+  </email>
+
+  <email emailType="Action_NewPost" priority="Normal">
+    <subject>Servicios y Soporte: Nuevo Mensaje en el Incidente ([ticket_id]) </subject>
+    <from>[email_from]</from>
+    <body>
+      <![CDATA[
+      SERVICIOS Y SOPORTE       
+
+      Estimado(a): [user_name]
+      
+      El incidente <strong>([ticket_id]):</strong> <strong>[ticket_title]</strong>
+      Tiene un nuevo mensaje por [operator_name].
+      
+      <strong>Mensaje</strong>
+      [ticket_post_message]
+      
+      Revise los detalles del incidente haciendo clic <a href="[server][ticket_url]">aquí</a>: 
+      <a href="[server][ticket_url]">[server][ticket_url]</a>
+      ]]>
+    </body>
+  </email>
+  <email emailType="Action_CloseByOperator" priority="Normal">
+    <subject>Servicios y Soporte: Incidente ([ticket_id]) CERRADO por Operador [operator_name] </subject>
+    <from>[email_from]</from>
+    <body>
+      <![CDATA[
+      SERVICIOS Y SOPORTE 
+      
+      Estimado(a): [user_name]
+      
+      El incidente <strong>([ticket_id]):</strong> <strong>[ticket_title]</strong>
+      Ha sido cerrado por [operator_name].
+      
+      Por favor, cierre el incidente y califique la atención del Operador.
+      
+      Revise los detalles del incidente haciendo clic <a href="[server][ticket_url]">aquí</a>: 
+      <a href="[server][ticket_url]">[server][ticket_url]</a>
+      ]]>
+    </body>
+  </email>
+
+
+  <email emailType="PanelAction_Assignment" priority="Normal">
+    <subject>Servicios y Soporte: Nuevo Incidente ([ticket_id]) asignado a [operator_name]</subject>
+    <from>[email_from]</from>
+    <body>
+      <![CDATA[
+      SERVICIOS Y SOPORTE 
+      
+      Estimado [operator_name]:
+      
+      El incidente <strong>([ticket_id]):</strong> <strong>[ticket_title]</strong>
+      Reportado por: <strong>[user_name] ([user_email])</strong>
+      
+      Ha sido asignado a Ud como operador [operator_name].
+      
+      <strong>Prioridad del Usuario: </strong> [ticket_userpriority]
+      <strong>Descripción:</strong>
+      [ticket_description]
+      
+      
+      Revise los detalles del incidente haciendo clic <a href="[server][panel_url]">aquí</a>: 
+      <a href="[server][panel_url]">[server][ticket_panel_url]</a>
+      ]]>
+    </body>
+  </email>
+  <email emailType="PanelAction_NewPost" priority="Normal">
+    <subject>Servicios y Soporte: Nuevo Mensaje en el Incidente ([ticket_id]) </subject>
+    <from>[email_from]</from>
+    <body>
+      <![CDATA[
+      SERVICIOS Y SOPORTE 
+      
+      Estimado(a): [operator_name]
+      
+      El incidente <strong>([ticket_id]):</strong> <strong>[ticket_title]</strong>
+      Tiene un nuevo mensaje por [user_name].
+      
+      <strong>Mensaje</strong>
+      [ticket_post_message]
+      
+      Revise los detalles del incidente haciendo clic <a href="[server][ticket_url]">aquí</a>: 
+      <a href="[server][ticket_url]">[server][ticket_panel_url]</a>
+      ]]>
+    </body>
+  </email>
+  <email emailType="PanelAction_CloseByUser" priority="Normal">
+    <subject>Servicios y Soporte: Incidente ([ticket_id]) CERRADO por Usuario [user_name] </subject>
+    <from>[email_from]</from>
+    <body>
+      <![CDATA[
+      SERVICIOS Y SOPORTE 
+      
+      Estimado(a): [operator_name]
+      
+      El incidente <strong>([ticket_id]):</strong> <strong>[ticket_title]</strong>
+      Ha sido cerrado por [user_name].
+      
+      Por favor, cierre el incidente e indique los comentarios adecuados y que se requieran.
+      
+      Revise los detalles del incidente haciendo clic <a href="[server][ticket_url]">aquí</a>: 
+      <a href="[server][ticket_url]">[server][ticket_url]</a>
+      ]]>
+    </body>
+  </email>
+</emails>

@@ -1,0 +1,27 @@
+@import 'global/_variables';
+@import 'global/components/_mixins';
+
+@import 'layout/_variables';
+
+@import 'layout/_print';    
+              
+@import 'layout/_header';  
+@import 'layout/_page-container';       
+@import 'layout/_sidebar';       
+@import 'layout/_content';                       
+@import 'layout/_footer';                     
+@import 'layout/_theme-panel';
+@import 'layout/_quick-sidebar'; 
+
+.page-on-load {
+	background: #fefefe;
+
+	.page-header,
+	.page-container,
+	.page-footer,
+	> .clearfix {
+		display: none;
+		transition: all 2s;
+	}
+}
+

@@ -1,0 +1,23 @@
+﻿@model MvcSiteMapProvider.Web.Html.Models.MenuHelperModel
+@using System.Web.Mvc.Html
+@using MvcSiteMapProvider.Web.Html.Models
+
+<ul class="sidebar-menu">
+    <li class="header">MENU PRINCIPAL</li>
+    @foreach (var node in Model.Nodes)
+    {
+        var childCss = "";
+        if (node.Children.Any())
+        {
+            childCss = "treeview";
+        }
+
+
+        <li class="@childCss">@Html.DisplayFor(m => node)
+            @if (node.Children.Any())
+            {
+                @Html.DisplayFor(m => node.Children)
+            }
+        </li>
+    }
+</ul>

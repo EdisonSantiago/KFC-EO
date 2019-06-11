@@ -1,0 +1,61 @@
+﻿@model dynamic
+
+@{
+    ViewBag.Title = "Proyectos";
+    ViewBag.PageTitle = "Proyectos";
+    ViewBag.PageDescription = "Proyectos registrados en el sistema";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="btn-group">
+    <a href="@Url.Action("new","projects")" class="btn btn-default" id="btnAdd">
+        <i class="fa fa-plus"></i>
+        Nuevo Proyecto
+    </a>
+</div>
+<hr />
+<div class="box">
+
+    <div class="box-body">
+        <table id="items_grid"></table>
+    </div>
+</div>
+
+@section css
+{
+    <link href="~/vendors/gijgo-0.4.5/grid-0.4.5.min.css" rel="stylesheet" />
+}
+
+@section scripts
+{
+    <script src="~/vendors/gijgo-0.4.5/grid-0.4.5.min.js"></script>
+    <script type="text/javascript">
+        var grid;
+        $(document).ready(function() {
+            grid = $("#items_grid").grid({
+                dataKey: "Id",
+                uiLibrary: "bootstrap",
+                dataSource: '@Url.Action("getprojects","projects")',
+                columns: [
+                    { field: "Id", width: 35 },
+                    { field: "Name", title: "NOMBRE" },
+                    { field: "Identifier", title: "IDENTIFICADOR" },
+                    { field: "Description", title: "DESCRIPCIÓN" },
+                    { title: "", field: "Edit", width: 35, type: "icon", icon: "glyphicon-pencil", tooltip: "editar valores", events: { "click": edit } },
+                    { title: "", field: "Members", width: 35, type: "icon", icon: "glyphicon-user", tooltip: "Miembros", events: { "click": members } },
+                ]
+            });
+
+        });
+
+        function edit(e) {
+            var url = '@Url.Action("edit","projects")/' + e.data.record.Id;
+            window.location = url;
+        }
+
+        function members(e) {
+            var url = '@Url.Action("members","projects")/' + e.data.record.Identifier;
+            window.location = url;
+        }
+    </script>
+}

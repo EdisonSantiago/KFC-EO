@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-wticketIdth, initial-scale=1.0">
+        <title>@ViewBag.Title - @Html.ApplicationName()</title>
+        <link href='https://fonts.googleapis.com/css?family=Lato:100,300,400,700' rel='stylesheet' type='text/css'>
+        @Styles.Render("~/css")
+        <link href="~/content/css/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+        @Scripts.Render("~/bundles/modernizr")
+
+    </head>
+
+<body>
+    <div id="wrapper">
+        @Html.Partial("base/_navbarProfile")
+        
+        <div id="page-wrapper">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">@ViewBag.PageName</h1>
+                </div>
+            </div>
+
+            @RenderBody()
+
+        </div>
+        
+        <section id="footer">
+            @Html.Partial("base/_footer")
+        </section>
+    </div>
+    
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    <script src="~/Scripts/plugins/metismenu/metismenu.min.js"></script>
+    <script src="~/Scripts/dashmon/app.js"></script>
+    @RenderSection("scripts", required: false)
+</body>
+</html>

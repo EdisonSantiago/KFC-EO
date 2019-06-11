@@ -1,0 +1,22 @@
+﻿@model dynamic
+
+@{
+    ViewBag.Title = "Generador de Archivos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.PageTitle = "Generador de archivos";
+    ViewBag.PageTitleIconCss = "fa fa-cubes icon-large";
+}
+
+<div class="row">
+    <div class="col-md-5">
+        <div class="list-group">
+            <a href="@Url.Action("index", "rotef")" class="list-group-item">
+                <h4 class="list-group-item-heading">Archivos ROTEF</h4>
+                <p class="list-group-item-text">
+                    Generación de archivos ROTEF para enviar vía XML/ZIP
+                    al Servicio de Rentas Internas (SRI).
+                </p>
+            </a>
+        </div>
+    </div>
+</div>

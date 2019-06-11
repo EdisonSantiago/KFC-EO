@@ -1,0 +1,86 @@
+﻿@model dynamic
+
+
+@{
+    ViewBag.Title = "Historial de Evaluaciones";
+    ViewBag.PageTitle = "Historial de Evaluaciones";
+    ViewBag.PageDescription = "Historial de Evaluaciones generadas en el sistema";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br /><br />
+<div class="row">
+    <div class="col-md-3">
+        <div class="box box-solid">
+            <div class="box-header with-border">
+                <h3 class="box-title">Locales</h3>
+            </div>
+            <div class="box-body no-padding">
+                <div id="tree"></div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-9">
+        <div class="box">
+            <div class="box-header with-border">
+                <h3 class="box-title ">Evaluaciones</h3>
+            </div>
+            <div class="box-body">
+                <table id="items_grid"></table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section css
+{
+    <link href="~/vendors/gijgo-1.9.11/css/gijgo.min.css" rel="stylesheet" />
+}
+
+@section scripts
+{
+    <script src="~/vendors/gijgo-1.9.11/js/gijgo.min.js"></script>
+    <script type="text/javascript">
+        var grid;
+        var tree;
+        $(document).ready(function() {
+
+            tree = $("#tree").tree({
+                uiLibrary: "bootstrap",
+                primaryKey: "Id",
+                dataKey: "Id",
+                textField: "Text",
+                childrenField: "Nodes",
+                dataSource: '@Url.Action("gettree", "evaluaciones")',
+                iconsLibrary: 'fontawesome'
+            });
+
+            grid = $("#items_grid").grid({
+                dataKey: "Id",
+                primaryKey: "Id",
+                uiLibrary: "bootstrap",
+                dataSource: '@Url.Action("gethistorial")',
+                columns: [
+                    { field: "Id", width: 35, hidden: true },
+                    { field: "LocalNombre", title: "LOCAL" },
+                    { field: "FechaEvaluacion", title: "DIA", type: "date", format: "dd/mm/yyyy", width:100 },
+                    { field: "HoraEvaluacion", title: "HORA", type: "date", format: "HH:MM", width: 100 },
+                    { field: "Estado", title: "ESTADO", tmpl: '<span class="status status-{Estado}">{Estado}</span>', width: 120 },
+                    { title: "", field: "Show", width: 35, type: "icon", icon: "glyphicon-eye-open", tooltip: "Ver Detalles", events: { "click": show } }
+                ]
+            });
+
+            tree.on('select',
+                function(e, node, id) {
+                    grid.reload({ parent: id });
+                });
+        });
+
+        function show(e) {
+            var url = '@Url.Action("show", "evaluaciones")/' + e.data.record.Id;
+            window.location = url;
+        }
+
+
+    </script>
+}

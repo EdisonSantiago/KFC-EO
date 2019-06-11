@@ -1,0 +1,4 @@
+{
+    "appService.deploySubpath": "dist\\ClientApp",
+    "appService.defaultWebAppToDeploy": "/subscriptions/16121322-81e3-4c3f-836a-c48270d4a4ea/resourceGroups/oulanka-app/providers/Microsoft.Web/sites/oulanka-app"
+}

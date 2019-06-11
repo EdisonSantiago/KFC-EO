@@ -1,0 +1,57 @@
+﻿@model JerarquiaViewModel
+
+<!-- Nacional -->
+<div class="modal fade" id="nacional_form" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Gerente Nacional</h4>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <input type="hidden" id="NacId" value="0" />
+                    <input type="hidden" id="NacGeneralId" value="0" />
+                    <div class="form-group">
+                        <label for="NacCadena">Cadena:</label>
+                        <select name="NacCadena" id="NacCadena" class="form-control">
+                            <option value="">Seleccione uno:</option>
+                            @foreach (var cadena in Model.Cadenas)
+                            {
+                                <option value="@cadena.Id">@cadena.Nombre</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="NacNombre">Nombre:</label>
+                        <input type="text" class="form-control" id="NacNombre" placeholder="Nombre" />
+                    </div>
+                    <div class="form-group">
+                        <label for="NacDescripcion">Descripción:</label>
+                        <input type="text" class="form-control" id="NacDescripcion" placeholder="Descripción">
+                    </div>
+                    <div class="form-group">
+                        <label for="NacEstado">Estado:</label>
+                        <select name="NacEstado" id="NacEstado" class="form-control">
+                            <option value="">Seleccione uno:</option>
+                            @foreach (var estado in Model.Estados)
+                            {
+                                <option value="@estado.Id">@estado.Nombre</option>
+                            }
+                        </select>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <button type="button" class="btn btn-default pull-right" data-dismiss="modal">Cancelar</button>
+                        <button type="button" id="btnNacSave" class="btn btn-primary pull-right" style="margin-right: 5px;">Guardar</button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

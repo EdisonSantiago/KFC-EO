@@ -1,0 +1,17 @@
+<div *ngIf="hasItems"></div>
+<ul class="list-group">
+    <li class="list-group-item" *ngFor="let item of items">
+       <div class="row">
+           <div class="col-md-10">{{item.nombre}}</div>
+           <div class="col-md-2">
+               <app-standardaction
+                     [standard]="item"
+                     [standardId]="item.id"
+                     [evaluationId]="evaluationId" >
+
+               </app-standardaction>
+            </div>
+       </div>
+        
+    </li>
+</ul>
